@@ -3,9 +3,6 @@
 
     padding-top: 40px;
     padding-bottom: 53px;
-    padding-left: 29px;
-    padding-right: 29px;
-
     margin-left: auto;
     margin-right: auto;
     margin-top: 50px;
@@ -14,8 +11,6 @@
     border-radius: 30px;
     
     background-color: #fff;
-    /* outline: solid 1px red; */
-
 }
 
 @media (min-width: 768px) {
@@ -28,16 +23,16 @@
 @media (min-width: 1280px) {
     .authformContainter {
         margin-right: 110px;
-        margin-top: 173px;
+        margin-top: 117px;
     }        
 }
+
+
 
 .container_content {
     width: 265px;
     margin-left: auto;
     margin-right: auto;
-
-    /* outline: solid 1px olive; */
 
 }
 
@@ -57,7 +52,13 @@
     letter-spacing: 0.04em;
 
     color: #52555F;
+}
 
+@media (min-width: 768px) {
+    .authformInfo_header {
+        font-size: 12px;
+        line-height: 1.2;
+    }
 }
 
 .googleBtn {
@@ -88,7 +89,13 @@
     letter-spacing: 0.04em;
 
     color: #52555F;
+}
 
+@media (min-width: 768px) {
+    .authformInfo {
+        font-size: 12px;
+        line-height: 1.2;
+    }
 }
 
 .authLabel {
@@ -106,10 +113,20 @@
     line-height: 1.1
 }
 
+@media (min-width: 768px) {
+    .authLabel {
+        font-size: 12px;
+        line-height: 1.2;
+    }
+}
+
 .authInput {
     margin-top: 12px;
     padding: 20px 17px;
     background: #F6F7FB;
+    
+    font-size: 14px;
+    line-height: 1.2;
     border: none;
     border-radius: 30px;
 }
@@ -136,6 +153,8 @@
 
     border: none;
     border-radius: 16px;
+
+    cursor: pointer;
 }
 
 .activeBtn {
@@ -152,5 +171,8 @@
 
     border: none;
     border-radius: 16px;
+
+    cursor: pointer;
 }
+
 
