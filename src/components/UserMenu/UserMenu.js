@@ -1,10 +1,19 @@
 import useMediaQuery from '@mui/material/useMediaQuery';
 import sprite from '../../sprite.svg';
 import s from './UserMenu.module.css';
+import { useDispatch,useSelector } from 'react-redux';
+import { getName } from '../../redux/auth/selectors';
+import { logoutThunk } from '../../redux/auth/thunks';
 
 export default function UserMenu() {
   const tablet = useMediaQuery('(min-width: 768px)');
+  const dispatch = useDispatch();
+  const user = useSelector(getName);
 
+  const handleLogout = () => {
+    dispatch(logoutThunk())
+  }
+  
   return (
     <div className={s.header__menu}>
       <div className={s.header__avatar}>H</div>
@@ -15,7 +24,7 @@ export default function UserMenu() {
       <button
         className={s.header__logout}
         type="button"
-        // onClick={() => dispatch(authOperations.logOut())}
+        onClick={handleLogout}
       >
         {tablet
           ? 'Вихід'
@@ -25,4 +34,3 @@ export default function UserMenu() {
     </div>
   );
 }
-
