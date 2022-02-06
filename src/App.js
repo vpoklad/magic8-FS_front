@@ -5,6 +5,7 @@ import { getIsFetchingCurrentUser } from './redux/auth/selectors';
 import { fetchCurrentUser } from './redux/auth/thunks';
 import AppBar from './components/AppBar/AppBar';
 import AuthForm from './components/AuthForm/AuthForm';
+import Balance from './components/Balance/Balance';
 
 function App() {
   const dispatch = useDispatch();
@@ -19,6 +20,7 @@ function App() {
     <div className="App">
       <AppBar />
       <AuthForm />
+      <Balance showReport={false} />
     </div>
   )
   );

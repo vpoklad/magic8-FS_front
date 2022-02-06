@@ -1,0 +1,169 @@
+.container {
+  font-family: Roboto;
+  font-size: 12px;
+  line-height: 14px;
+  text-align: center;
+  font-weight: 400;
+  letter-spacing: 0.02em;
+  color: rgba(82, 85, 95, 0.7);
+  margin-bottom: 40px;
+}
+
+@media (min-width: 768px) {
+  .container {
+    display: flex;
+    align-items: baseline;
+    flex-direction: row-reverse;
+    margin-bottom: 58px;
+  }
+}
+
+@media (min-width: 1280px) {
+  .container {
+    margin-bottom: 9px;
+  }
+}
+
+.reports {
+  display: flex;
+  justify-content: center;
+  align-items: flex-end;
+  margin-bottom: 40px;
+}
+
+@media (min-width: 768px) {
+  .reports {
+    margin-bottom: 0px;
+  }
+}
+
+.link {
+  margin-right: 15px;
+
+  text-decoration: none;
+  color: inherit;
+}
+
+.link:hover {
+  color: #ff751d;
+}
+/* 
+.link:hover .icon {
+  stroke: #ff751d;
+} */
+
+@media (min-width: 768px) {
+  .containerBalance {
+    display: flex;
+    align-items: center;
+    margin-right: 111px;
+  }
+}
+
+@media (min-width: 1280px) {
+  .containerBalance {
+    margin-right: 205px;
+  }
+}
+
+.text {
+  font-weight: 500;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  margin-bottom: 6px;
+}
+
+@media (min-width: 768px) {
+  .text {
+    margin-right: 21px;
+    margin-bottom: 0px;
+  }
+}
+
+.containerInput {
+  display: flex;
+  justify-content: center;
+  height: 44px;
+}
+
+.balanceInput {
+  display: flex;
+  align-items: center;
+  text-align: center;
+  justify-content: center;
+  width: 125px;
+  padding: 12px;
+  font-weight: 700;
+  text-transform: uppercase;
+
+  border: 2px solid #ffffff;
+  border-radius: 22px 0px 0px 22px;
+  background-color: transparent;
+  color: #000000;
+}
+
+@media (min-width: 768px) {
+  .balanceInput {
+    margin-right: 15px;
+    border-radius: 16px;
+  }
+}
+
+@media (min-width: 1280px) {
+  .balanceInput {
+    margin-right: 10px;
+  }
+}
+
+.balanceInput:focus,
+.balanceInput:hover {
+  outline: #ffffff;
+}
+
+.confirmBtn {
+  width: 125px;
+  border: none;
+  background-color: transparent;
+  border: 2px solid #ffffff;
+  border-radius: 0px 22px 22px 0px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  text-transform: uppercase;
+
+  color: rgba(82, 85, 95, 0.7);
+  cursor: pointer;
+}
+
+@media (min-width: 768px) {
+  .confirmBtn {
+    border-radius: 16px;
+  }
+}
+
+.confirmBtn:hover {
+  outline: none;
+  border: none;
+  background-color: #ff751d;
+  color: #ffffff;
+  cursor: pointer;
+}
+
+.editBtn {
+  background-color: transparent;
+  border: none;
+  cursor: pointer;
+}
+.iconEdit {
+  cursor: pointer;
+  color: rgba(82, 85, 95, 0.7);
+}
+
+.iconEdit:hover {
+  color: #ff751d;
+  cursor: pointer;
+}
