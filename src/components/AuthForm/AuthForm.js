@@ -1,11 +1,18 @@
 import { React, useState } from 'react';
+
 import { NavLink } from 'react-router-dom';
+
+import { useDispatch } from "react-redux";
+
+import { register, logIn } from '../../redux/auth/thunks';
+
 import s from './authform.module.css';
 import logo from './google.svg';
 
 export default function AuthForm() {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+  const dispatch = useDispatch();
 
   const handleChange = ({ target: { name, value } }) => {
     switch (name) {
@@ -17,12 +24,18 @@ export default function AuthForm() {
         return;
     }
   };
-  const handleSubmit = e => {
+  const handlelogIn = e => {
     e.preventDefault();
-    //submit operation
+    dispatch(logIn({email, password}));
     setEmail('');
     setPassword('');
   };
+  const handleRegister = e => {
+    e.preventDefault();
+    dispatch(register({email, password}));
+    setEmail('');
+    setPassword('');
+  }
 
   return (
     <div className={s.authformContainter}>
@@ -44,7 +57,7 @@ export default function AuthForm() {
           Або зайти за допомогою e-mail та пароля, попередньо пройшовши
           реєстрацію.
         </p>
-        <form onSubmit={handleSubmit} className={s.authform} autoComplete="off">
+        <form onSubmit={handlelogIn} className={s.authform} autoComplete="off">
           <label className={s.authLabel}>
             Електронна пошта
             <input
@@ -78,7 +91,10 @@ export default function AuthForm() {
             >
               ВВІЙТИ
             </button>
-            <button type="submit" title="Реєстрація" className={s.authBtn}>
+            <button type="button"
+              onClick={handleRegister}
+              title="Реєстрація"
+              className={s.authBtn}>
               РЕЄСТРАЦІЯ
             </button>
           </div>

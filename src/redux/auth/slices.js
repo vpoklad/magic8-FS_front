@@ -1,15 +1,25 @@
 import { createSlice } from "@reduxjs/toolkit";
-import { logoutThunk } from "./thunks";
+import { register, logIn, logoutThunk, fetchCurrentUser } from "./thunks";
 
 const authSlice = createSlice({
     name: 'auth',
     initialState:{
-        user: { name: null, email: null },
+        email: null,
         token: null,
         isAuth: false,
+        isFetchingCurrentUser: false,
     },
-     extraReducers: {
-
+    extraReducers: {
+         [register.fulfilled](state, action) {
+            state.user = action.payload.email;
+            state.token = action.payload.token;
+            state.isAuth = false;
+        },
+         [logIn.fulfilled](state, action) {
+            state.user = action.payload.email;
+            state.token = action.payload.token;
+            state.isAuth = true;
+        },
          [logoutThunk.fulfilled](state,_){
             return {
                 ...state,
@@ -17,6 +27,17 @@ const authSlice = createSlice({
                 token: null,
                 isAuth: false,
             }
+        },
+         [fetchCurrentUser.pending](state) {
+            state.isFetchingCurrentUser = true;
+        },
+         [fetchCurrentUser.fulfilled](state, action) {
+            state.user = action.payload.email;
+            state.isAuth = true;
+            state.isFetchingCurrentUser = false;
+        },
+         [fetchCurrentUser.rejected](state) {
+            state.isFetchingCurrentUser = false;
         }
     }
 })
