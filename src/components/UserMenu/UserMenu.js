@@ -1,20 +1,17 @@
 import useMediaQuery from '@mui/material/useMediaQuery';
 import sprite from '../../sprite.svg';
 import s from './UserMenu.module.css';
-import { useDispatch,useSelector } from 'react-redux';
-import { getName } from '../../redux/auth/selectors';
+import { useDispatch, useSelector } from 'react-redux';
+import { getUser } from '../../redux/auth/selectors';
 import { logoutThunk } from '../../redux/auth/thunks';
 
 export default function UserMenu() {
   const tablet = useMediaQuery('(min-width: 768px)');
   const dispatch = useDispatch();
-  const user = {
-    email: 'helenMarlen@gmail.com',
-  }// useSelector(getName);
-  console.log(user);
+  const user = useSelector(getUser);
 
-  const userName = user.email.substring(0, user.email.lastIndexOf("@"));
-  const userNameFirstLetter = user.email[0];
+  const userName = user.substring(0, user.lastIndexOf("@"));
+  const userNameFirstLetter = user[0];
 
   const handleLogout = () => {
     dispatch(logoutThunk())
