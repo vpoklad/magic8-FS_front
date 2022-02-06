@@ -32,7 +32,7 @@ export default function AuthForm() {
         </p>
 
         <div>
-          <NavLink to="/register" exact className={s.googleLink}>
+          <NavLink to="/" exact className={s.googleLink}>
             <button className={s.googleBtn}>
               <img src={logo} alt="google" className={s.googleIcon} />
               Google
