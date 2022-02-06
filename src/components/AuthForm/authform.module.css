@@ -157,6 +157,16 @@
     cursor: pointer;
 }
 
+.authBtn:hover {
+    background-color: #e7e8ec
+}
+
+.authBtn:active, .activeBtn:active {
+  background-color: #dcdde2;
+  box-shadow: 0 5px #666;
+  transform: translateY(3px);
+}
+
 .activeBtn {
     display: inline-block;
     width: 125px;
@@ -173,6 +183,10 @@
     border-radius: 16px;
 
     cursor: pointer;
+}
+
+.activeBtn:hover {
+    background-color: #f16d1a;
 }
 
 

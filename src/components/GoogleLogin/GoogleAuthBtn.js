@@ -1,6 +1,7 @@
 import { React, useState } from 'react';
 import { GoogleLogin, GoogleLogout } from 'react-google-login';
 import s from './googleLogin.module.css';
+import logo from './google.svg';
 
 export default function GoogleAuthLogin() {
   const clientId =
@@ -26,19 +27,20 @@ export default function GoogleAuthLogin() {
   };
 
   return (
-    <div className={s.googleBtn_container}>
+    <div>
       {showLoginBtn ? (
         <GoogleLogin
           clientId={clientId}
-          // render={renderProps => (
-          //   <button
-          //     onClick={renderProps.onClick}
-          //     disabled={renderProps.disabled}
-          //     className={s.googleBtn}
-          //   >
-          //     Google
-          //   </button>
-          // )}
+          render={renderProps => (
+            <button
+              onClick={renderProps.onClick}
+              disabled={renderProps.disabled}
+              className={s.googleBtn}
+            >
+              <img src={logo} alt="google" className={s.googleIcon} />
+              Google
+            </button>
+          )}
           buttonText="Google"
           onSuccess={onLoginSuccess}
           onFailure={onFailureSuccess}
@@ -50,6 +52,16 @@ export default function GoogleAuthLogin() {
         <GoogleLogout
           clientId={clientId}
           buttonText="Logout"
+          render={renderProps => (
+            <button
+              onClick={renderProps.onClick}
+              disabled={renderProps.disabled}
+              className={s.googleBtn}
+            >
+              <img src={logo} alt="google" className={s.googleIcon} />
+              Log out
+            </button>
+          )}
           onLogoutSuccess={onSignoutSuccess}
         ></GoogleLogout>
       ) : null}

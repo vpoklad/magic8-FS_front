@@ -1,17 +1,37 @@
-.googleBtn_container {
-
-}
 .googleBtn {
+    display: flex;
+    justify-content: space-between;
     width: 122px;
     
-    /* margin-top: 24px; */
-    /* margin-bottom: 30px;
-    margin-left: auto;
-    margin-right: auto;
+    padding: 10px 20px;
+
+    font-size: 14px;
+    line-height: 1.2;
+    font-weight: 500;
+    color: #000000;
 
     background: #F6F7FB;
+    border: none;
     border-radius: 26px;
 
-    background-color: #F6F7FB; */
+    cursor: pointer;
+}
 
+.googleBtn:hover {
+    background-color: #e7e8ec
+}
+
+.googleBtn:active {
+  background-color: #dcdde2;
+  box-shadow: 0 5px #666;
+  transform: translateY(3px);
+  
+}
+
+.googleIcon {
+    background: url('./google.svg');
+    background-size: contain;
+    display: inline-block;
+    height: 18px;
+    width: 18px;
 }
