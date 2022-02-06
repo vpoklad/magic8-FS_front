@@ -2,7 +2,7 @@ import axios from "axios";
 import { createAsyncThunk } from '@reduxjs/toolkit';
 
 const BASE_USER_URL = `https://kapusta-magic8.herokuapp.com/`;
-const userLogout = '/logout';
+const userLogout = 'user/logout';
 
 
 axios.defaults.baseURL = BASE_USER_URL;
