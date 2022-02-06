@@ -1,6 +1,7 @@
 import { React, useState } from 'react';
-import GoogleAuthBtn from '../GoogleLogin/GoogleAuthBtn';
+import { NavLink } from 'react-router-dom';
 import s from './authform.module.css';
+import logo from './google.svg';
 
 export default function AuthForm() {
   const [email, setEmail] = useState('');
@@ -29,8 +30,14 @@ export default function AuthForm() {
         <p className={s.authformInfo_header}>
           Ви можете авторизуватися за допомогою Google Account:
         </p>
-        <div className={s.googleBtn}>
-          <GoogleAuthBtn />
+
+        <div>
+          <NavLink to="/register" exact className={s.googleLink}>
+            <button className={s.googleBtn}>
+              <img src={logo} alt="google" className={s.googleIcon} />
+              Google
+            </button>
+          </NavLink>
         </div>
 
         <p className={s.authformInfo}>

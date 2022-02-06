@@ -48,7 +48,7 @@ export default function GoogleAuthLogin() {
           isSignedIn={true}
         />
       ) : null}
-      {showLogoutBtn ? (
+      {/* {showLogoutBtn ? (
         <GoogleLogout
           clientId={clientId}
           buttonText="Logout"
@@ -64,7 +64,7 @@ export default function GoogleAuthLogin() {
           )}
           onLogoutSuccess={onSignoutSuccess}
         ></GoogleLogout>
-      ) : null}
+      ) : null} */}
     </div>
   );
 }
