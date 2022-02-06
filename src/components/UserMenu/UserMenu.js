@@ -8,17 +8,23 @@ import { logoutThunk } from '../../redux/auth/thunks';
 export default function UserMenu() {
   const tablet = useMediaQuery('(min-width: 768px)');
   const dispatch = useDispatch();
-  const user = useSelector(getName);
+  const user = {
+    email: 'helenMarlen@gmail.com',
+  }// useSelector(getName);
+  console.log(user);
+
+  const userName = user.email.substring(0, user.email.lastIndexOf("@"));
+  const userNameFirstLetter = user.email[0];
 
   const handleLogout = () => {
     dispatch(logoutThunk())
   }
-  
+
   return (
     <div className={s.header__menu}>
-      <div className={s.header__avatar}>H</div>
+      <div className={s.header__avatar}>{userNameFirstLetter}</div>
       {tablet && <>
-        <span className={s.header__username}>HelenMarlen</span>
+        <span className={s.header__username}>{userName}</span>
         <div className={s.header__divider}></div>
       </>}
       <button
