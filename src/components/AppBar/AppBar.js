@@ -1,9 +1,11 @@
 import UserMenu from '../UserMenu/UserMenu';
 import s from './AppBar.module.css';
+import { useSelector } from 'react-redux';
+import { getAuth } from '../../redux/auth/selectors';
 import logo from './logo.svg';
 
 export default function AppBar() {
-  const isLoggedIn = true; // useSelector(authSelectors.getIsLoggedIn);
+  const isLoggedIn = useSelector(getAuth);
 
   return (
     <header className={s.header}>
