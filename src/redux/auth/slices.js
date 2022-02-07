@@ -6,24 +6,26 @@ const authSlice = createSlice({
     initialState:{
         email: null,
         token: null,
-        isAuth: false,
         isFetchingCurrentUser: false,
+        formError: null,
+        verify: false,
     },
     extraReducers: {
          [register.fulfilled](state, action) {
-            state.user = action.payload.email;
+            state.email = action.payload.email;
             state.token = action.payload.token;
-            state.isAuth = false;
+            state.verify = action.payload.verificationEmailSend;
+            state.formError = action.payload;
         },
          [logIn.fulfilled](state, action) {
-            state.user = action.payload.email;
+            state.email = action.payload.email;
             state.token = action.payload.token;
-            state.isAuth = true;
+             state.formError = action.payload;
         },
          [logoutThunk.fulfilled](state,_){
             return {
                 ...state,
-                user: null,
+                email: null,
                 token: null,
                 isAuth: false,
             }
@@ -32,7 +34,7 @@ const authSlice = createSlice({
             state.isFetchingCurrentUser = true;
         },
          [fetchCurrentUser.fulfilled](state, action) {
-            state.user = action.payload.email;
+            state.email = action.payload.email;
             state.isAuth = true;
             state.isFetchingCurrentUser = false;
         },

@@ -1,190 +1,218 @@
 .authformContainter {
-    width: 300px;
+  width: 300px;
 
-    padding-top: 40px;
-    padding-bottom: 53px;
-    margin-left: auto;
-    margin-right: auto;
-    margin-top: 50px;
-    
-    box-shadow: 5px 10px 20px rgba(170, 178, 197, 0.4);
-    border-radius: 30px;
-    
-    background-color: #fff;
+  padding-top: 40px;
+  padding-bottom: 53px;
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 50px;
+
+  box-shadow: 5px 10px 20px rgba(170, 178, 197, 0.4);
+  border-radius: 30px;
+
+  background-color: #fff;
 }
 
 @media (min-width: 768px) {
-    .authformContainter {
-        width: 436px;
-        padding-top: 50px;
-    }
+  .authformContainter {
+    width: 436px;
+    padding-top: 50px;
+  }
 }
 
 @media (min-width: 1280px) {
-    .authformContainter {
-        margin-right: 110px;
-        margin-top: 117px;
-    }        
+  .authformContainter {
+    margin-right: 110px;
+    margin-top: 117px;
+  }
 }
-
-
 
 .container_content {
-    width: 265px;
-    margin-left: auto;
-    margin-right: auto;
+  width: 265px;
+  margin-left: auto;
+  margin-right: auto;
 }
 
-
-
-
 .authformInfo_header {
-    width: 222px;
-    margin-left: auto;
-    margin-right: auto;
-    margin-bottom: 24px;
-    text-align: center;
+  width: 222px;
+  margin-left: auto;
+  margin-right: auto;
+  margin-bottom: 24px;
+  text-align: center;
 
-    font-family: Roboto;
-    font-style: normal;
-    font-weight: normal;
-    font-size: 10px;
-    line-height: 12px;
-    text-align: center;
-    letter-spacing: 0.04em;
-    
-    color: #52555F;
+  font-family: Roboto;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 10px;
+  line-height: 12px;
+  text-align: center;
+  letter-spacing: 0.04em;
 
+  color: #52555f;
 }
 
 @media (min-width: 768px) {
-    .authformInfo_header {
-        font-size: 12px;
-        line-height: 1.2;
-    }
+  .authformInfo_header {
+    font-size: 12px;
+    line-height: 1.2;
+  }
 }
 
-
 .googleBtn {
-    display: flex;
-    justify-content: space-between;
-    width: 122px;
-    margin-left: auto;
-    margin-right: auto;
-    padding: 10px 20px;
+  display: flex;
+  justify-content: space-between;
+  width: 122px;
+  margin-left: auto;
+  margin-right: auto;
+  padding: 10px 20px;
 
-    font-size: 14px;
-    line-height: 1.2;
-    font-weight: 500;
+  font-size: 14px;
+  line-height: 1.2;
+  font-weight: 500;
 
-    color: #000000;
-    background: #F6F7FB;
-    border: none;
-    border-radius: 26px;
+  color: #000000;
+  background: #f6f7fb;
+  border: none;
+  border-radius: 26px;
 
-    cursor: pointer;
-    text-decoration: none;
+  cursor: pointer;
+  text-decoration: none;
 }
 
 .googleLink {
-    text-decoration: none;
+  text-decoration: none;
 }
 
 .googleBtn:hover {
-
-    background-color: #e7e8ec
+  background-color: #e7e8ec;
 }
 
-
-
 .googleBtn:active {
-    background-color: #e76615;
-    box-shadow: 0 3px #d37134;
-    transform: translateY(1px);
-
-  
+  background-color: #e76615;
+  box-shadow: 0 3px #d37134;
+  transform: translateY(1px);
 }
 
 .googleIcon {
-    background: url('./google.svg');
-    background-size: contain;
-    display: inline-block;
-    height: 18px;
-    width: 18px;
+  background: url('./google.svg');
+  background-size: contain;
+  display: inline-block;
+  height: 18px;
+  width: 18px;
 }
 
-
-
 .authform {
-    margin-left: auto;
-    margin-right: auto;
-    margin-top: 24px;
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 24px;
 }
 
 .authformInfo {
-    width: 100%;
-    margin-left: auto;
-    margin-right: auto;
-    margin-top: 30px;
-    margin-bottom: 24px;
-  
-    font-family: Roboto;
-    font-style: normal;
-    font-weight: normal;
-    font-size: 10px;
-    line-height: 12px;
-    letter-spacing: 0.04em;
+  width: 100%;
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 30px;
+  margin-bottom: 24px;
 
-    color: #52555F;
+  font-family: Roboto;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 10px;
+  line-height: 12px;
+  letter-spacing: 0.04em;
+
+  color: #52555f;
 }
 
 @media (min-width: 768px) {
-    .authformInfo {
-        font-size: 12px;
-        line-height: 1.2;
-    }
+  .authformInfo {
+    font-size: 12px;
+    line-height: 1.2;
+  }
 }
 
 .authLabel {
-    margin-left: auto;
-    margin-right: auto;
-    display: flex;
-    flex-direction: column;
-    margin-top: 30px;
-    color: #000000;
+  margin-left: auto;
+  margin-right: auto;
+  display: flex;
+  flex-direction: column;
+  margin-top: 30px;
+  color: #000000;
 
-    font-family: Roboto;
-    
-    font-weight: bold;
-    font-size: 10px;
-    line-height: 1.1
+  font-family: Roboto;
+
+  font-weight: bold;
+  font-size: 10px;
+  line-height: 1.1;
 }
 
 @media (min-width: 768px) {
-    .authLabel {
-        font-size: 12px;
-        line-height: 1.2;
-    }
+  .authLabel {
+    font-size: 12px;
+    line-height: 1.2;
+  }
 }
 
 .authInput {
-    margin-top: 12px;
-    padding: 20px 17px;
-    background: #F6F7FB;
-    
-    font-size: 14px;
-    line-height: 1.2;
-    border: none;
-    border-radius: 30px;
+  margin-top: 12px;
+  padding: 20px 17px;
+  background: #f6f7fb;
+
+  font-size: 14px;
+  line-height: 1.2;
+  border: none;
+  border-radius: 30px;
 }
 
 .btns {
-    display: flex;
-    justify-content: space-between;
-    width: 100%;
-    margin-top: 40px;
-    margin-left: auto;
-    margin-right: auto;
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+  margin-top: 40px;
+  margin-left: auto;
+  margin-right: auto;
 }
 
+.authBtn {
+  display: inline-block;
+  width: 125px;
+  height: 44px;
+  margin: 0;
 
+  font-weight: 700;
+  font-size: 12px;
+
+  background: #f5f6fb;
+
+  border: none;
+  border-radius: 16px;
+}
+
+.activeBtn {
+  display: inline-block;
+  width: 125px;
+  height: 44px;
+  margin: 0;
+
+  font-weight: 700;
+  font-size: 12px;
+
+  color: #ffffff;
+  background-color: #ff751d;
+
+  border: none;
+  border-radius: 16px;
+}
+
+.authForm__message {
+  margin-top: 20px;
+  font-size: 10px;
+}
+
+.authForm__message_success {
+  color: green;
+}
+
+.authForm__message_danger {
+  color: red;
+}
