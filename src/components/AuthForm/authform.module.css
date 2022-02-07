@@ -1,156 +1,163 @@
 .authformContainter {
-    width: 300px;
+  width: 300px;
 
-    padding-top: 40px;
-    padding-bottom: 53px;
-    padding-left: 29px;
-    padding-right: 29px;
+  padding-top: 40px;
+  padding-bottom: 53px;
+  padding-left: 29px;
+  padding-right: 29px;
 
-    margin-left: auto;
-    margin-right: auto;
-    margin-top: 50px;
-    
-    box-shadow: 5px 10px 20px rgba(170, 178, 197, 0.4);
-    border-radius: 30px;
-    
-    background-color: #fff;
-    /* outline: solid 1px red; */
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 50px;
 
+  box-shadow: 5px 10px 20px rgba(170, 178, 197, 0.4);
+  border-radius: 30px;
+
+  background-color: #fff;
+  /* outline: solid 1px red; */
 }
 
 @media (min-width: 768px) {
-    .authformContainter {
-        width: 436px;
-        padding-top: 50px;
-    }
+  .authformContainter {
+    width: 436px;
+    padding-top: 50px;
+  }
 }
 
 @media (min-width: 1280px) {
-    .authformContainter {
-        margin-right: 110px;
-        margin-top: 173px;
-    }        
+  .authformContainter {
+    margin-right: 110px;
+    margin-top: 173px;
+  }
 }
 
 .container_content {
-    width: 265px;
-    margin-left: auto;
-    margin-right: auto;
+  width: 265px;
+  margin-left: auto;
+  margin-right: auto;
 
-    /* outline: solid 1px olive; */
-
+  /* outline: solid 1px olive; */
 }
 
 .authformInfo_header {
-    width: 222px;
-    margin-left: auto;
-    margin-right: auto;
-    margin-bottom: 24px;
-    text-align: center;
+  width: 222px;
+  margin-left: auto;
+  margin-right: auto;
+  margin-bottom: 24px;
+  text-align: center;
 
-    font-family: Roboto;
-    font-style: normal;
-    font-weight: normal;
-    font-size: 10px;
-    line-height: 12px;
-    text-align: center;
-    letter-spacing: 0.04em;
+  font-family: Roboto;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 10px;
+  line-height: 12px;
+  text-align: center;
+  letter-spacing: 0.04em;
 
-    color: #52555F;
-
+  color: #52555f;
 }
 
 .googleBtn {
-    
-    width: 122px;
-    margin-left: auto;
-    margin-right: auto;
-    margin-bottom: 30px;
+  width: 122px;
+  margin-left: auto;
+  margin-right: auto;
+  margin-bottom: 30px;
 }
 
 .authform {
-    margin-left: auto;
-    margin-right: auto;
-    margin-top: 24px;
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 24px;
 }
 
 .authformInfo {
-    width: 100%;
-    margin-left: auto;
-    margin-right: auto;
-    margin-bottom: 24px;
-  
-    font-family: Roboto;
-    font-style: normal;
-    font-weight: normal;
-    font-size: 10px;
-    line-height: 12px;
-    letter-spacing: 0.04em;
+  width: 100%;
+  margin-left: auto;
+  margin-right: auto;
+  margin-bottom: 24px;
 
-    color: #52555F;
+  font-family: Roboto;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 10px;
+  line-height: 12px;
+  letter-spacing: 0.04em;
 
+  color: #52555f;
 }
 
 .authLabel {
-    margin-left: auto;
-    margin-right: auto;
-    display: flex;
-    flex-direction: column;
-    margin-top: 30px;
-    color: #000000;
+  margin-left: auto;
+  margin-right: auto;
+  display: flex;
+  flex-direction: column;
+  margin-top: 30px;
+  color: #000000;
 
-    font-family: Roboto;
-    
-    font-weight: bold;
-    font-size: 10px;
-    line-height: 1.1
+  font-family: Roboto;
+
+  font-weight: bold;
+  font-size: 10px;
+  line-height: 1.1;
 }
 
 .authInput {
-    margin-top: 12px;
-    padding: 20px 17px;
-    background: #F6F7FB;
-    border: none;
-    border-radius: 30px;
+  margin-top: 12px;
+  padding: 20px 17px;
+  background: #f6f7fb;
+  border: none;
+  border-radius: 30px;
 }
 
 .btns {
-    display: flex;
-    justify-content: space-between;
-    width: 100%;
-    margin-top: 40px;
-    margin-left: auto;
-    margin-right: auto;
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+  margin-top: 40px;
+  margin-left: auto;
+  margin-right: auto;
 }
 
 .authBtn {
-    display: inline-block;
-    width: 125px;
-    height: 44px;
-    margin: 0;
+  display: inline-block;
+  width: 125px;
+  height: 44px;
+  margin: 0;
 
-    font-weight: 700;
-    font-size: 12px;
+  font-weight: 700;
+  font-size: 12px;
 
-    background: #F5F6FB;
+  background: #f5f6fb;
 
-    border: none;
-    border-radius: 16px;
+  border: none;
+  border-radius: 16px;
 }
 
 .activeBtn {
-    display: inline-block;
-    width: 125px;
-    height: 44px;
-    margin: 0;
+  display: inline-block;
+  width: 125px;
+  height: 44px;
+  margin: 0;
 
-    font-weight: 700;
-    font-size: 12px;
+  font-weight: 700;
+  font-size: 12px;
 
-    color: #ffffff;
-    background-color: #FF751D;
+  color: #ffffff;
+  background-color: #ff751d;
 
-    border: none;
-    border-radius: 16px;
+  border: none;
+  border-radius: 16px;
 }
 
+.authForm__message {
+  margin-top: 20px;
+  font-size: 10px;
+}
+
+.authForm__message_success {
+  color: green;
+}
+
+.authForm__message_danger {
+  color: red;
+}

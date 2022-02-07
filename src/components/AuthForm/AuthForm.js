@@ -1,13 +1,16 @@
 import { React, useState } from 'react';
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import GoogleAuthBtn from '../GoogleLogin/GoogleAuthBtn';
 import { register, logIn } from '../../redux/auth/thunks';
+import { getFormError, getVerify } from '../../redux/auth/selectors';
 import s from './authform.module.css';
 
 export default function AuthForm() {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const dispatch = useDispatch();
+  const formError = useSelector(getFormError);
+  const verifyEmailSend = useSelector(getVerify);
 
   const handleChange = ({ target: { name, value } }) => {
     switch (name) {
@@ -72,6 +75,10 @@ export default function AuthForm() {
               onChange={handleChange}
             />
           </label>
+
+          {formError && <div className={[s.authForm__message, s.authForm__message_danger].join(' ')}>{formError.message}</div>}
+          {verifyEmailSend && <div className={[s.authForm__message, s.authForm__message_success].join(' ')}>Лист підветдження відравлено на вказану електронну адресу.</div>}
+
           <div className={s.btns}>
             <button
               type="submit"
