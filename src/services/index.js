@@ -1,11 +1,11 @@
 import axios from 'axios';
 
-const BASE_USER_URL = `https://kapusta-magic8.herokuapp.com/`;
+const BASE_USER_URL = 'https://kapusta-magic8.herokuapp.com/';
 
 axios.defaults.baseURL = BASE_USER_URL;
 
-const addBalanceEndpoint = '/balance';
+const addBalanceEndpoint = '/api/users/balance';
 
 export const addBalance = balance => {
-  return axios.post(`${addBalanceEndpoint}?balance=${balance}`);
+  return axios.patch(addBalanceEndpoint, { balance });
 };

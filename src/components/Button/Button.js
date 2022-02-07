@@ -1,10 +1,10 @@
-import s from "./Button.module.css";
+import s from './Button.module.css';
 
-const Button = ({ onClick, text }) => {
+const Button = ({ type, onClick, text }) => {
   return (
-    <button type="button" className={s.Button} onClick={onClick}>
-       {text}
+    <button type={type} className={s.Button} onClick={onClick}>
+      {text}
     </button>
   );
-}
-export default Button
+};
+export default Button;

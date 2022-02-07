@@ -3,11 +3,15 @@ import { useDispatch, useSelector } from "react-redux";
 import GoogleAuthBtn from '../GoogleLogin/GoogleAuthBtn';
 import { register, logIn } from '../../redux/auth/thunks';
 import { getFormError, getVerify } from '../../redux/auth/selectors';
+import { NavLink } from 'react-router-dom';
+import Button from '../Button/Button';
+import sBtn from '../Button/Button.module.css';
 import s from './authform.module.css';
+import logo from './google.svg';
 
 export default function AuthForm() {
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
+  const [email, setEmail] = useState(' ');
+  const [password, setPassword] = useState(' ');
   const dispatch = useDispatch();
   const formError = useSelector(getFormError);
   const verifyEmailSend = useSelector(getVerify);
@@ -23,17 +27,18 @@ export default function AuthForm() {
     }
   };
   const handlelogIn = e => {
+    console.log('key pressed');
     e.preventDefault();
-    dispatch(logIn({email, password}));
+    dispatch(logIn({ email, password }));
     setEmail('');
     setPassword('');
   };
   const handleRegister = e => {
     e.preventDefault();
-    dispatch(register({email, password}));
+    dispatch(register({ email, password }));
     setEmail('');
     setPassword('');
-  }
+  };
 
   return (
     <div className={s.authformContainter}>
@@ -41,8 +46,14 @@ export default function AuthForm() {
         <p className={s.authformInfo_header}>
           Ви можете авторизуватися за допомогою Google Account:
         </p>
-        <div className={s.googleBtn}>
-          <GoogleAuthBtn />
+
+        <div>
+          <NavLink to="/" exact className={s.googleLink}>
+            <button className={s.googleBtn}>
+              <img src={logo} alt="google" className={s.googleIcon} />
+              Google
+            </button>
+          </NavLink>
         </div>
 
         <p className={s.authformInfo}>
@@ -80,19 +91,37 @@ export default function AuthForm() {
           {verifyEmailSend && <div className={[s.authForm__message, s.authForm__message_success].join(' ')}>Лист підветдження відравлено на вказану електронну адресу.</div>}
 
           <div className={s.btns}>
-            <button
+            <Button
+              type="submit"
+              title="Ввійти"
+              className={sBtn.Button}
+              text="ВВІЙТИ"
+            >
+              {/* ВВІЙТИ */}
+            </Button>
+            <Button
+              type="button"
+              onClick={handleRegister}
+              title="Реєстрація"
+              className={sBtn.Button}
+              text="РЕЄСТРАЦІЯ"
+            ></Button>
+
+            {/* <button
               type="submit"
               title="Ввійти"
               className={(s.authBtn, s.activeBtn)}
             >
               ВВІЙТИ
-            </button>
-            <button type="button"
+            </button> */}
+            {/* <button
+              type="button"
               onClick={handleRegister}
               title="Реєстрація"
-              className={s.authBtn}>
+              className={s.authBtn}
+            >
               РЕЄСТРАЦІЯ
-            </button>
+            </button> */}
           </div>
         </form>
       </div>
