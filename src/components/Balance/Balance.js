@@ -1,17 +1,25 @@
 import s from './Balance.module.css';
-
-import { useState } from 'react';
-import { useDispatch } from 'react-redux';
+import { useState, useEffect } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
-
 import EditOutlinedIcon from '@mui/icons-material/EditOutlined';
 import sprite from '../../sprite.svg';
 import { addBalanceThunk } from '../../redux/balance/thunk';
+import { getBalance } from '../../redux/balance/selectors';
 
-export default function Balance(showReport) {
-  const [value, setValue] = useState('');
+export default function Balance({ showReport, showBtn }) {
+  const [value, setValue] = useState('00.00');
   const [readonly, setReadonly] = useState(null);
   const dispatch = useDispatch();
+
+  const balance = useSelector(getBalance);
+
+  useEffect(() => {
+    if (!showBtn) {
+      setReadonly(true);
+    }
+    setValue(balance);
+  }, [balance, showBtn]);
 
   const сhangeBalance = e => {
     const { value } = e.target;
@@ -22,7 +30,6 @@ export default function Balance(showReport) {
   const handleBalance = () => {
     dispatch(addBalanceThunk(value));
     setReadonly('readonly');
-    console.log(showReport);
   };
 
   return (
@@ -33,7 +40,7 @@ export default function Balance(showReport) {
             Перейти до звітів
           </Link>
           <svg width="24" height="24" className={s.icon}>
-            <use href={`${sprite}#icon-barchart`} fill="red" />
+            <use href={`${sprite}#icon-barchart`} />
           </svg>
         </div>
       )}
@@ -41,15 +48,18 @@ export default function Balance(showReport) {
       <div className={s.containerBalance}>
         <span className={s.text}>Баланс:</span>
         <div className={s.containerInput}>
-          <input
-            className={s.balanceInput}
-            type="text"
-            value={value}
-            onChange={сhangeBalance}
-            readOnly={readonly}
-          />
+          <div className={s.containerRelative}>
+            <input
+              className={s.balanceInput}
+              type="text"
+              value={value}
+              onChange={сhangeBalance}
+              readOnly={readonly}
+            />
+            <span className={s.span}>UAN</span>
+          </div>
 
-          {readonly ? (
+          {readonly && showBtn && (
             <button
               className={s.editBtn}
               type="button"
@@ -57,15 +67,17 @@ export default function Balance(showReport) {
             >
               <EditOutlinedIcon className={s.iconEdit} />
             </button>
-          ) : (
-            <button
-              className={s.confirmBtn}
-              type="button"
-              onClick={handleBalance}
-            >
-              Підтвердити
-            </button>
           )}
+          {!!readonly ||
+            (!!showBtn && (
+              <button
+                className={s.confirmBtn}
+                type="button"
+                onClick={handleBalance}
+              >
+                Підтвердити
+              </button>
+            ))}
         </div>
       </div>
     </div>

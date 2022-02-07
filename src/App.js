@@ -1,5 +1,5 @@
 // import './App.css';
-import { useEffect } from "react";
+import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { getIsFetchingCurrentUser } from './redux/auth/selectors';
 import { fetchCurrentUser } from './redux/auth/thunks';
@@ -17,12 +17,12 @@ function App() {
 
   return (
     !isFetchingCurrentUser && (
-    <div className="App">
-      <AppBar />
-      <AuthForm />
-      <Balance showReport={false} />
-    </div>
-  )
+      <div className="App">
+        <AppBar />
+        <AuthForm />
+        <Balance showReport={true} showBtn={true} />
+      </div>
+    )
   );
 }
 
