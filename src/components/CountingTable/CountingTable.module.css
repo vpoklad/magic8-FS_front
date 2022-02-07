@@ -33,8 +33,30 @@
   }
 }
 
-.counterWrapper {
-  display: flex;
-  align-items: baseline;
-  width: 100%;
+.counterContainer {
+  padding: 30px 20px;
+  max-width: 1060px;
+  background-color: #fff;
+  box-shadow: 0 10px 60px rgb(170 178 197 / 20%);
+  border-radius: 0 30px 30px 30px;
+}
+
+@media (max-width: 767px) {
+  .counterContainer {
+    display: none;
+  }
+  .mobileBtn {
+    visibility: visible;
+    opacity: 1;
+    margin: 0;
+    padding: 0;
+    height: 56px;
+    display: flex;
+    justify-content: space-between;
+    position: fixed;
+    left: 0;
+    bottom: 0;
+    flex-direction: row;
+    background-color: #fff;
+  }
 }

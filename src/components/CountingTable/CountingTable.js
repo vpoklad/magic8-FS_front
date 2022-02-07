@@ -1,3 +1,4 @@
+import InputTable from '../InputTable/InputTable';
 import TransactionTable from '../TransactionTable/TransactionTable';
 import s from './CountingTable.module.css'
 
@@ -10,8 +11,8 @@ const CountingTable = () => {
 
 
     return (
-        <div>
-            <div className={s.counterWrapper}>
+        <div className={s.counterWrapper}>
+            <div className={s.mobileBtn}>
                 <button
                 className={s.counterBtn}>
             Витрати
@@ -19,10 +20,13 @@ const CountingTable = () => {
                 <button
                 className={s.counterBtn}>
             Дохід
-          </button>
-        </div>
+                </button>
+            </div>
+        <div className={s.counterContainer}>
+            <InputTable></InputTable>
         <div>
             <TransactionTable></TransactionTable>
+        </div>
         </div>
         </div>
     );

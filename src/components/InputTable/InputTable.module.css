@@ -1,0 +1,100 @@
+@media (max-width: 767.99px) {
+  .inputContainer {
+    display: none;
+  }
+}
+
+@media (min-width: 768px) {
+  .inputContainer {
+    flex-direction: column;
+    align-items: center;
+  }
+  .inputShell {
+    display: flex;
+    align-items: center;
+    margin-bottom: 30px;
+  }
+}
+
+@media (min-width: 1280px) {
+  .inputContainer {
+    justify-content: space-between;
+    flex-direction: row;
+  }
+}
+.inputForm {
+  display: flex;
+  font-weight: 400;
+  font-size: 12px;
+  line-height: 14px;
+
+  justify-content: space-between;
+  align-items: center;
+  letter-spacing: 0.02em;
+}
+
+.productName {
+  padding: 13px;
+
+  border: none;
+  border: 2px solid #f5f6fb;
+  border-radius: 16px 0px 0px 0px;
+  border-right: none;
+  outline: none;
+}
+
+.productAmount {
+  padding: 13px 50px 13px 13px;
+
+  border: 2px solid #f5f6fb;
+  border-radius: 0px 16px 16px 0px;
+  border-left: none;
+  outline: none;
+  text-align: right;
+}
+
+.productAmountLabel {
+  position: relative;
+}
+
+.react-datepicker {
+  font-family: inherit;
+  font-size: inherit;
+}
+
+.dateBtn {
+  margin-right: 25px;
+  font-weight: 900;
+  color: #52555f;
+  border: none;
+  background-color: transparent;
+  cursor: pointer;
+}
+
+.icon {
+  width: 15px;
+  height: 15px;
+}
+
+.changeBtn {
+  width: 125px;
+  height: 44px;
+
+  font-weight: 700;
+  font-size: 12px;
+  font-style: normal;
+  line-height: 14.06px;
+  text-align: center;
+  letter-spacing: 0.02em;
+  text-transform: uppercase;
+
+  background: #ffffff;
+  border: 1px solid #f5f6fb;
+  border-radius: 16px;
+}
+
+.mainBtn {
+  background-color: #ff751d;
+  color: #fff;
+  border-color: #ff751d;
+}
