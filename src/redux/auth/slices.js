@@ -25,7 +25,7 @@ const authSlice = createSlice({
          [logoutThunk.fulfilled](state,_){
             return {
                 ...state,
-                user: null,
+                email: null,
                 token: null,
                 isAuth: false,
             }

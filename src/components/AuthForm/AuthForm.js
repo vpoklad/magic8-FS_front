@@ -1,6 +1,5 @@
 import { React, useState } from 'react';
 import { useDispatch, useSelector } from "react-redux";
-import GoogleAuthBtn from '../GoogleLogin/GoogleAuthBtn';
 import { register, logIn } from '../../redux/auth/thunks';
 import { getFormError, getVerify } from '../../redux/auth/selectors';
 import { NavLink } from 'react-router-dom';
@@ -27,7 +26,6 @@ export default function AuthForm() {
     }
   };
   const handlelogIn = e => {
-    console.log('key pressed');
     e.preventDefault();
     dispatch(logIn({ email, password }));
     setEmail('');
@@ -48,7 +46,7 @@ export default function AuthForm() {
         </p>
 
         <div>
-          <NavLink to="/" exact className={s.googleLink}>
+          <NavLink to="/" exact="true" className={s.googleLink}>
             <button className={s.googleBtn}>
               <img src={logo} alt="google" className={s.googleIcon} />
               Google
