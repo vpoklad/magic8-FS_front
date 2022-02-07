@@ -12,6 +12,22 @@ export default function AuthForm() {
   const [password, setPassword] = useState(' ');
   const dispatch = useDispatch();
 
+  // useEffect(() => {
+  //   window.gapi.load([
+  //     'auth2',
+  //     function () {
+  //       window.gapi.auth2
+  //         .init({
+  //           client_id: process.env.GOOGLE_CLIENT_ID,
+  //         })
+  //         .then(
+  //           () => console.log('init OK'),
+  //           () => console.log('init Error'),
+  //         );
+  //     },
+  //   ]);
+  // }, []);
+
   const handleChange = ({ target: { name, value } }) => {
     switch (name) {
       case 'email':
@@ -44,7 +60,7 @@ export default function AuthForm() {
         </p>
 
         <div>
-          <NavLink to="/" exact className={s.googleLink}>
+          <NavLink to="/" exact="true" className={s.googleLink}>
             <button className={s.googleBtn}>
               <img src={logo} alt="google" className={s.googleIcon} />
               Google
@@ -58,7 +74,7 @@ export default function AuthForm() {
         </p>
         <form onSubmit={handlelogIn} className={s.authform} autoComplete="off">
           <label className={s.authLabel}>
-            Електронна пошта
+            Електронна пошта:
             <input
               type="email"
               name="email"
@@ -75,7 +91,7 @@ export default function AuthForm() {
             <input
               type="password"
               name="password"
-              placeholder="Пароль"
+              placeholder="password"
               required
               className={s.authInput}
               value={password}
@@ -88,9 +104,7 @@ export default function AuthForm() {
               title="Ввійти"
               className={sBtn.Button}
               text="ВВІЙТИ"
-            >
-              {/* ВВІЙТИ */}
-            </Button>
+            ></Button>
             <Button
               type="button"
               onClick={handleRegister}
@@ -98,22 +112,6 @@ export default function AuthForm() {
               className={sBtn.Button}
               text="РЕЄСТРАЦІЯ"
             ></Button>
-
-            {/* <button
-              type="submit"
-              title="Ввійти"
-              className={(s.authBtn, s.activeBtn)}
-            >
-              ВВІЙТИ
-            </button> */}
-            {/* <button
-              type="button"
-              onClick={handleRegister}
-              title="Реєстрація"
-              className={s.authBtn}
-            >
-              РЕЄСТРАЦІЯ
-            </button> */}
           </div>
         </form>
       </div>
