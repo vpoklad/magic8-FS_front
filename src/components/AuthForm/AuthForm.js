@@ -1,5 +1,6 @@
 import { React, useState } from 'react';
 import { useDispatch, useSelector } from "react-redux";
+// import { NavLink } from 'react-router-dom';
 import { register, logIn } from '../../redux/auth/thunks';
 import { getFormError, getVerify } from '../../redux/auth/selectors';
 import { NavLink } from 'react-router-dom';
@@ -9,8 +10,8 @@ import s from './authform.module.css';
 import logo from './google.svg';
 
 export default function AuthForm() {
-  const [email, setEmail] = useState(' ');
-  const [password, setPassword] = useState(' ');
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
   const dispatch = useDispatch();
   const formError = useSelector(getFormError);
   const verifyEmailSend = useSelector(getVerify);
@@ -46,12 +47,15 @@ export default function AuthForm() {
         </p>
 
         <div>
-          <NavLink to="/" exact="true" className={s.googleLink}>
-            <button className={s.googleBtn}>
+          <a
+            href="https://kapusta-magic8.herokuapp.com/api/users/google"
+            className={s.googleLink}
+          >
+            <div className={s.googleBtn}>
               <img src={logo} alt="google" className={s.googleIcon} />
               Google
-            </button>
-          </NavLink>
+            </div>
+          </a>
         </div>
 
         <p className={s.authformInfo}>
