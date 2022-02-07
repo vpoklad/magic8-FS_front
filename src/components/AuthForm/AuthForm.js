@@ -1,5 +1,5 @@
 import { React, useState } from 'react';
-import { NavLink } from 'react-router-dom';
+// import { NavLink } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
 import { register, logIn } from '../../redux/auth/thunks';
 import Button from '../Button/Button';
@@ -8,8 +8,8 @@ import s from './authform.module.css';
 import logo from './google.svg';
 
 export default function AuthForm() {
-  const [email, setEmail] = useState(' ');
-  const [password, setPassword] = useState(' ');
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
   const dispatch = useDispatch();
 
   const handleChange = ({ target: { name, value } }) => {
@@ -44,12 +44,15 @@ export default function AuthForm() {
         </p>
 
         <div>
-          <NavLink to="/" exact className={s.googleLink}>
-            <button className={s.googleBtn}>
+          <a
+            href="https://kapusta-magic8.herokuapp.com/api/users/google"
+            className={s.googleLink}
+          >
+            <div className={s.googleBtn}>
               <img src={logo} alt="google" className={s.googleIcon} />
               Google
-            </button>
-          </NavLink>
+            </div>
+          </a>
         </div>
 
         <p className={s.authformInfo}>
