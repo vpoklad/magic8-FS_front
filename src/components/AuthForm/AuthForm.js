@@ -1,16 +1,23 @@
 import { React, useState } from 'react';
-import { useDispatch } from 'react-redux';
+
+import { useDispatch, useSelector  } from 'react-redux';
 import { GoogleLogin, GoogleLogout } from 'react-google-login';
+
 import { register, logIn } from '../../redux/auth/thunks';
+import { getFormError, getVerify } from '../../redux/auth/selectors';
+import { NavLink } from 'react-router-dom';
 import Button from '../Button/Button';
 import sBtn from '../Button/Button.module.css';
 import s from './authform.module.css';
 import logo from './google.svg';
 
 export default function AuthForm() {
-  const [email, setEmail] = useState(' ');
+
+  const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const dispatch = useDispatch();
+  const formError = useSelector(getFormError);
+  const verifyEmailSend = useSelector(getVerify);
 
   const clientId = process.env.GOOGLE_CLIENT_ID;
 
@@ -44,7 +51,6 @@ export default function AuthForm() {
     }
   };
   const handlelogIn = e => {
-    console.log('key pressed');
     e.preventDefault();
     dispatch(logIn({ email, password }));
     setEmail('');
@@ -65,6 +71,7 @@ export default function AuthForm() {
         </p>
 
         <div>
+
           {showloginButton ? (
             <GoogleLogin
               clientId={clientId}
@@ -103,6 +110,7 @@ export default function AuthForm() {
               onLogoutSuccess={onSignoutSuccess}
             ></GoogleLogout>
           ) : null}
+
         </div>
 
         <p className={s.authformInfo}>
@@ -135,6 +143,10 @@ export default function AuthForm() {
               onChange={handleChange}
             />
           </label>
+
+          {formError && <div className={[s.authForm__message, s.authForm__message_danger].join(' ')}>{formError.message}</div>}
+          {verifyEmailSend && <div className={[s.authForm__message, s.authForm__message_success].join(' ')}>Лист підветдження відравлено на вказану електронну адресу.</div>}
+
           <div className={s.btns}>
             <Button
               type="submit"
