@@ -8,8 +8,8 @@ import s from './authform.module.css';
 import logo from './google.svg';
 
 export default function AuthForm() {
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
+  const [email, setEmail] = useState(' ');
+  const [password, setPassword] = useState(' ');
   const dispatch = useDispatch();
 
   const handleChange = ({ target: { name, value } }) => {
@@ -23,6 +23,7 @@ export default function AuthForm() {
     }
   };
   const handlelogIn = e => {
+    console.log('key pressed');
     e.preventDefault();
     dispatch(logIn({ email, password }));
     setEmail('');
