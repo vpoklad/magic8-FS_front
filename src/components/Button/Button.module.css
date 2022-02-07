@@ -1,0 +1,29 @@
+.Button {
+    width: 125px;
+    height: 44px;
+
+    font-weight: 700;
+    font-size: 12px;
+    font-style: normal;
+    line-height: 14.06px;
+    text-align: center;
+    letter-spacing: 0.02em;
+    text-transform: uppercase;
+
+    background: #FFFFFF;
+    border: 1px solid #F5F6FB;
+    border-radius: 16px;
+  }
+
+.Button:hover,
+.Button:focus {
+  color: #F5F6FB;
+  background-color: #FF751D;
+}
+
+.Button:active {
+  background-color: #e76615;
+  box-shadow: 0 3px #d37134;
+  transform: translateY(1px);
+  
+}
