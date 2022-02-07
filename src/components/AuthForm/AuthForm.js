@@ -1,6 +1,6 @@
 import { React, useState } from 'react';
-import { NavLink } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
+import { GoogleLogin, GoogleLogout } from 'react-google-login';
 import { register, logIn } from '../../redux/auth/thunks';
 import Button from '../Button/Button';
 import sBtn from '../Button/Button.module.css';
@@ -9,24 +9,29 @@ import logo from './google.svg';
 
 export default function AuthForm() {
   const [email, setEmail] = useState(' ');
-  const [password, setPassword] = useState(' ');
+  const [password, setPassword] = useState('');
   const dispatch = useDispatch();
 
-  // useEffect(() => {
-  //   window.gapi.load([
-  //     'auth2',
-  //     function () {
-  //       window.gapi.auth2
-  //         .init({
-  //           client_id: process.env.GOOGLE_CLIENT_ID,
-  //         })
-  //         .then(
-  //           () => console.log('init OK'),
-  //           () => console.log('init Error'),
-  //         );
-  //     },
-  //   ]);
-  // }, []);
+  const clientId = process.env.GOOGLE_CLIENT_ID;
+
+  const [showloginButton, setShowloginButton] = useState(true);
+  const [showlogoutButton, setShowlogoutButton] = useState(false);
+  const onLoginSuccess = res => {
+    console.log('Login Success:', res.profileObj);
+    setShowloginButton(false);
+    setShowlogoutButton(true);
+  };
+
+  const onLoginFailure = res => {
+    console.log('Login Failed:', res);
+  };
+
+  const onSignoutSuccess = () => {
+    alert('You have been logged out successfully');
+    console.clear();
+    setShowloginButton(true);
+    setShowlogoutButton(false);
+  };
 
   const handleChange = ({ target: { name, value } }) => {
     switch (name) {
@@ -60,12 +65,44 @@ export default function AuthForm() {
         </p>
 
         <div>
-          <NavLink to="/" exact="true" className={s.googleLink}>
-            <button className={s.googleBtn}>
-              <img src={logo} alt="google" className={s.googleIcon} />
-              Google
-            </button>
-          </NavLink>
+          {showloginButton ? (
+            <GoogleLogin
+              clientId={clientId}
+              render={renderProps => (
+                <button
+                  onClick={renderProps.onClick}
+                  disabled={renderProps.disabled}
+                  className={s.googleBtn}
+                >
+                  <img src={logo} alt="google" className={s.googleIcon} />
+                  Google
+                </button>
+              )}
+              buttonText="Sign In"
+              onSuccess={onLoginSuccess}
+              onFailure={onLoginFailure}
+              cookiePolicy={'single_host_origin'}
+              isSignedIn={true}
+            />
+          ) : null}
+
+          {showlogoutButton ? (
+            <GoogleLogout
+              clientId={clientId}
+              render={renderProps => (
+                <button
+                  onClick={renderProps.onClick}
+                  disabled={renderProps.disabled}
+                  className={s.googleBtn}
+                >
+                  <img src={logo} alt="google" className={s.googleIcon} />
+                  Log out
+                </button>
+              )}
+              buttonText="Sign Out"
+              onLogoutSuccess={onSignoutSuccess}
+            ></GoogleLogout>
+          ) : null}
         </div>
 
         <p className={s.authformInfo}>
@@ -91,7 +128,7 @@ export default function AuthForm() {
             <input
               type="password"
               name="password"
-              placeholder="password"
+              placeholder="Ваш пароль"
               required
               className={s.authInput}
               value={password}
