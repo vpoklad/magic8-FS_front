@@ -36,10 +36,10 @@
     width: 265px;
     margin-left: auto;
     margin-right: auto;
-
-    /* outline: solid 1px olive; */
-
 }
+
+
+
 
 .authformInfo_header {
     width: 222px;
@@ -55,18 +55,67 @@
     line-height: 12px;
     text-align: center;
     letter-spacing: 0.04em;
-
+    
     color: #52555F;
-
+    
 }
 
+@media (min-width: 768px) {
+    .authformInfo_header {
+        font-size: 12px;
+        line-height: 1.2;
+    }
+}
+
+
 .googleBtn {
-    
+    display: flex;
+    justify-content: space-between;
     width: 122px;
     margin-left: auto;
     margin-right: auto;
-    margin-bottom: 30px;
+    padding: 10px 20px;
+
+    font-size: 14px;
+    line-height: 1.2;
+    font-weight: 500;
+
+    color: #000000;
+    background: #F6F7FB;
+    border: none;
+    border-radius: 26px;
+
+    cursor: pointer;
+    text-decoration: none;
 }
+
+.googleLink {
+    text-decoration: none;
+}
+
+.googleBtn:hover {
+    
+    color: #F5F6FB;
+    background-color: #FF751D;
+
+}
+
+.googleBtn:active {
+    background-color: #e76615;
+    box-shadow: 0 3px #d37134;
+    transform: translateY(1px);
+  
+}
+
+.googleIcon {
+    background: url('./google.svg');
+    background-size: contain;
+    display: inline-block;
+    height: 18px;
+    width: 18px;
+}
+
+
 
 .authform {
     margin-left: auto;
@@ -123,34 +172,4 @@
     margin-right: auto;
 }
 
-.authBtn {
-    display: inline-block;
-    width: 125px;
-    height: 44px;
-    margin: 0;
-
-    font-weight: 700;
-    font-size: 12px;
-
-    background: #F5F6FB;
-
-    border: none;
-    border-radius: 16px;
-}
-
-.activeBtn {
-    display: inline-block;
-    width: 125px;
-    height: 44px;
-    margin: 0;
-
-    font-weight: 700;
-    font-size: 12px;
-
-    color: #ffffff;
-    background-color: #FF751D;
-
-    border: none;
-    border-radius: 16px;
-}
 
