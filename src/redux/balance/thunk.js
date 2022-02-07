@@ -6,8 +6,10 @@ export const addBalanceThunk = createAsyncThunk(
   async (balance, { rejectWithValue }) => {
     try {
       const { data } = await addBalance(balance);
-      return data;
+
+      return data.userBalance;
     } catch (error) {
+      console.log(error);
       rejectWithValue(error);
     }
   },

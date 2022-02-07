@@ -44,13 +44,14 @@
   color: inherit;
 }
 
-.link:hover {
+.reports:hover {
   color: #ff751d;
+  fill: #ff751d;
 }
-/* 
-.link:hover .icon {
-  stroke: #ff751d;
-} */
+
+.icon {
+  fill: rgba(82, 85, 95, 0.7);
+}
 
 @media (min-width: 768px) {
   .containerBalance {
@@ -89,12 +90,12 @@
 }
 
 .balanceInput {
-  display: flex;
-  align-items: center;
-  text-align: center;
-  justify-content: center;
+  text-align: end;
+
   width: 125px;
   padding: 12px;
+  padding-right: 48px;
+  height: 44px;
   font-weight: 700;
   text-transform: uppercase;
 
@@ -166,4 +167,18 @@
 .iconEdit:hover {
   color: #ff751d;
   cursor: pointer;
+}
+
+.span {
+  position: absolute;
+  top: 15px;
+  right: 15px;
+  color: #000000;
+  font-weight: 700;
+}
+
+.containerRelative {
+  position: relative;
+  width: 125px;
+  height: 44px;
 }
