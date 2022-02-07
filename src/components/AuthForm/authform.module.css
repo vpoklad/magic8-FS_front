@@ -33,8 +33,10 @@
     width: 265px;
     margin-left: auto;
     margin-right: auto;
-
 }
+
+
+
 
 .authformInfo_header {
     width: 222px;
@@ -50,8 +52,9 @@
     line-height: 12px;
     text-align: center;
     letter-spacing: 0.04em;
-
+    
     color: #52555F;
+
 }
 
 @media (min-width: 768px) {
@@ -60,6 +63,7 @@
         line-height: 1.2;
     }
 }
+
 
 .googleBtn {
     display: flex;
@@ -87,13 +91,17 @@
 }
 
 .googleBtn:hover {
+
     background-color: #e7e8ec
 }
 
+
+
 .googleBtn:active {
-  background-color: #dcdde2;
-  box-shadow: 0 5px #666;
-  transform: translateY(3px);
+    background-color: #e76615;
+    box-shadow: 0 3px #d37134;
+    transform: translateY(1px);
+
   
 }
 
@@ -104,6 +112,8 @@
     height: 18px;
     width: 18px;
 }
+
+
 
 .authform {
     margin-left: auto;
