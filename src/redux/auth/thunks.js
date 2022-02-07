@@ -1,9 +1,6 @@
 import axios from 'axios';
 import { createAsyncThunk } from '@reduxjs/toolkit';
 
-const BASE_USER_URL = `https://kapusta-magic8.herokuapp.com/`;
-const userLogout = 'api/users/logout';
-
 const token = {
   set(token) {
     axios.defaults.headers.common.Authorization = `Bearer ${token}`;
@@ -12,8 +9,6 @@ const token = {
     axios.defaults.headers.common.Authorization = '';
   },
 };
-
-axios.defaults.baseURL = BASE_USER_URL;
 
 export const register = createAsyncThunk('auth/register', async credentials => {
   try {
@@ -35,20 +30,12 @@ export const logIn = createAsyncThunk('auth/login', async credentials => {
   }
 });
 
-export const logoutThunk = createAsyncThunk(
-  'users/logout',
-  async (_, { rejectWithValue, getState }) => {
-    const state = getState();
-    if (!state.auth.token) return;
-    try {
-      await fetch(BASE_USER_URL + userLogout, {
-        method: 'POST',
-        headers: {
-          Authorization: state.auth.token,
-        },
-      });
+export const logoutThunk = createAsyncThunk( 'auth/logout', async (_, thunkAPI) => {
+    const state = thunkAPI.getState();
+    if (!state.auth.token) return
+    try { await axios.post('api/users/logout')
     } catch (err) {
-      rejectWithValue({ error: err.message });
+      // thunkAPI.rejectWithValue({ error: err.message });
     }
   },
 );
