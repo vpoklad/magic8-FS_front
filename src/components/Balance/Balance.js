@@ -1,15 +1,19 @@
 import s from './Balance.module.css';
+
 import { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
 import EditOutlinedIcon from '@mui/icons-material/EditOutlined';
+
 import sprite from '../../sprite.svg';
 import { addBalanceThunk } from '../../redux/balance/thunk';
 import { getBalance } from '../../redux/balance/selectors';
+import { WelcomeNotification } from '../Notification/Notification';
 
 export default function Balance({ showReport, showBtn }) {
   const [value, setValue] = useState('00.00');
   const [readonly, setReadonly] = useState(null);
+
   const dispatch = useDispatch();
 
   const balance = useSelector(getBalance);
@@ -18,8 +22,14 @@ export default function Balance({ showReport, showBtn }) {
     if (!showBtn) {
       setReadonly(true);
     }
+  }, [showBtn]);
+
+  useEffect(() => {
     setValue(balance);
-  }, [balance, showBtn]);
+    if (balance > 0) {
+      setReadonly('readonly');
+    }
+  }, [balance]);
 
   const сhangeBalance = e => {
     const { value } = e.target;
@@ -36,7 +46,7 @@ export default function Balance({ showReport, showBtn }) {
     <div className={s.container}>
       {showReport && (
         <div className={s.reports}>
-          <Link to="/reports" className={s.link}>
+          <Link to="/reports" exact className={s.link}>
             Перейти до звітів
           </Link>
           <svg width="24" height="24" className={s.icon}>
@@ -55,8 +65,10 @@ export default function Balance({ showReport, showBtn }) {
               value={value}
               onChange={сhangeBalance}
               readOnly={readonly}
+              pattern="\d+(\.\d{2})?"
             />
             <span className={s.span}>UAN</span>
+            {!balance && <WelcomeNotification />}
           </div>
 
           {readonly && showBtn && (

@@ -1,10 +1,29 @@
-import { createSlice } from "@reduxjs/toolkit";
-import { register, logIn, logoutThunk, fetchCurrentUser } from "./thunks";
+import { createSlice } from '@reduxjs/toolkit';
+import { register, logIn, logoutThunk, fetchCurrentUser } from './thunks';
 
 const authSlice = createSlice({
-    name: 'auth',
-    initialState:{
-        email: null,
+  name: 'auth',
+  initialState: {
+    email: null,
+    token: null,
+    isAuth: false,
+    isFetchingCurrentUser: false,
+  },
+  extraReducers: {
+    [register.fulfilled](state, action) {
+      state.user = action.payload.email;
+      state.token = action.payload.token;
+      state.isAuth = false;
+    },
+    [logIn.fulfilled](state, action) {
+      state.user = action.payload.email;
+      state.token = action.payload.token;
+      state.isAuth = true;
+    },
+    [logoutThunk.fulfilled](state, _) {
+      return {
+        ...state,
+        user: { name: null, email: null },
         token: null,
         isFetchingCurrentUser: false,
         formError: null,
@@ -43,5 +62,6 @@ const authSlice = createSlice({
         }
     }
 })
+
 
 export default authSlice.reducer;
