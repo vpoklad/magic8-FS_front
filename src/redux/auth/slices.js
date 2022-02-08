@@ -1,15 +1,15 @@
-import { createSlice } from "@reduxjs/toolkit";
-import { register, logIn, logoutThunk, fetchCurrentUser } from "./thunks";
-
+import { createSlice } from '@reduxjs/toolkit';
+import { register, logIn, logoutThunk, fetchCurrentUser } from './thunks';
 const authSlice = createSlice({
-    name: 'auth',
-    initialState:{
-        email: null,
-        token: null,
-        isFetchingCurrentUser: false,
-        formError: null,
-        verify: false,
-    },
+  name: 'auth',
+  initialState: {
+    email: null,
+    token: null,
+    isFetchingCurrentUser: false,
+    formError: null,
+    verify: false,
+  },
+
     extraReducers: {
          [register.fulfilled](state, action) {
             state.email = action.payload.email;
@@ -22,13 +22,11 @@ const authSlice = createSlice({
             state.token = action.payload.token;
              state.formError = action.payload;
         },
-         [logoutThunk.fulfilled](state,_){
-            return {
-                ...state,
-                email: null,
-                token: null,
-                isAuth: false,
-            }
+         [logoutThunk.fulfilled](state, action){
+            state.email = null;
+            state.token = null;
+            state.isAuth = false
+            state.formError = null;
         },
          [fetchCurrentUser.pending](state) {
             state.isFetchingCurrentUser = true;
@@ -42,6 +40,6 @@ const authSlice = createSlice({
             state.isFetchingCurrentUser = false;
         }
     }
-})
+});
 
 export default authSlice.reducer;

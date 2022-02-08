@@ -12,7 +12,7 @@ const token = {
 
 export const register = createAsyncThunk(
     'auth/register',
-    async credentials => {
+  async credentials => {
         try {
             const { data } = await axios.post('api/users/registration', credentials);
             token.set(data.token);
@@ -49,7 +49,10 @@ export const logIn = createAsyncThunk(
 export const logoutThunk = createAsyncThunk( 'auth/logout', async (_, thunkAPI) => {
     const state = thunkAPI.getState();
     if (!state.auth.token) return
-    try { await axios.post('api/users/logout')
+    token.set(state.auth.token);
+    try {
+      const { data } = await axios.post('api/users/logout')
+      return data.data;
     } catch (err) {
       // thunkAPI.rejectWithValue({ error: err.message });
     }
