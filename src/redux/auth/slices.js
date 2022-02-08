@@ -22,13 +22,11 @@ const authSlice = createSlice({
             state.token = action.payload.token;
              state.formError = action.payload;
         },
-         [logoutThunk.fulfilled](state,_){
-            return {
-                ...state,
-                email: null,
-                token: null,
-                isAuth: false,
-            }
+         [logoutThunk.fulfilled](state, action){
+            state.email = null;
+            state.token = null;
+            state.isAuth = false
+            state.formError = null;
         },
          [fetchCurrentUser.pending](state) {
             state.isFetchingCurrentUser = true;
