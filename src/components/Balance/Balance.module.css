@@ -44,11 +44,14 @@
   color: inherit;
 }
 
-.reports:hover {
-  color: #ff751d;
+.reports:hover .icon {
   fill: #ff751d;
+  cursor: pointer;
 }
 
+.reports:hover .link {
+  color: #ff751d;
+}
 .icon {
   fill: rgba(82, 85, 95, 0.7);
 }
@@ -112,12 +115,6 @@
   }
 }
 
-@media (min-width: 1280px) {
-  .balanceInput {
-    margin-right: 10px;
-  }
-}
-
 .balanceInput:focus,
 .balanceInput:hover {
   outline: #ffffff;
@@ -125,7 +122,7 @@
 
 .confirmBtn {
   width: 125px;
-  border: none;
+
   background-color: transparent;
   border: 2px solid #ffffff;
   border-radius: 0px 22px 22px 0px;
@@ -155,18 +152,30 @@
 }
 
 .editBtn {
+  width: 125px;
+
   background-color: transparent;
-  border: none;
+  border: 2px solid #ffffff;
+  border-radius: 0px 22px 22px 0px;
+
   cursor: pointer;
 }
+
+@media (min-width: 768px) {
+  .editBtn {
+    background-color: transparent;
+    border-radius: 16px;
+    cursor: pointer;
+  }
+}
+
 .iconEdit {
   cursor: pointer;
   color: rgba(82, 85, 95, 0.7);
 }
 
-.iconEdit:hover {
+.editBtn:hover .iconEdit {
   color: #ff751d;
-  cursor: pointer;
 }
 
 .span {
@@ -181,4 +190,18 @@
   position: relative;
   width: 125px;
   height: 44px;
+}
+
+@media (min-width: 768px) {
+  .containerRelative {
+    margin-right: 15px;
+  }
+}
+@media (min-width: 1280px) {
+  .containerRelative {
+    margin-right: 10px;
+  }
+}
+.modal {
+  position: absolute;
 }
