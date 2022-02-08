@@ -20,14 +20,13 @@ const authSlice = createSlice({
          [logIn.fulfilled](state, action) {
             state.email = action.payload.email;
             state.token = action.payload.token;
-             state.formError = action.payload;
+            state.formError = action.payload;
         },
          [logoutThunk.fulfilled](state,_){
             return {
                 ...state,
                 email: null,
                 token: null,
-                isAuth: false,
             }
         },
          [fetchCurrentUser.pending](state) {
@@ -35,7 +34,6 @@ const authSlice = createSlice({
         },
          [fetchCurrentUser.fulfilled](state, action) {
             state.email = action.payload.email;
-            state.isAuth = true;
             state.isFetchingCurrentUser = false;
         },
          [fetchCurrentUser.rejected](state) {

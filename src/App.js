@@ -6,6 +6,7 @@ import { fetchCurrentUser } from './redux/auth/thunks';
 import AppBar from './components/AppBar/AppBar';
 import AuthForm from './components/AuthForm/AuthForm';
 import Balance from './components/Balance/Balance';
+import ReportPage from './pages/ReportPage/ReportPage';
 
 function App() {
   const dispatch = useDispatch();
@@ -21,6 +22,8 @@ function App() {
         <AppBar />
         <AuthForm />
         <Balance showReport={true} showBtn={true} />
+        <ReportPage />
+
       </div>
     )
   );
