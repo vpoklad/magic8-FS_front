@@ -1,16 +1,19 @@
 import { React, useState } from 'react';
-import { NavLink } from 'react-router-dom';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
+
 import { register, logIn } from '../../redux/auth/thunks';
+import { getFormError, getVerify } from '../../redux/auth/selectors';
 import Button from '../Button/Button';
 import sBtn from '../Button/Button.module.css';
 import s from './authform.module.css';
 import logo from './google.svg';
 
 export default function AuthForm() {
-  const [email, setEmail] = useState(' ');
-  const [password, setPassword] = useState(' ');
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
   const dispatch = useDispatch();
+  const formError = useSelector(getFormError);
+  const verifyEmailSend = useSelector(getVerify);
 
   const handleChange = ({ target: { name, value } }) => {
     switch (name) {
@@ -23,7 +26,6 @@ export default function AuthForm() {
     }
   };
   const handlelogIn = e => {
-    console.log('key pressed');
     e.preventDefault();
     dispatch(logIn({ email, password }));
     setEmail('');
@@ -44,12 +46,15 @@ export default function AuthForm() {
         </p>
 
         <div>
-          <NavLink to="/" exact className={s.googleLink}>
-            <button className={s.googleBtn}>
+          <a
+            href="https://kapusta-magic8.herokuapp.com/api/users/google"
+            className={s.googleLink}
+          >
+            <div className={s.googleBtn}>
               <img src={logo} alt="google" className={s.googleIcon} />
               Google
-            </button>
-          </NavLink>
+            </div>
+          </a>
         </div>
 
         <p className={s.authformInfo}>
@@ -82,6 +87,27 @@ export default function AuthForm() {
               onChange={handleChange}
             />
           </label>
+
+          {formError && (
+            <div
+              className={[s.authForm__message, s.authForm__message_danger].join(
+                ' ',
+              )}
+            >
+              {formError.message}
+            </div>
+          )}
+          {verifyEmailSend && (
+            <div
+              className={[
+                s.authForm__message,
+                s.authForm__message_success,
+              ].join(' ')}
+            >
+              Лист підветдження відравлено на вказану електронну адресу.
+            </div>
+          )}
+
           <div className={s.btns}>
             <Button
               type="submit"

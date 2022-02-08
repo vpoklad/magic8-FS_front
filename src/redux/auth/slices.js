@@ -1,38 +1,38 @@
-import { createSlice } from "@reduxjs/toolkit";
-import { register, logIn, logoutThunk, fetchCurrentUser } from "./thunks";
-
+import { createSlice } from '@reduxjs/toolkit';
+import { register, logIn, logoutThunk, fetchCurrentUser } from './thunks';
 const authSlice = createSlice({
-    name: 'auth',
-    initialState:{
-        email: null,
-        token: null,
-        isAuth: false,
-        isFetchingCurrentUser: false,
-    },
+  name: 'auth',
+  initialState: {
+    email: null,
+    token: null,
+    isFetchingCurrentUser: false,
+    formError: null,
+    verify: false,
+  },
+
     extraReducers: {
          [register.fulfilled](state, action) {
-            state.user = action.payload.email;
+            state.email = action.payload.email;
             state.token = action.payload.token;
-            state.isAuth = false;
+            state.verify = action.payload.verificationEmailSend;
+            state.formError = action.payload;
         },
          [logIn.fulfilled](state, action) {
-            state.user = action.payload.email;
+            state.email = action.payload.email;
             state.token = action.payload.token;
-            state.isAuth = true;
+             state.formError = action.payload;
         },
-         [logoutThunk.fulfilled](state,_){
-            return {
-                ...state,
-                user: { name: null, email: null },
-                token: null,
-                isAuth: false,
-            }
+         [logoutThunk.fulfilled](state, action){
+            state.email = null;
+            state.token = null;
+            state.isAuth = false
+            state.formError = null;
         },
          [fetchCurrentUser.pending](state) {
             state.isFetchingCurrentUser = true;
         },
          [fetchCurrentUser.fulfilled](state, action) {
-            state.user = action.payload.email;
+            state.email = action.payload.email;
             state.isAuth = true;
             state.isFetchingCurrentUser = false;
         },
@@ -40,6 +40,5 @@ const authSlice = createSlice({
             state.isFetchingCurrentUser = false;
         }
     }
-})
-
+});
 export default authSlice.reducer;
