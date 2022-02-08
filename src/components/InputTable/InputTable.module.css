@@ -47,6 +47,7 @@
   border: 2px solid #f5f6fb;
   border-right: none;
   outline: none;
+  width: 270px;
 }
 
 .productAmount {
@@ -57,10 +58,17 @@
   border-left: none;
   outline: none;
   text-align: right;
+  width: 125px;
 }
 
 .productAmountLabel {
   position: relative;
+}
+
+.productAmountLabel svg {
+  position: absolute;
+  top: 10px;
+  right: 15px;
 }
 
 .react-datepicker {
@@ -71,6 +79,7 @@
 .dateBtn {
   margin-right: 25px;
   font-weight: 900;
+  font-size: 12px;
   color: #52555f;
   border: none;
   background-color: transparent;
@@ -97,6 +106,11 @@
   background: #ffffff;
   border: 1px solid #f5f6fb;
   border-radius: 16px;
+  cursor: pointer;
+}
+
+.changeBtn:hover {
+  background: #f5f6fb;
 }
 
 .mainBtn {

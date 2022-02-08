@@ -6,54 +6,19 @@ import "react-datepicker/dist/react-datepicker.css";
 import Select from 'react-select';
 
 
-const InputTable = ( options) => {
+const InputTable = ( {options}) => {
   const initialDate = new Date();
   const [date, setDate] = useState(initialDate);
-    const [payValue, setPayValue] = useState('')
-     const [category, setCategory] = useState([]);
+  const [productName, setProductName] = useState('');
+  const [payValue, setPayValue] = useState('');
+  const [category, setCategory] = useState([]);
 
 
-    /* const customStyles = {
-    option: (provided, { isSelected }) => ({
-      ...provided,
-      color: isSelected ? '#52555f' : '#c7ccdc',
-      backgroundColor: isSelected ? '#f5f6fb' : 'none',
-      ':hover': {
-        color: '#52555f',
-        backgroundColor: '#f5f6fb',
-      },
-      cursor: 'pointer',
-    }),
-    control: () => ({
-      display: 'flex',
-      width: 188,
-      paddingTop: 1,
-      paddingBottom: 2,
-      border: '2px solid #f5f6fb',
-    }),
-    indicatorSeparator: (provided, state) => ({
-      ...provided,
-      display: 'none',
-    }),
-    menuList: (provided, state) => ({
-      ...provided,
-      overflow: 'inherit',
-    }),
-    container: (provided, state) => ({
-      ...provided,
-      cursor: 'pointer',
-    }),
-    menu: (provided, state) => ({
-      ...provided,
-      top: 34,
-      height: profit ? 70 : 340,
-      borderRadius: 'none',
-      boxShadow: '0px 3px 4px rgba(170, 178, 197, 0.4)',
-      border: '2px solid #f5f6fb',
-    }),
-  }; */
-    
-    
+    const resetInput = () => {
+    setProductName('');
+    setPayValue('');
+    setCategory([]);
+  };
     const CustomDate = forwardRef(({ value, onClick }, ref) => (
         <button className={s.dateBtn} onClick={onClick} ref={ref}>
             <div className={s.date}>
@@ -117,12 +82,13 @@ const InputTable = ( options) => {
                         className={s.productName}
                         placeholder="Опис товару"
                         name="name"
+                        value={productName}
                         type="text"
                     >
                     </input>
                     <Select
                         name="category"
-                        /* styles= { customStyles} */
+                        /* styles */
                         placeholder="Категорія товару"
                         options = {options}
                         value = {category}
@@ -182,7 +148,7 @@ const InputTable = ( options) => {
             </div>
             <div className={s.mainBtnTable}>
                 <button className={s.mainBtn} type = 'submit'>Ввести</button>
-                <button className={s.changeBtn} type = 'submit'>Очистити</button>
+          <button className={s.changeBtn} type='button' onClick = {resetInput} >Очистити</button>
             </div>
 
         </div>
