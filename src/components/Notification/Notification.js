@@ -1,16 +1,16 @@
-import styles from './Notification.module.css';
+import s from './Notification.module.css';
 
-export const WelcomeNotification = () => {
+export const Notification = () => {
   return (
-    <div className={styles.containerNotification}>
-      <div className={styles.notification}>
-        <p className={styles.notificationPartOne}>
+    <div className={s.containerNotification}>
+      <div className={s.notification}>
+        <p className={s.notificationPartOne}>
           Привіт! Для початку роботи внеси поточний баланс свого рахунку!
         </p>
-        <p className={styles.notificationPartTwo}>
+        <p className={s.notificationPartTwo}>
           Ти не можеш витрачати кошти поки їх у тебе немає :)
         </p>
-        <span className={styles.triangle} />
+        <span className={s.triangle} />
       </div>
     </div>
   );
