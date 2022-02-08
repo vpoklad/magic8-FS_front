@@ -35,3 +35,4 @@ const CountingTable = () => {
 
 
 export default CountingTable
+

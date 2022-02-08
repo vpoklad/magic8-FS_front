@@ -152,3 +152,4 @@ const data = {
 }
 
 export default InputTable
+
