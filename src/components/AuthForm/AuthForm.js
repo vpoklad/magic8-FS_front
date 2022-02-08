@@ -2,7 +2,7 @@ import { React, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 
 import { register, logIn } from '../../redux/auth/thunks';
-import { getFormError, getVerify } from '../../redux/auth/selectors';
+import { getFormError, getVerifyMessage } from '../../redux/auth/selectors';
 import Button from '../Button/Button';
 import sBtn from '../Button/Button.module.css';
 import s from './authform.module.css';
@@ -13,7 +13,7 @@ export default function AuthForm() {
   const [password, setPassword] = useState('');
   const dispatch = useDispatch();
   const formError = useSelector(getFormError);
-  const verifyEmailSend = useSelector(getVerify);
+  const verifyMessage = useSelector(getVerifyMessage);
 
   const handleChange = ({ target: { name, value } }) => {
     switch (name) {
@@ -97,14 +97,14 @@ export default function AuthForm() {
               {formError.message}
             </div>
           )}
-          {verifyEmailSend && (
+          {verifyMessage && (
             <div
               className={[
                 s.authForm__message,
                 s.authForm__message_success,
               ].join(' ')}
             >
-              Лист підветдження відравлено на вказану електронну адресу.
+              {verifyMessage}
             </div>
           )}
 
