@@ -6,15 +6,53 @@ import "react-datepicker/dist/react-datepicker.css";
 import Select from 'react-select';
 
 
-const InputTable = () => {
+const InputTable = ( options) => {
   const initialDate = new Date();
   const [date, setDate] = useState(initialDate);
-  const [payValue, setPayValue] = useState('')
+    const [payValue, setPayValue] = useState('')
+     const [category, setCategory] = useState([]);
 
 
-const data = {
-    date: format(new Date(date), 'yyyy-MM-dd'),
-    };
+    /* const customStyles = {
+    option: (provided, { isSelected }) => ({
+      ...provided,
+      color: isSelected ? '#52555f' : '#c7ccdc',
+      backgroundColor: isSelected ? '#f5f6fb' : 'none',
+      ':hover': {
+        color: '#52555f',
+        backgroundColor: '#f5f6fb',
+      },
+      cursor: 'pointer',
+    }),
+    control: () => ({
+      display: 'flex',
+      width: 188,
+      paddingTop: 1,
+      paddingBottom: 2,
+      border: '2px solid #f5f6fb',
+    }),
+    indicatorSeparator: (provided, state) => ({
+      ...provided,
+      display: 'none',
+    }),
+    menuList: (provided, state) => ({
+      ...provided,
+      overflow: 'inherit',
+    }),
+    container: (provided, state) => ({
+      ...provided,
+      cursor: 'pointer',
+    }),
+    menu: (provided, state) => ({
+      ...provided,
+      top: 34,
+      height: profit ? 70 : 340,
+      borderRadius: 'none',
+      boxShadow: '0px 3px 4px rgba(170, 178, 197, 0.4)',
+      border: '2px solid #f5f6fb',
+    }),
+  }; */
+    
     
     const CustomDate = forwardRef(({ value, onClick }, ref) => (
         <button className={s.dateBtn} onClick={onClick} ref={ref}>
@@ -61,7 +99,7 @@ const data = {
         
     ));
     
-    console.log(data)
+    console.log(options)
     return (
         <div className={s.inputContainer}>
             <div className={s.inputShell}>
@@ -84,11 +122,11 @@ const data = {
                     </input>
                     <Select
                         name="category"
-                        /* styles= */
+                        /* styles= { customStyles} */
                         placeholder="Категорія товару"
-                       /*  options */
-                        /* value */
-                       /*  onChange */
+                        options = {options}
+                        value = {category}
+                        onChange = {setCategory}
                         isSearchable={false}
           />
                     <label className={s.productAmountLabel}>

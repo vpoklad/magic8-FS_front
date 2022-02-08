@@ -107,6 +107,7 @@
   @media screen and (min-width: 1060px) {
     .tableDesk {
       margin-right: 30px;
+      margin-top: 60px;
     }
     .table {
       width: 760px;

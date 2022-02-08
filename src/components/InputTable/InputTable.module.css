@@ -26,6 +26,9 @@
     justify-content: space-between;
     flex-direction: row;
   }
+  .inputShell {
+    margin-bottom: 0px;
+  }
 }
 .inputForm {
   display: flex;
