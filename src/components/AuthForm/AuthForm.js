@@ -1,9 +1,8 @@
 import { React, useState } from 'react';
-import { useDispatch, useSelector } from "react-redux";
-// import { NavLink } from 'react-router-dom';
+import { useDispatch, useSelector } from 'react-redux';
+
 import { register, logIn } from '../../redux/auth/thunks';
 import { getFormError, getVerify } from '../../redux/auth/selectors';
-import { NavLink } from 'react-router-dom';
 import Button from '../Button/Button';
 import sBtn from '../Button/Button.module.css';
 import s from './authform.module.css';
@@ -89,8 +88,25 @@ export default function AuthForm() {
             />
           </label>
 
-          {formError && <div className={[s.authForm__message, s.authForm__message_danger].join(' ')}>{formError.message}</div>}
-          {verifyEmailSend && <div className={[s.authForm__message, s.authForm__message_success].join(' ')}>Лист підветдження відравлено на вказану електронну адресу.</div>}
+          {formError && (
+            <div
+              className={[s.authForm__message, s.authForm__message_danger].join(
+                ' ',
+              )}
+            >
+              {formError.message}
+            </div>
+          )}
+          {verifyEmailSend && (
+            <div
+              className={[
+                s.authForm__message,
+                s.authForm__message_success,
+              ].join(' ')}
+            >
+              Лист підветдження відравлено на вказану електронну адресу.
+            </div>
+          )}
 
           <div className={s.btns}>
             <Button
