@@ -6,16 +6,19 @@ import "react-datepicker/dist/react-datepicker.css";
 import Select from 'react-select';
 
 
-const InputTable = () => {
+const InputTable = ( {options}) => {
   const initialDate = new Date();
   const [date, setDate] = useState(initialDate);
-  const [payValue, setPayValue] = useState('')
+  const [productName, setProductName] = useState('');
+  const [payValue, setPayValue] = useState('');
+  const [category, setCategory] = useState([]);
 
 
-const data = {
-    date: format(new Date(date), 'yyyy-MM-dd'),
-    };
-    
+    const resetInput = () => {
+    setProductName('');
+    setPayValue('');
+    setCategory([]);
+  };
     const CustomDate = forwardRef(({ value, onClick }, ref) => (
         <button className={s.dateBtn} onClick={onClick} ref={ref}>
             <div className={s.date}>
@@ -61,7 +64,7 @@ const data = {
         
     ));
     
-    console.log(data)
+    console.log(options)
     return (
         <div className={s.inputContainer}>
             <div className={s.inputShell}>
@@ -79,16 +82,17 @@ const data = {
                         className={s.productName}
                         placeholder="Опис товару"
                         name="name"
+                        value={productName}
                         type="text"
                     >
                     </input>
                     <Select
                         name="category"
-                        /* styles= */
+                        /* styles */
                         placeholder="Категорія товару"
-                       /*  options */
-                        /* value */
-                       /*  onChange */
+                        options = {options}
+                        value = {category}
+                        onChange = {setCategory}
                         isSearchable={false}
           />
                     <label className={s.productAmountLabel}>
@@ -144,7 +148,7 @@ const data = {
             </div>
             <div className={s.mainBtnTable}>
                 <button className={s.mainBtn} type = 'submit'>Ввести</button>
-                <button className={s.changeBtn} type = 'submit'>Очистити</button>
+          <button className={s.changeBtn} type='button' onClick = {resetInput} >Очистити</button>
             </div>
 
         </div>
