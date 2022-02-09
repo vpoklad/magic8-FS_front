@@ -26,6 +26,7 @@ export default function Balance({ showReport, showBtn }) {
   }, [balance]);
   const сhangeBalance = e => {
     const { value } = e.target;
+    console.log(value);
     setValue(value);
   };
   const handleBalance = () => {
@@ -38,7 +39,7 @@ export default function Balance({ showReport, showBtn }) {
       <div className={s.container}>
         {showReport && (
           <div className={s.reports}>
-            <Link to="/reports" exact className={s.link}>
+            <Link to="/reports" className={s.link}>
               Перейти до звітів
             </Link>
             <svg width="24" height="24" className={s.icon}>
@@ -52,7 +53,7 @@ export default function Balance({ showReport, showBtn }) {
             <div className={s.containerRelative}>
               <input
                 className={s.balanceInput}
-                type="number"
+                type="text"
                 value={value}
                 onChange={сhangeBalance}
                 readOnly={readonly}
