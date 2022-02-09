@@ -3,9 +3,6 @@ import useMediaQuery from '@mui/material/useMediaQuery';
 import { useSelector } from 'react-redux';
 import { getUser } from '../../redux/auth/selectors';
 
-// import AppBar from '../AppBar/AppBar';
-import AuthForm from '../AuthForm/AuthForm';
-import Balance from '../Balance/Balance';
 import kapustaImg from './kapusta.svg';
 import kapustaImg2 from './kapusta-2.svg';
 
@@ -16,17 +13,16 @@ import kapustaBlock from './kapusta-block.svg';
 import kapusta2pcs from './kapusta2pcs.svg';
 
 export default function Container({ children }) {
-  // const isLoggedIn = useSelector(getAuth);
   const mobile = useMediaQuery('(max-width: 767px)');
   const tablet = useMediaQuery('(min-width: 768px)');
   const desktop = useMediaQuery('(min-width: 1280px)');
   const isLoggedIn = useSelector(getUser);
 
   return (
-    <div>
-      <div className={s.hero}>
-        {!isLoggedIn && (
-          <>
+    <>
+      {!isLoggedIn && (
+        <div>
+          <div className={s.hero}>
             {mobile && (
               <img
                 className={s.kapustaImg}
@@ -40,33 +36,16 @@ export default function Container({ children }) {
                 className={s.kapustaBlock}
                 src={kapustaBlock}
                 alt="Kapusta"
-                // height="232"
               />
             )}
-            {desktop && (
-              <img
-                className={s.kapustaBlock}
-                src={kapustaBlock}
-                alt="Kapusta"
-                // height="232"
-              />
-            )}
-          </>
-        )}
-      </div>
+          </div>
 
-      <div className={s.container}>
-        {!isLoggedIn && (
-          <>
+          <div className={s.container__nAuth}>
             {mobile && <img className={s.title} src={titleMob} alt="Kapusta" />}
             {tablet && <img className={s.title} src={titleTab} alt="Kapusta" />}
-          </>
-        )}
 
-        {children}
-      </div>
-      {!isLoggedIn && (
-        <>
+            {children}
+          </div>
           {mobile && (
             <img
               className={s.kapustaImg2}
@@ -78,26 +57,34 @@ export default function Container({ children }) {
           {tablet && (
             <img className={s.kapusta2pcs} src={kapusta2pcs} alt="Kapusta" />
           )}
-        </>
+        </div>
       )}
       {isLoggedIn && (
-        <>
-          {tablet && (
-            <img
-              className={s.kapusta2pcs__loged}
-              src={kapusta2pcs}
-              alt="Kapusta"
-            />
+        <div>
+          <div className={s.hero}></div>
+
+          <div className={s.container__auth}>{children}</div>
+
+          {isLoggedIn && (
+            <>
+              {tablet && !desktop && (
+                <img
+                  className={s.kapusta2pcs__auth}
+                  src={kapusta2pcs}
+                  alt="Kapusta"
+                />
+              )}
+              {desktop && (
+                <img
+                  className={s.kapustaBlock__auth}
+                  src={kapustaBlock}
+                  alt="Kapusta"
+                />
+              )}
+            </>
           )}
-          {desktop && (
-            <img
-              className={s.kapustaBlockLoged}
-              src={kapustaBlock}
-              alt="Kapusta"
-            />
-          )}
-        </>
+        </div>
       )}
-    </div>
+    </>
   );
 }

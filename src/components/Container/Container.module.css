@@ -1,4 +1,33 @@
-.container {
+.container__nAuth {
+  width: 320px;
+  margin-left: auto;
+  margin-right: auto;
+  padding-left: 10px;
+  padding-right: 10px;
+  padding-top: 30px;
+}
+
+@media (min-width: 768px) {
+  .container__nAuth {
+    min-width: 768px;
+    padding-top: 90px;
+    padding-left: 50px;
+    padding-right: 50px;
+  }
+}
+
+@media (min-width: 1280px) {
+  .container__nAuth {
+    display: flex;
+    align-items: center;
+    width: 1280px;
+    padding-top: 117px;
+    padding-left: 110px;
+    padding-right: 110px;
+  }
+}
+
+.container__auth {
   width: 320px;
   margin-left: auto;
   margin-right: auto;
@@ -6,26 +35,78 @@
   padding-right: 10px;
 }
 
+@media (min-width: 768px) {
+  .container__auth {
+    min-width: 768px;
+    padding-left: 50px;
+    padding-right: 50px;
+  }
+}
+
+@media (min-width: 1280px) {
+  .container__auth {
+    width: 1280px;
+    padding-top: 40px;
+    padding-left: 110px;
+    padding-right: 110px;
+  }
+}
+
 .hero {
   position: absolute;
   z-index: -5;
   width: 100%;
-  height: 342px;
+  min-height: 342px;
   background-image: url(./fon-mob.svg);
   background-repeat: no-repeat;
   background-size: 100% 100%;
   fill: #f5f6fb;
 }
 
+@media (min-width: 768px) {
+  .hero {
+    padding-top: 30px;
+    height: 526px;
+    background-image: url(./fon-tab.svg);
+    background-size: 100% 582px;
+  }
+}
+
+@media (min-width: 1280px) {
+  .hero {
+    background-image: url(./fon.svg);
+  }
+}
+
 .title {
   width: 185px;
   height: 65px;
-  margin-top: 85px;
+  margin-top: 55px;
   margin-left: 40px;
   margin-bottom: 50px;
 }
 
-.kapustaBlockLoged {
+@media (min-width: 768px) {
+  .title {
+    width: 305px;
+    height: 100px;
+    margin-top: 0;
+    margin-left: 120px;
+  }
+}
+
+@media (min-width: 1280px) {
+  .title {
+    width: 380px;
+    height: 140px;
+    margin-top: 0;
+
+    margin-left: 120px;
+    margin-bottom: 0;
+  }
+}
+
+.kapustaBlock__auth {
   position: absolute;
   z-index: -2;
   /* display: flex; */
@@ -42,7 +123,14 @@
   height: 142px;
 }
 
-.kapusta2pcs__loged {
+@media (min-width: 1280px) {
+  .kapusta2pcs {
+    top: 658px;
+    left: 230px;
+  }
+}
+
+.kapusta2pcs__auth {
   position: absolute;
   z-index: -1;
   top: 1033px;
@@ -64,51 +152,5 @@
     z-index: -3;
     top: 770px;
     left: 35px;
-  }
-}
-
-@media (min-width: 768px) {
-  .container {
-    min-width: 768px;
-
-    padding-left: 50px;
-    padding-right: 50px;
-  }
-  .hero {
-    padding-top: 30px;
-    height: 582px;
-    background-image: url(./fon-tab.svg);
-    background-size: 100% 582px;
-  }
-
-  .title {
-    width: 305px;
-    height: 100px;
-    margin-left: 120px;
-  }
-}
-
-@media (min-width: 1280px) {
-  .container {
-    display: flex;
-    align-items: center;
-    width: 1280px;
-    padding-left: 110px;
-    padding-right: 110px;
-  }
-  .hero {
-    background-image: url(./fon.svg);
-  }
-
-  .title {
-    width: 380px;
-    height: 140px;
-    margin-left: 120px;
-    margin-bottom: 0;
-  }
-
-  .kapusta2pcs {
-    top: 658px;
-    left: 230px;
   }
 }
