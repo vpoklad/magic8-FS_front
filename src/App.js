@@ -34,7 +34,6 @@ function App() {
           {!isLoggedIn && <AuthForm />}
           {isLoggedIn && (
             <>
-              <Balance showReport={true} showBtn={true} />
               <ReportPage />
               <CountingTable />
             </>

@@ -8,6 +8,7 @@ import { addBalanceThunk } from '../../redux/balance/thunk';
 import { getBalance } from '../../redux/balance/selectors';
 import { Notification } from '../Notification/Notification';
 import GoToBack from '../GoToBack/GoToBack';
+
 export default function Balance({ showReport, showBtn }) {
   const [value, setValue] = useState('00.00');
   const [readonly, setReadonly] = useState(null);
@@ -26,7 +27,6 @@ export default function Balance({ showReport, showBtn }) {
   }, [balance]);
   const сhangeBalance = e => {
     const { value } = e.target;
-    console.log(value);
     setValue(value);
   };
   const handleBalance = () => {
@@ -35,7 +35,6 @@ export default function Balance({ showReport, showBtn }) {
   };
   return (
     <>
-      <GoToBack />
       <div className={s.container}>
         {showReport && (
           <div className={s.reports}>
