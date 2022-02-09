@@ -10,6 +10,7 @@ import AuthForm from './components/AuthForm/AuthForm';
 import Balance from './components/Balance/Balance';
 import ReportPage from './pages/ReportPage/ReportPage';
 import CountingTable from './components/CountingTable/CountingTable';
+import { GoogleAuthPage } from './pages/GoogleAuthPage';
 import Container from './components/Container/Container';
 import { getUser } from './redux/auth/selectors';
 
@@ -26,6 +27,9 @@ function App() {
     !isFetchingCurrentUser && (
       <div className="App">
         <AppBar />
+        <Routes>
+          <Route path="/google" element={<GoogleAuthPage />} />
+        </Routes>
         <Container>
           {!isLoggedIn && <AuthForm />}
           {isLoggedIn && (
