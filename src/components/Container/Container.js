@@ -15,11 +15,11 @@ import titleTab from './Title-2.svg';
 import kapustaBlock from './kapusta-block.svg';
 import kapusta2pcs from './kapusta2pcs.svg';
 
-export default function Container() {
+export default function Container({ children }) {
   // const isLoggedIn = useSelector(getAuth);
   const mobile = useMediaQuery('(max-width: 767px)');
   const tablet = useMediaQuery('(min-width: 768px)');
-  // const desktop = useMediaQuery('(min-width: 1280px)');
+  const desktop = useMediaQuery('(min-width: 1280px)');
   const isLoggedIn = useSelector(getUser);
 
   return (
@@ -28,23 +28,28 @@ export default function Container() {
         {!isLoggedIn && (
           <>
             {mobile && (
-              <>
-                <img
-                  className={s.kapustaImg}
-                  src={kapustaImg}
-                  alt="Kapusta"
-                  width="49"
-                />
-              </>
+              <img
+                className={s.kapustaImg}
+                src={kapustaImg}
+                alt="Kapusta"
+                width="49"
+              />
             )}
             {tablet && (
-              <>
-                <img
-                  className={s.kapustaBlock}
-                  src={kapustaBlock}
-                  alt="Kapusta"
-                />
-              </>
+              <img
+                className={s.kapustaBlock}
+                src={kapustaBlock}
+                alt="Kapusta"
+                // height="232"
+              />
+            )}
+            {desktop && (
+              <img
+                className={s.kapustaBlock}
+                src={kapustaBlock}
+                alt="Kapusta"
+                // height="232"
+              />
             )}
           </>
         )}
@@ -53,38 +58,43 @@ export default function Container() {
       <div className={s.container}>
         {!isLoggedIn && (
           <>
-            {mobile && (
-              <>
-                <img className={s.title} src={titleMob} alt="Kapusta" />
-              </>
-            )}
-            {tablet && (
-              <>
-                <img className={s.title} src={titleTab} alt="Kapusta" />
-              </>
-            )}
+            {mobile && <img className={s.title} src={titleMob} alt="Kapusta" />}
+            {tablet && <img className={s.title} src={titleTab} alt="Kapusta" />}
           </>
         )}
 
-        <AuthForm />
-        <Balance showReport={true} showBtn={true} />
+        {children}
       </div>
       {!isLoggedIn && (
         <>
           {mobile && (
-            <>
-              <img
-                className={s.kapustaImg2}
-                src={kapustaImg2}
-                alt="Kapusta"
-                width="83"
-              />
-            </>
+            <img
+              className={s.kapustaImg2}
+              src={kapustaImg2}
+              alt="Kapusta"
+              width="83"
+            />
           )}
           {tablet && (
-            <>
-              <img className={s.kapusta2pcs} src={kapusta2pcs} alt="Kapusta" />
-            </>
+            <img className={s.kapusta2pcs} src={kapusta2pcs} alt="Kapusta" />
+          )}
+        </>
+      )}
+      {isLoggedIn && (
+        <>
+          {tablet && (
+            <img
+              className={s.kapusta2pcs__loged}
+              src={kapusta2pcs}
+              alt="Kapusta"
+            />
+          )}
+          {desktop && (
+            <img
+              className={s.kapustaBlockLoged}
+              src={kapustaBlock}
+              alt="Kapusta"
+            />
           )}
         </>
       )}

@@ -21,8 +21,7 @@
 
 @media (min-width: 1280px) {
   .authformContainter {
-    margin-right: 110px;
-    margin-top: 117px;
+    /* margin-top: 117px; */
   }
 }
 
@@ -37,6 +36,7 @@
   margin-left: auto;
   margin-right: auto;
   margin-bottom: 24px;
+  margin-top: 0;
   text-align: center;
 
   font-family: Roboto;
@@ -54,6 +54,7 @@
   .authformInfo_header {
     font-size: 12px;
     line-height: 1.2;
+    margin-bottom: 20px;
   }
 }
 
@@ -63,6 +64,7 @@
   width: 122px;
   margin-left: auto;
   margin-right: auto;
+  margin-bottom: 30px;
   padding: 10px 20px;
 
   font-size: 14px;
@@ -96,8 +98,8 @@
   background: url('./google.svg');
   background-size: contain;
   display: inline-block;
-  height: 18px;
-  width: 18px;
+  height: 20px;
+  width: 20px;
 }
 
 .authform {
@@ -110,7 +112,7 @@
   width: 100%;
   margin-left: auto;
   margin-right: auto;
-  margin-top: 30px;
+  margin-top: 0;
   margin-bottom: 24px;
 
   font-family: Roboto;
@@ -127,6 +129,7 @@
   .authformInfo {
     font-size: 12px;
     line-height: 1.2;
+    margin-bottom: 20px;
   }
 }
 
@@ -135,48 +138,55 @@
   margin-right: auto;
   display: flex;
   flex-direction: column;
-  margin-top: 30px;
+
   color: #000000;
 
   font-family: Roboto;
-
+  margin-bottom: 30px;
   font-weight: bold;
-  font-size: 10px;
+  font-size: 11px;
   line-height: 1.1;
 }
 
 @media (min-width: 768px) {
   .authLabel {
-    font-size: 12px;
+    font-size: 13px;
     line-height: 1.2;
   }
 }
 
 .authInput {
   margin-top: 12px;
-  padding: 20px 17px;
+  padding: 17px 17px;
   background: #f6f7fb;
 
-  font-size: 14px;
+  font-size: 15px;
   line-height: 1.2;
   border: none;
   border-radius: 30px;
+}
+
+@media (min-width: 768px) {
+  .authInput {
+    margin-top: 10px;
+  }
 }
 
 .btns {
   display: flex;
   justify-content: space-between;
   width: 100%;
-  margin-top: 40px;
+  /* margin-top: 10px; */
   margin-left: auto;
   margin-right: auto;
+  padding-top: 10px;
 }
 
 .authBtn {
   display: inline-block;
   width: 125px;
   height: 44px;
-  margin: 0;
+  margin: 10 0 0 0;
 
   font-weight: 700;
   font-size: 12px;

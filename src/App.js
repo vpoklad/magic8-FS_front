@@ -8,10 +8,13 @@ import AuthForm from './components/AuthForm/AuthForm';
 import Balance from './components/Balance/Balance';
 import ReportPage from './pages/ReportPage/ReportPage';
 import CountingTable from './components/CountingTable/CountingTable';
+import Container from './components/Container/Container';
+import { getUser } from './redux/auth/selectors';
 
 function App() {
   const dispatch = useDispatch();
   const isFetchingCurrentUser = useSelector(getIsFetchingCurrentUser);
+  const isLoggedIn = useSelector(getUser);
 
   useEffect(() => {
     dispatch(fetchCurrentUser());
@@ -21,10 +24,16 @@ function App() {
     !isFetchingCurrentUser && (
       <div className="App">
         <AppBar />
-        <AuthForm />
-        <Balance showReport={true} showBtn={true} />
-        <ReportPage />
-        <CountingTable/>
+        <Container>
+          {!isLoggedIn && <AuthForm />}
+          {isLoggedIn && (
+            <>
+              <Balance showReport={true} showBtn={true} />
+              <ReportPage />
+              <CountingTable />
+            </>
+          )}
+        </Container>
       </div>
     )
   );

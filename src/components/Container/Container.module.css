@@ -4,7 +4,6 @@
   margin-right: auto;
   padding-left: 10px;
   padding-right: 10px;
-  padding-top: 85px;
 }
 
 .hero {
@@ -21,20 +20,33 @@
 .title {
   width: 185px;
   height: 65px;
+  margin-top: 85px;
   margin-left: 40px;
   margin-bottom: 50px;
 }
 
-.kapustaBlock {
-  display: flex;
-  width: 100%;
-  height: ;
+.kapustaBlockLoged {
+  position: absolute;
+  z-index: -2;
+  /* display: flex; */
+  /* width: 100%; */
+  /* min-height: 232px; */
 }
 
 .kapusta2pcs {
   position: absolute;
   z-index: 2;
   top: 826px;
+  left: 103px;
+  width: 183px;
+  height: 142px;
+}
+
+.kapusta2pcs__loged {
+  position: absolute;
+  z-index: -1;
+  top: 1033px;
+  right: 88px;
   width: 183px;
   height: 142px;
 }
@@ -48,14 +60,17 @@
   }
 
   .kapustaImg2 {
-    margin-left: 25px;
+    position: absolute;
+    z-index: -3;
+    top: 770px;
+    left: 35px;
   }
 }
 
 @media (min-width: 768px) {
   .container {
-    width: 768px;
-    padding-top: 90px;
+    min-width: 768px;
+
     padding-left: 50px;
     padding-right: 50px;
   }
@@ -75,7 +90,9 @@
 
 @media (min-width: 1280px) {
   .container {
-    max-width: 1280px;
+    display: flex;
+    align-items: center;
+    width: 1280px;
     padding-left: 110px;
     padding-right: 110px;
   }
@@ -86,5 +103,12 @@
   .title {
     width: 380px;
     height: 140px;
+    margin-left: 120px;
+    margin-bottom: 0;
+  }
+
+  .kapusta2pcs {
+    top: 658px;
+    left: 230px;
   }
 }
