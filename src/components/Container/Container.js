@@ -8,8 +8,6 @@ import kapustaImg2 from './kapusta-2.svg';
 
 import titleMob from './Title-1.svg';
 import titleTab from './Title-2.svg';
-// import titleDesk from './Title-3.svg';
-import kapustaBlock from './kapusta-block.svg';
 import kapusta2pcs from './kapusta2pcs.svg';
 
 export default function Container({ children }) {
@@ -31,19 +29,11 @@ export default function Container({ children }) {
                 width="49"
               />
             )}
-            {tablet && (
-              <img
-                className={s.kapustaBlock}
-                src={kapustaBlock}
-                alt="Kapusta"
-              />
-            )}
+            {tablet && <div className={s.kapustaBlock}></div>}
           </div>
-
           <div className={s.container__nAuth}>
             {mobile && <img className={s.title} src={titleMob} alt="Kapusta" />}
             {tablet && <img className={s.title} src={titleTab} alt="Kapusta" />}
-
             {children}
           </div>
           {mobile && (
@@ -59,12 +49,11 @@ export default function Container({ children }) {
           )}
         </div>
       )}
+
       {isLoggedIn && (
         <div>
           <div className={s.hero}></div>
-
           <div className={s.container__auth}>{children}</div>
-
           {isLoggedIn && (
             <>
               {tablet && !desktop && (
@@ -74,13 +63,7 @@ export default function Container({ children }) {
                   alt="Kapusta"
                 />
               )}
-              {desktop && (
-                <img
-                  className={s.kapustaBlock__auth}
-                  src={kapustaBlock}
-                  alt="Kapusta"
-                />
-              )}
+              {desktop && <div className={s.kapustaBlock}></div>}
             </>
           )}
         </div>
