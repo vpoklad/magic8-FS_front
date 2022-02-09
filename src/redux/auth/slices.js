@@ -1,5 +1,11 @@
 import { createSlice } from '@reduxjs/toolkit';
-import { register, logIn, logoutThunk, fetchCurrentUser } from './thunks';
+import {
+  register,
+  logIn,
+  logoutThunk,
+  fetchCurrentUser,
+  googleAuth,
+} from './thunks';
 const authSlice = createSlice({
   name: 'auth',
   initialState: {
@@ -26,7 +32,7 @@ const authSlice = createSlice({
       state.verifyMessage = null;
       state.formError = action.payload;
     },
-    [logoutThunk.fulfilled](state, action){
+    [logoutThunk.fulfilled](state, action) {
       state.email = null;
       state.token = null;
       state.formError = null;
@@ -40,8 +46,15 @@ const authSlice = createSlice({
     },
     [fetchCurrentUser.rejected](state) {
       state.isFetchingCurrentUser = false;
-    }
-  }
+    },
+    [googleAuth.fulfilled](state, action) {
+      console.log('state:', state);
+      console.log('action:', action);
+      state.email = action.payload.email;
+      state.verificationToken = action.payload.verificationToken;
+      state.avatarURL = action.payload.avatarURL;
+    },
+  },
 });
 
 export default authSlice.reducer;
