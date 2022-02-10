@@ -1,6 +1,5 @@
 import { React, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-
 import { register, logIn } from '../../redux/auth/thunks';
 import { getFormError, getVerifyMessage } from '../../redux/auth/selectors';
 import Button from '../Button/Button';
@@ -114,9 +113,7 @@ export default function AuthForm() {
               title="Ввійти"
               className={sBtn.Button}
               text="ВВІЙТИ"
-            >
-              {/* ВВІЙТИ */}
-            </Button>
+            ></Button>
             <Button
               type="button"
               onClick={handleRegister}
@@ -124,22 +121,6 @@ export default function AuthForm() {
               className={sBtn.Button}
               text="РЕЄСТРАЦІЯ"
             ></Button>
-
-            {/* <button
-              type="submit"
-              title="Ввійти"
-              className={(s.authBtn, s.activeBtn)}
-            >
-              ВВІЙТИ
-            </button> */}
-            {/* <button
-              type="button"
-              onClick={handleRegister}
-              title="Реєстрація"
-              className={s.authBtn}
-            >
-              РЕЄСТРАЦІЯ
-            </button> */}
           </div>
         </form>
       </div>
