@@ -1,58 +1,84 @@
 import { createSlice } from '@reduxjs/toolkit';
-import {
-  register,
-  logIn,
-  logoutThunk,
-  fetchCurrentUser,
-  googleAuth,
-} from './thunks';
+
+import { register, logIn, logout, fetchCurrentUser } from './thunks';
 const authSlice = createSlice({
   name: 'auth',
   initialState: {
     email: null,
     token: null,
-    isFetchingCurrentUser: false,
-    formError: null,
-    verify: false,
-    verifyMessage: null,
+    // isFetchingCurrentUser: false,
+    formNotification: null,
+    verify: null,
+    errorCode: null,
+    isLoading: false,
+  },
+  reducer: {
+    google(state, action) {
+      state.email = action.payload.email;
+      state.token = action.payload.token;
+      state.avatarURL = action.payload.avatarURL;
+    },
   },
 
   extraReducers: {
-    [register.fulfilled](state, action) {
-      state.email = action.payload.email;
-      state.token = action.payload.token;
-      state.verify = action.payload.verificationEmailSend;
-      state.verifyMessage = action.payload.verifyMessage;
-      state.formError = action.payload;
+    [register.pending](state, action) {
+      state.isLoading = true;
     },
+    [register.fulfilled](state, action) {
+      state.verify = action.payload;
+      state.formNotification = action.payload;
+      state.errorCode = null;
+      state.isLoading = false;
+    },
+    [register.rejected](state, action) {
+      state.errorCode = action.payload;
+      state.isLoading = false;
+    },
+
+    [logIn.pending](state, action) {
+      state.isLoading = true;
+    },
+
     [logIn.fulfilled](state, action) {
       state.email = action.payload.email;
       state.token = action.payload.token;
-      state.verify = action.payload.verificationEmailSend;
-      state.verifyMessage = null;
-      state.formError = action.payload;
+      state.isLoading = false;
+      state.errorCode = null;
     },
-    [logoutThunk.fulfilled](state, action) {
+    [logIn.rejected](state, action) {
+      state.errorCode = action.payload;
+      state.isLoading = false;
+    },
+
+    [logout.pending](state, action) {
+      state.isLoading = true;
+    },
+
+    [logout.fulfilled](state, action) {
       state.email = null;
       state.token = null;
-      state.formError = null;
+      state.isLoading = false;
+      state.errorCode = null;
     },
+    [logout.rejected](state, action) {
+      state.isLoading = false;
+      state.errorCode = action.payload;
+    },
+
     [fetchCurrentUser.pending](state) {
-      state.isFetchingCurrentUser = true;
+      state.isLoading = true;
     },
     [fetchCurrentUser.fulfilled](state, action) {
       state.email = action.payload.email;
-      state.isFetchingCurrentUser = false;
+      state.isLoading = false;
+      state.errorCode = null;
     },
-    [fetchCurrentUser.rejected](state) {
-      state.isFetchingCurrentUser = false;
-    },
-    [googleAuth.fulfilled](state, action) {
-      state.email = action.payload.email;
-      state.token = action.payload.verificationToken;
-      state.avatarURL = action.payload.avatarURL;
+    [fetchCurrentUser.rejected](state, action) {
+      state.isLoading = false;
+      state.errorCode = action.payload;
     },
   },
 });
 
 export default authSlice.reducer;
+export const google = authSlice.action;

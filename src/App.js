@@ -11,16 +11,16 @@ import ReportPage from './pages/ReportPage/ReportPage';
 import CountingTable from './components/CountingTable/CountingTable';
 import { GoogleAuthPage } from './pages/GoogleAuthPage';
 import Container from './components/Container/Container';
-import { getUser } from './redux/auth/selectors';
+import { getToken } from './redux/auth/selectors';
 
 function App() {
   const dispatch = useDispatch();
   const isFetchingCurrentUser = useSelector(getIsFetchingCurrentUser);
-  const isLoggedIn = useSelector(getUser);
+  const token = useSelector(getToken);
 
   useEffect(() => {
-    dispatch(fetchCurrentUser());
-  }, [dispatch]);
+    if (token) dispatch(fetchCurrentUser());
+  }, []);
 
   return (
     !isFetchingCurrentUser && (
@@ -30,8 +30,8 @@ function App() {
           <Route path="/google" element={<GoogleAuthPage />} />
         </Routes>
         <Container>
-          {!isLoggedIn && <AuthForm />}
-          {isLoggedIn && (
+          {!token && <AuthForm />}
+          {token && (
             <>
               <ReportPage />
               <CountingTable />
