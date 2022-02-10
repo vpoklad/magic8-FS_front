@@ -26,18 +26,18 @@ export default function UserMenu() {
   }
 
   return (
-    <div className={s.header__menu}>
-      <div className={s.header__avatar}>{userNameFirstLetter}</div>
+    <div className={s.header_menu}>
+      <div className={s.header_avatar}>{userNameFirstLetter}</div>
       {tablet && <>
-        <span className={s.header__username}>{userName}</span>
-        <div className={s.header__divider}></div>
+        <span className={s.header_username}>{userName}</span>
+        <div className={s.header_divider}></div>
       </>}
         <button
-          className={s.header__logout}
+          className={s.header_logout}
           type="button"
           onClick={toggleModal}>
           {tablet
-            ? 'Вихід'
+            ? <p className={s.logout_name}>Вихід</p>
             : <svg width="16" height="16"><use href={`${sprite}#icon-logout`}></use></svg>
           }
         </button>

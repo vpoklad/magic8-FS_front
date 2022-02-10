@@ -1,9 +1,9 @@
-.header__menu {
+.header_menu {
   display: flex;
   align-items: center;
 }
 
-.header__avatar {
+.header_avatar {
   display: flex;
   align-items: center;
   justify-content: center;
@@ -19,35 +19,51 @@
 }
 
 @media (min-width: 768px) {
-  .header__avatar {
+  .header_avatar {
     margin-right: 10px;
   }
 }
 
-.header__username {
+.header_username {
   margin-right: 20px;
 }
 
-.header__divider {
+.header_divider {
   width: 1px;
   height: 36px;
   margin-right: 20px;
   background-color: #e0e5eb;
 }
 
-.header__logout {
+.header_logout {
   padding: 0;
   background: none;
   border: none;
-  text-decoration: underline;
   color: #52555f;
 }
 
-.header__logout:hover {
+.header_logout:hover,
+.header_logout:focus,
+.logout_name:hover::after,
+.logout_name:focus::after {
   cursor: pointer;
+  color: #ff751d;
 }
 
-.header__logout .logout__icon {
+.logout_name::after {
+  content: '';
+  display: block;
+  width: 100%;
+  height: 1px;
+  background-color: #52555f;
+}
+
+.logout_name:hover::after,
+.logout_name:focus::after {
+  background-color: currentColor;
+}
+
+.header_logout .logout_icon {
   width: 16px;
   height: 16px;
   color: #cbccd0;

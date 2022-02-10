@@ -1,7 +1,5 @@
 p {
   margin: 0;
-
-  text-transform: uppercase;
 }
 
 .containerExpense {
@@ -23,6 +21,7 @@ p {
   font-weight: 700;
   letter-spacing: 0.02em;
   color: #000;
+  text-transform: uppercase;
 
   margin-top: 40px;
   margin-bottom: 20px;
@@ -33,11 +32,11 @@ p {
   flex-wrap: wrap;
   align-items: center;
   justify-content: center;
-  margin: 0;
   padding: 0;
-  background-color: aqua;
+  margin: 0;
   margin-left: -10px;
   margin-top: -20px;
+  margin-bottom: 20px;
 }
 
 .item_img {
@@ -56,13 +55,28 @@ p {
   border-radius: 20px;
 }
 
+.listExpense_item:hover .item_img::before,
+.listExpense_item:focus .item_img::before {
+  background-color: #ffdac0;
+}
+
 .item_svg {
   z-index: 2;
+}
+
+.listExpense_item:hover .item_svg,
+.listExpense_item:focus .item_svg {
+  fill: #ff751d;
+}
+
+.item_name {
+  text-transform: uppercase;
 }
 
 @media (min-width: 768px) {
   .listExpense {
     margin-left: -20px;
+    margin-bottom: 30px;
   }
 }
 
@@ -78,6 +92,11 @@ p {
   margin-left: 10px;
   margin-top: 20px;
   text-align: center;
+}
+
+.listExpense_item:hover,
+.listExpense_item:focus {
+  transform: scale(1.1);
 }
 
 @media (min-width: 768px) {

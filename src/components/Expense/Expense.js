@@ -10,32 +10,32 @@ export default function Expense() {
                 <li className={s.listExpense_item}>
                     <p>5000</p>
                     <div className={s.item_img}><svg className={s.item_svg} width="56" height="56"><use href={`${sprite}#icon-clay`}></use></svg></div>
-                    <p>Products</p>
+                    <p className={s.item_name}>Products</p>
                 </li>
                 <li className={s.listExpense_item}>
                     <p>5000</p>
                     <div className={s.item_img}><svg className={s.item_svg} width="56" height="56"><use href={`${sprite}#icon-invoice`}></use></svg></div>
-                    <p>Products</p>
+                    <p className={s.item_name}>Products</p>
                 </li>
                 <li className={s.listExpense_item}>
                     <p>5000</p>
                     <div className={s.item_img}><svg className={s.item_svg} width="56" height="56"><use href={`${sprite}#icon-ufo`}></use></svg></div>
-                    <p>Развлечения</p>
+                    <p className={s.item_name}>Развлечения</p>
                 </li>
                 <li className={s.listExpense_item}>
                     <p>5000</p>
                     <div className={s.item_img}><svg className={s.item_svg} width="56" height="56"><use href={`${sprite}#icon-car`}></use></svg></div>
-                    <p>Products</p>
+                    <p className={s.item_name}>Products</p>
                 </li>
                 <li className={s.listExpense_item}>
                     <p>5000</p>
                     <div className={s.item_img}><svg className={s.item_svg} width="56" height="56"><use href={`${sprite}#icon-ufo`}></use></svg></div>
-                    <p>Products</p>
+                    <p className={s.item_name}>Products</p>
                 </li>
                 <li className={s.listExpense_item}>
                     <p>5000</p>
                     <div className={s.item_img}><svg className={s.item_svg} width="56" height="56"><use href={`${sprite}#icon-car`}></use></svg></div>
-                    <p>Развлечения</p>
+                    <p className={s.item_name}>Развлечения</p>
                 </li>
 
 
