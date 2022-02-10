@@ -79,11 +79,6 @@ export const fetchCurrentUser = createAsyncThunk(
   },
 );
 
-export const googleAuth = createAsyncThunk('auth/login', a => {
-  console.log('googleAuth', a);
-  return a;
-  // return {
-  //   type: 'auth/google',
-  //   payload: a,
-  // };
+export const googleAuth = createAsyncThunk('auth/login', googleAuthThunk => {
+  return googleAuthThunk;
 });
