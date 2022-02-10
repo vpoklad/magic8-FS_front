@@ -8,7 +8,7 @@ export default function ReportPage() {
     return (
         <div>
             <GoToBack />
-            <Balance />
+            <Balance showReport={true} showBtn={true} />
             <div className={s.generalData}>
                 <div className={s.generalData__item}>
                     <span>Витрати:</span>
@@ -25,7 +25,6 @@ export default function ReportPage() {
             </div>
             <div className={s.dataChart}>
             </div>
-        </div>
-
-    )
+            </div>
+  );
 }

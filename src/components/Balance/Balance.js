@@ -8,6 +8,7 @@ import { addBalanceThunk } from '../../redux/balance/thunk';
 import { getBalance } from '../../redux/balance/selectors';
 import { Notification } from '../Notification/Notification';
 import GoToBack from '../GoToBack/GoToBack';
+
 export default function Balance({ showReport, showBtn }) {
   const [value, setValue] = useState('00.00');
   const [readonly, setReadonly] = useState(null);
@@ -34,11 +35,10 @@ export default function Balance({ showReport, showBtn }) {
   };
   return (
     <>
-      <GoToBack />
       <div className={s.container}>
         {showReport && (
           <div className={s.reports}>
-            <Link to="/reports" exact className={s.link}>
+            <Link to="/reports" className={s.link}>
               Перейти до звітів
             </Link>
             <svg width="24" height="24" className={s.icon}>
@@ -52,7 +52,7 @@ export default function Balance({ showReport, showBtn }) {
             <div className={s.containerRelative}>
               <input
                 className={s.balanceInput}
-                type="number"
+                type="text"
                 value={value}
                 onChange={сhangeBalance}
                 readOnly={readonly}

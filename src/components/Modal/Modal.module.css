@@ -1,0 +1,63 @@
+.Overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+
+  width: 100vw;
+  height: 100vh;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  background-color: rgba(0, 0, 0, 0.4);
+  z-index: 100;
+}
+
+.Modal {
+  width: 380px;
+  height: 194px;
+
+  padding: 20px;
+  background-color: #fff;
+  box-shadow: 10px 10px 30px rgba(82, 85, 95, 0.4);
+  border-radius: 30px;
+}
+
+.ButtonClose {
+  position: relative;
+  top: 0;
+  left: 95%;
+
+  background: none;
+  border: none;
+
+  color: #52555f;
+  /* z-index: 1000; */
+}
+
+.ButtonClose:hover {
+  cursor: pointer;
+  color: #FF751D;
+}
+
+.Header {
+  margin: 12px 0 0 0;
+
+  font-family: Roboto;
+  font-weight: bold;
+  font-style: normal;
+  font-size: 14px;
+  line-height: 16.41px;
+  text-align: center;
+  letter-spacing: 0.02em;
+
+  color: #52555F;
+}
+
+.ModalButtons {
+  margin-top: 20px;
+  padding: 0 25px;
+  display: flex;
+  justify-content: space-evenly;
+}
