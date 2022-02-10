@@ -49,7 +49,7 @@ const authSlice = createSlice({
     },
     [googleAuth.fulfilled](state, action) {
       state.email = action.payload.email;
-      state.verificationToken = action.payload.verificationToken;
+      state.token = action.payload.verificationToken;
       state.avatarURL = action.payload.avatarURL;
     },
   },
