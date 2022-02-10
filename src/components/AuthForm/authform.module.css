@@ -225,3 +225,14 @@
 .authForm__message_danger {
   color: var(--expenseText);
 }
+
+/* .info {
+  margin-top: 0;
+  border: none;
+  background: none;
+  text-decoration: underline;
+  color: var(--mainTextColor);
+}
+.info:hover {
+  cursor: pointer;
+} */
