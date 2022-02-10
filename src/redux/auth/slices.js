@@ -48,8 +48,6 @@ const authSlice = createSlice({
       state.isFetchingCurrentUser = false;
     },
     [googleAuth.fulfilled](state, action) {
-      console.log('state:', state);
-      console.log('action:', action);
       state.email = action.payload.email;
       state.verificationToken = action.payload.verificationToken;
       state.avatarURL = action.payload.avatarURL;
