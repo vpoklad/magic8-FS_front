@@ -60,7 +60,7 @@
   background-image: url(./fon-mob.svg);
   background-repeat: no-repeat;
   background-size: 100% 100%;
-  fill: #f5f6fb;
+  fill: var(--backgroundColor);
 }
 
 @media (min-width: 768px) {
