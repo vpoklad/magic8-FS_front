@@ -1,10 +1,13 @@
 import s from './ReportPage.module.css';
 import Balance from '../../components/Balance/Balance';
+import GoToBack from '../../components/GoToBack/GoToBack';
+import Expense from '../../components/Expense/Expense';
 
 export default function ReportPage() {
 
     return (
         <div>
+            <GoToBack />
             <Balance />
             <div className={s.generalData}>
                 <div className={s.generalData__item}>
@@ -18,6 +21,7 @@ export default function ReportPage() {
                 </div>
             </div>
             <div className={s.dataExpenseIncome}>
+                <Expense />
             </div>
             <div className={s.dataChart}>
             </div>

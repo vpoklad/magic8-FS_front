@@ -1,0 +1,65 @@
+.containerExpense {
+  font-family: Roboto;
+  font-size: 12px;
+  line-height: 1.17;
+  font-weight: 400;
+  letter-spacing: 0.04em;
+  color: #52555f;
+}
+
+.title {
+  font-size: 14px;
+  line-height: 1.17;
+  text-align: center;
+  font-weight: 700;
+  letter-spacing: 0.02em;
+  color: #000;
+  text-transform: uppercase;
+
+  margin-top: 40px;
+  margin-bottom: 20px;
+}
+
+.listExpense {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  margin: 0;
+  padding: 0;
+  background-color: aqua;
+  margin-left: -10px;
+  margin-top: -20px;
+}
+
+@media (min-width: 768px) {
+  .listExpense {
+    margin-left: -20px;
+  }
+}
+
+@media (min-width: 1280px) {
+  .listExpense {
+    max-width: 614px;
+  }
+}
+
+.listExpense_item {
+  min-width: 84px;
+  list-style: none;
+  margin-left: 10px;
+  margin-top: 20px;
+  text-align: center;
+}
+
+@media (min-width: 768px) {
+  .listExpense_item {
+    margin-left: 20px;
+  }
+}
+
+@media (min-width: 768px) {
+  .title {
+    margin-top: 0px;
+  }
+}
