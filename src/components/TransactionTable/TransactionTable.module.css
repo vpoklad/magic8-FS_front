@@ -24,7 +24,7 @@
   }
 
   .tableHeadTr {
-    background: #f5f6fb;
+    background: var(--backgroundColor);
     border-radius: 20px 20px 0 0;
     height: 40px;
     font-weight: 700;
@@ -32,22 +32,22 @@
     display: flex;
     align-items: center;
     text-transform: uppercase;
-    color: #000;
+    color: var(--titleTextColor);
   }
 
   .tableTr {
     width: 100%;
     height: 43px;
-    border-bottom: 2px solid #f5f6fb;
+    border-bottom: 2px solid var(--backgroundColor);
     display: inline-table;
-    color: #52555f;
+    color: var(--mainTextColor);
   }
 
   .tableBody {
     height: 346px;
     border-collapse: collapse;
     width: 100%;
-    border: 2px solid #f5f6fb;
+    border: 2px solid var(--backgroundColor);
     overflow-y: scroll;
   }
 
@@ -82,12 +82,12 @@
   .tableAmountIncome {
     width: 20%;
     text-align: right;
-    color: #e7192e;
+    color: var(--expenseText);
     font-weight: 700;
   }
 
   .tableAmountIncome {
-    color: #407946;
+    color: var(--incomeText);
   }
 
   .tableDelete {
