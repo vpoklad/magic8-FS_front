@@ -19,7 +19,7 @@
 
 .link {
   text-decoration: none;
-  color: #52555f;
+  color: var(--mainTextColor);
   margin-left: 15px;
   transition: all 0.2s linear;
 }
@@ -30,5 +30,5 @@
   display: block;
   height: 24px;
   width: 24px;
-  color: #ff751d;
+  color: var(--accentColor);
 }

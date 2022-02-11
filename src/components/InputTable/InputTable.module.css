@@ -44,7 +44,7 @@
 .productName {
   padding: 13px;
   border-radius: 16px 0 0 0;
-  border: 2px solid #f5f6fb;
+  border: 2px solid var(--backgroundColor);
   border-right: none;
   outline: none;
   width: 270px;
@@ -53,7 +53,7 @@
 .productAmount {
   padding: 13px 50px 13px 13px;
 
-  border: 2px solid #f5f6fb;
+  border: 2px solid var(--backgroundColor);
   border-radius: 0px 16px 16px 0px;
   border-left: none;
   outline: none;
@@ -80,7 +80,7 @@
   margin-right: 25px;
   font-weight: 900;
   font-size: 12px;
-  color: #52555f;
+  color: var(--mainTextColor);
   border: none;
   background-color: transparent;
   cursor: pointer;
@@ -103,14 +103,14 @@
   letter-spacing: 0.02em;
   text-transform: uppercase;
 
-  background: #ffffff;
-  border: 1px solid #f5f6fb;
+  background: var(--basicColor);
+  border: 1px solid var(--backgroundColor);
   border-radius: 16px;
   cursor: pointer;
 }
 
 .changeBtn:hover {
-  background: #f5f6fb;
+  background: var(--backgroundColor);
 }
 
 .mainBtn {
@@ -124,10 +124,10 @@
   text-align: center;
   letter-spacing: 0.02em;
   text-transform: uppercase;
-  background-color: #ff751d;
-  color: #fff;
-  border-color: #ff751d;
-  border: 1px solid #f5f6fb;
+  background-color: var(--accentColor);
+  color: var(--basicColor);
+  border-color: var(--accentColor);
+  border: 1px solid var(--backgroundColor);
   border-radius: 16px;
   margin-right: 30px;
 }

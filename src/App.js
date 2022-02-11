@@ -1,4 +1,4 @@
-// import './App.css';
+import './App.css';
 import { useEffect } from 'react';
 import { Routes, Route } from 'react-router-dom';
 
@@ -13,16 +13,16 @@ import { GoogleAuthPage } from './pages/GoogleAuthPage';
 import Container from './components/Container/Container';
 import MainPage from './pages/MainPage/MainPage';
 import Balance from './components/Balance/Balance';
-import { getUser } from './redux/auth/selectors';
+import { getToken } from './redux/auth/selectors';
 
 function App() {
   const dispatch = useDispatch();
   const isFetchingCurrentUser = useSelector(getIsFetchingCurrentUser);
-  const isLoggedIn = useSelector(getUser);
+  const token = useSelector(getToken);
 
   useEffect(() => {
-    dispatch(fetchCurrentUser());
-  }, [dispatch]);
+    if (token) dispatch(fetchCurrentUser());
+  });
 
   return (
     !isFetchingCurrentUser && (
@@ -32,8 +32,8 @@ function App() {
           <Route path="/google" element={<GoogleAuthPage />} />
         </Routes>
         <Container>
-          {!isLoggedIn && <AuthForm />}
-          {isLoggedIn && (
+          {!token && <AuthForm />}
+          {token && (
             <>
               <MainPage>
                 <Balance />
