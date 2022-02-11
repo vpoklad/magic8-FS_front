@@ -40,7 +40,6 @@ const middleware = [
 ];
 
 const store = configureStore({
-
   reducer: {
     auth: authPersistReducer,
     balance: balancePersistReducer,
@@ -48,7 +47,6 @@ const store = configureStore({
   middleware,
   devTools: process.env.NODE_ENV === 'development',
 });
-
 
 const persistor = persistStore(store);
 

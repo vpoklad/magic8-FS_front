@@ -1,9 +1,11 @@
 import { useSearchParams, useNavigate, Link } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { useEffect } from 'react';
-// import { set } from 'date-fns';
-import { google } from '../../redux/auth/slices';
+import { googleAuth } from '../../redux/auth/thunks';
+// import { googleReducer } from '../../redux/auth/slices';
 import { getUser } from '../../redux/auth/selectors';
+
+// const googleAuth = googleReducer();
 
 const GoogleAuthPage = () => {
   const [searchParams] = useSearchParams();
@@ -21,9 +23,8 @@ const GoogleAuthPage = () => {
   });
 
   if (email && token) {
-    dispatch(google({ email, token, avatarURL }));
+    dispatch(googleAuth({ email, token, avatarURL }));
 
-    // setTimeout(() => navigate('/', { replace: true }), 1000);
     return <p>Redirecting...</p>;
   }
 
