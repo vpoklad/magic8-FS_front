@@ -12,12 +12,12 @@
   text-transform: uppercase;
   background-color: #f1f1f1;
   border: none;
-  color: #000;
+  color: var(--titleTextColor);
   transition: color 0.1s linear;
 }
 
 .counterBtn:hover {
-  color: #ff751d;
+  color: var(--accentColor);
 }
 
 @media (min-width: 768px) {
@@ -37,7 +37,7 @@
   margin-right: 0px;
   padding: 30px 20px;
   max-width: 1060px;
-  background-color: #fff;
+  background-color: var(--basicColor);
   box-shadow: 0 10px 60px rgb(170 178 197 / 20%);
   border-radius: 0 30px 30px 30px;
 }
@@ -59,12 +59,12 @@
     left: 0;
     bottom: 0;
     flex-direction: row;
-    background-color: #fff;
+    background-color: var(--basicColor);
   }
 }
 
 .counterAccentBtn {
-  color: #ff751d;
+  color: var(--accentColor);
   background-color: #fefefe;
   margin: 0;
   height: 40px;

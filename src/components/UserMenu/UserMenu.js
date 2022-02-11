@@ -3,27 +3,26 @@ import sprite from '../../sprite.svg';
 import s from './UserMenu.module.css';
 import { useDispatch, useSelector } from 'react-redux';
 import { getUser } from '../../redux/auth/selectors';
-import { logoutThunk } from '../../redux/auth/thunks';
-import { useToggle } from "../../hooks/useToggle";
-import Modal from "../Modal/Modal";
-
+import { logout } from '../../redux/auth/thunks';
+import { useToggle } from '../../hooks/useToggle';
+import Modal from '../Modal/Modal';
 
 export default function UserMenu() {
   const tablet = useMediaQuery('(min-width: 768px)');
   const dispatch = useDispatch();
   const user = useSelector(getUser);
 
-  const userName = user.substring(0, user.lastIndexOf("@"));
+  const userName = user.substring(0, user.lastIndexOf('@'));
   const userNameFirstLetter = user[0];
 
   const [showModal, setShowModal] = useToggle(false);
 
   const toggleModal = () => {
-    setShowModal(!showModal)
-  }
+    setShowModal(!showModal);
+  };
   const onClickConfirm = () => {
-    dispatch(logoutThunk())
-  }
+    dispatch(logout());
+  };
 
   return (
     <div className={s.header_menu}>
@@ -42,6 +41,7 @@ export default function UserMenu() {
           }
         </button>
         {showModal && ( <Modal submitModal={onClickConfirm} toggleModal={setShowModal} text="Ви дійсно хочете вийти?"/>) }
+
     </div>
   );
 }
