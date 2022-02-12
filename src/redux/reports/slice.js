@@ -15,7 +15,7 @@ const reportSlice = createSlice({
       state.isLoading = true;
     },
     [getReportThunk.fulfilled]: (state, action) => {
-      state.data = action.payload;
+      state.data = action.payload.data;
       state.isLoading = false;
       state.error = null;
     },

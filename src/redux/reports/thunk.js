@@ -4,11 +4,14 @@ import { createAsyncThunk } from '@reduxjs/toolkit';
 // import { addBalance } from '../../services';
 
 export const getReportThunk = createAsyncThunk(
-  'getReport/request',
+  'getReport/get',
   async (params, { rejectWithValue }) => {
-    try {
-      const { data } = await axios.get('api/stats/detalied', params);
+    console.log(params);
 
+    try {
+      const { data } = await axios.get('api/stats/detailed', {
+        params: params,
+      });
       return data;
     } catch (error) {
       rejectWithValue(error);
