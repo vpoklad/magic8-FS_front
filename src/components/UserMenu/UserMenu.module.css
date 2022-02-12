@@ -1,9 +1,9 @@
-.header_menu {
+.header__menu {
   display: flex;
   align-items: center;
 }
 
-.header_avatar {
+.header__avatar {
   display: flex;
   align-items: center;
   justify-content: center;
@@ -25,38 +25,38 @@
 }
 
 @media (min-width: 768px) {
-  .header_avatar {
+  .header__avatar {
     margin-right: 10px;
   }
 }
 
-.header_username {
+.header__username {
   margin-right: 20px;
 }
 
-.header_divider {
+.header__divider {
   width: 1px;
   height: 36px;
   margin-right: 20px;
   background-color: #e0e5eb;
 }
 
-.header_logout {
+.header__logout {
   padding: 0;
   background: none;
   border: none;
   color: var(--mainTextColor);
 }
 
-.header_logout:hover,
-.header_logout:focus,
-.logout_name:hover::after,
-.logout_name:focus::after {
+.header__logout:hover,
+.header__logout:focus,
+.logout__name:hover::after,
+.logout__name:focus::after {
   cursor: pointer;
   color: var(--accentColor);
 }
 
-.logout_name::after {
+.logout__name::after {
   content: '';
   display: block;
   width: 100%;
@@ -64,12 +64,12 @@
   background-color: var(--mainTextColor);
 }
 
-.logout_name:hover::after,
-.logout_name:focus::after {
+.logout__name:hover::after,
+.logout__name:focus::after {
   background-color: currentColor;
 }
 
-.header_logout .logout_icon {
+.header__logout .logout_icon {
   width: 16px;
   height: 16px;
   color: #cbccd0;
