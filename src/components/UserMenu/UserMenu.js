@@ -48,7 +48,7 @@ export default function UserMenu() {
       )}
       <button className={s.header__logout} type="button" onClick={toggleModal}>
         {tablet ? (
-          'Вихід'
+          <p className={s.logout__name}>Вихід</p>
         ) : (
           <svg width="16" height="16">
             <use href={`${sprite}#icon-logout`}></use>
