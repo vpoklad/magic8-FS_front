@@ -8,18 +8,12 @@ import {
   googleAuth,
 } from './thunks';
 
-export const google = (state, googleAuth) => {
-  state.email = googleAuth.payload.email;
-  state.token = googleAuth.payload.token;
-  state.avatarURL = googleAuth.payload.avatarURL;
-  console.log('state from:', state.email);
-};
-
 const authSlice = createSlice({
   name: 'auth',
   initialState: {
     email: null,
     token: null,
+    avatarURL: null,
     // isFetchingCurrentUser: false,
     formNotification: null,
     verify: null,
@@ -83,6 +77,21 @@ const authSlice = createSlice({
     [fetchCurrentUser.rejected](state, action) {
       state.isLoading = false;
       state.errorCode = action.payload;
+    },
+    [googleAuth.pending](state, action) {
+      state.isLoading = true;
+    },
+
+    [googleAuth.fulfilled](state, action) {
+      state.email = action.payload.email;
+      state.token = action.payload.token;
+      state.avatarURL = action.payload.avatarURL;
+      state.isLoading = false;
+      state.errorCode = null;
+    },
+    [googleAuth.rejected](state, action) {
+      state.errorCode = action.payload;
+      state.isLoading = false;
     },
 
     /////// extraReducer ////
