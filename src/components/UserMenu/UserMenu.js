@@ -6,6 +6,7 @@ import { getUser } from '../../redux/auth/selectors';
 import { logout } from '../../redux/auth/thunks';
 import { useToggle } from '../../hooks/useToggle';
 import Modal from '../Modal/Modal';
+import Button from "../Button/Button";
 
 export default function UserMenu() {
   const tablet = useMediaQuery('(min-width: 768px)');
@@ -44,10 +45,11 @@ export default function UserMenu() {
       </button>
       {showModal && (
         <Modal
-          submitModal={onClickConfirm}
           toggleModal={setShowModal}
-          text="Ви дійсно хочете вийти?"
-        />
+          text="Ви дійсно хочете вийти?">
+          <Button type="submit" text="так" onClick={onClickConfirm}/>
+          <Button type="button" text="ні" onClick={setShowModal}/>
+        </Modal>
       )}
     </div>
   );
