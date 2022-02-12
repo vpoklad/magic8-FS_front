@@ -11,6 +11,8 @@ import ReportPage from './pages/ReportPage/ReportPage';
 import CountingTable from './components/CountingTable/CountingTable';
 import { GoogleAuthPage } from './pages/GoogleAuthPage';
 import Container from './components/Container/Container';
+import MainPage from './pages/MainPage/MainPage';
+import Balance from './components/Balance/Balance';
 import { getToken } from './redux/auth/selectors';
 
 function App() {
@@ -20,7 +22,7 @@ function App() {
 
   useEffect(() => {
     if (token) dispatch(fetchCurrentUser());
-  }, []);
+  });
 
   return (
     !isFetchingCurrentUser && (
@@ -33,8 +35,11 @@ function App() {
           {!token && <AuthForm />}
           {token && (
             <>
+              <MainPage>
+                <Balance />
+                <CountingTable />
+              </MainPage>
               <ReportPage />
-              <CountingTable />
             </>
           )}
         </Container>
