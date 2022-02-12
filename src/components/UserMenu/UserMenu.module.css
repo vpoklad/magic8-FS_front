@@ -47,7 +47,7 @@
 .logout_name:hover::after,
 .logout_name:focus::after {
   cursor: pointer;
-  color: #ff751d;
+  color: var(--accentColor);
 }
 
 .logout_name::after {
@@ -55,7 +55,7 @@
   display: block;
   width: 100%;
   height: 1px;
-  background-color: #52555f;
+  background-color: var(--mainTextColor);
 }
 
 .logout_name:hover::after,

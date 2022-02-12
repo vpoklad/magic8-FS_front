@@ -1,7 +1,7 @@
 import s from './ReportPage.module.css';
 import Balance from '../../components/Balance/Balance';
 import GoToBack from '../../components/GoToBack/GoToBack';
-import Expense from '../../components/Expense/Expense';
+import ExpenseIncomeInReport from '../../components/ExpenseIncomeInReport/ExpenseIncomeInReport';
 
 export default function ReportPage() {
 
@@ -21,7 +21,7 @@ export default function ReportPage() {
                 </div>
             </div>
             <div className={s.dataExpenseIncome}>
-                <Expense />
+                <ExpenseIncomeInReport />
             </div>
             <div className={s.dataChart}>
             </div>

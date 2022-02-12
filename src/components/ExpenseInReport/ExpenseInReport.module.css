@@ -2,7 +2,7 @@ p {
   margin: 0;
 }
 
-.containerExpense {
+/* .containerExpense {
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -11,7 +11,7 @@ p {
   line-height: 1.17;
   font-weight: 400;
   letter-spacing: 0.04em;
-  color: #52555f;
+  color: var(--mainTextColor);
 }
 
 .title {
@@ -20,12 +20,12 @@ p {
   text-align: center;
   font-weight: 700;
   letter-spacing: 0.02em;
-  color: #000;
+  color: var(--titleTextColor);
   text-transform: uppercase;
 
   margin-top: 40px;
   margin-bottom: 20px;
-}
+} */
 
 .listExpense {
   display: flex;
@@ -51,13 +51,13 @@ p {
   bottom: 0;
   width: 100%;
   height: 46px;
-  background-color: #f5f6fb;
+  background-color: var(--backgroundColor);
   border-radius: 20px;
 }
 
 .listExpense_item:hover .item_img::before,
 .listExpense_item:focus .item_img::before {
-  background-color: #ffdac0;
+  background-color: var(--accentBackgroundColor);
 }
 
 .item_svg {
@@ -66,7 +66,7 @@ p {
 
 .listExpense_item:hover .item_svg,
 .listExpense_item:focus .item_svg {
-  fill: #ff751d;
+  fill: var(--accentColor);
 }
 
 .item_name {
@@ -88,6 +88,7 @@ p {
 
 .listExpense_item {
   min-width: 84px;
+  max-width: 102px;
   list-style: none;
   margin-left: 10px;
   margin-top: 20px;
@@ -102,11 +103,5 @@ p {
 @media (min-width: 768px) {
   .listExpense_item {
     margin-left: 20px;
-  }
-}
-
-@media (min-width: 768px) {
-  .title {
-    margin-top: 20px;
   }
 }
