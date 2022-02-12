@@ -58,6 +58,7 @@ const authSlice = createSlice({
     [logout.fulfilled](state, action) {
       state.email = null;
       state.token = null;
+      state.avatarURL = null;
       state.isLoading = false;
       state.errorCode = null;
     },
