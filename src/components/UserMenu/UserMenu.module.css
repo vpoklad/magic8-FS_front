@@ -16,6 +16,12 @@
   color: var(--mainTextColor);
   font-size: 1rem;
   font-weight: 700;
+  overflow: hidden;
+}
+.header__avatarImg {
+  width: 100%;
+  display: block;
+  height: auto;
 }
 
 @media (min-width: 768px) {
