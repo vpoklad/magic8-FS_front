@@ -3,9 +3,14 @@ import { useEffect, lazy, Suspense } from 'react';
 import { Routes, Route } from 'react-router-dom';
 
 import { useDispatch, useSelector } from 'react-redux';
-import { getToken, getIsFetchingCurrentUser } from './redux/auth/selectors';
+import {
+  getToken,
+  getIsFetchingCurrentUser,
+  getisLoading,
+} from './redux/auth/selectors';
 import { fetchCurrentUser } from './redux/auth/thunks';
 import AppBar from './components/AppBar/AppBar';
+import Spinner from './components/Spinner/Spinner';
 // import AuthForm from './components/AuthForm/AuthForm';
 // import ReportPage from './pages/ReportPage/ReportPage';
 // import CountingTable from './components/CountingTable/CountingTable';
@@ -38,6 +43,7 @@ function App() {
   const dispatch = useDispatch();
   const isFetchingCurrentUser = useSelector(getIsFetchingCurrentUser);
   const token = useSelector(getToken);
+  const isLoading = useSelector(getisLoading);
 
   useEffect(() => {
     if (token) dispatch(fetchCurrentUser());
@@ -49,7 +55,7 @@ function App() {
         <AppBar />
         <main>
           <Container>
-            <Suspense fallback={'Loading...'}>
+            <Suspense fallback={<Spinner />}>
               <Routes>
                 <Route
                   path="/login"
