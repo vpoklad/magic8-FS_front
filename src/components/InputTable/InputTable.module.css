@@ -16,6 +16,10 @@
   }
 
   .mainBtnTable {
+    display: flex;
+    justify-content: space-between;
+    width: 265px;
+    
     text-align: center;
   }
 }
@@ -27,17 +31,21 @@
     flex-direction: row;
   }
   .inputShell {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
     margin-bottom: 0px;
   }
 }
 .inputForm {
   display: flex;
+  justify-content: space-between;
+  align-items: center;
+
   font-weight: 400;
   font-size: 12px;
   line-height: 14px;
 
-  justify-content: space-between;
-  align-items: center;
   letter-spacing: 0.02em;
 }
 
@@ -48,6 +56,11 @@
   border-right: none;
   outline: none;
   width: 270px;
+}
+
+.selectInput {
+  width: 188px;
+  text-align: center;
 }
 
 .productAmount {
@@ -63,6 +76,7 @@
 
 .productAmountLabel {
   position: relative;
+  margin-right: 27px;
 }
 
 .productAmountLabel svg {
@@ -71,9 +85,10 @@
   right: 15px;
 }
 
-.react-datepicker {
+.datepieckerWrapper {
   font-family: inherit;
   font-size: inherit;
+  margin-left: 23px;
 }
 
 .dateBtn {
@@ -130,6 +145,10 @@
   border: 1px solid var(--backgroundColor);
   border-radius: 16px;
   margin-right: 30px;
+}
+
+.cancelBtn {
+  margin-left: 15px;
 }
 
 .date {

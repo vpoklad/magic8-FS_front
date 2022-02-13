@@ -1,11 +1,9 @@
-import s from './TransactionTable.module.css'
-import Transaction from './Transaction'
-
+import s from './TransactionTable.module.css';
+import Transaction from './Transaction';
 
 const TransactionTable = () => {
-
-    return(
-          <div className={s.tableDesk}>
+  return (
+    <div className={s.tableDesk}>
       <table className={s.table}>
         <thead className={s.tableHead}>
           <tr className={s.tableTr}>
@@ -17,12 +15,11 @@ const TransactionTable = () => {
         </thead>
 
         <tbody className={s.tableBody}>
-              <Transaction/>
+          <Transaction />
         </tbody>
       </table>
     </div>
-    )
-}
+  );
+};
 
-export default TransactionTable
-
+export default TransactionTable;

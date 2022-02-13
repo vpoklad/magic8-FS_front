@@ -14,6 +14,7 @@ import { configureStore, getDefaultMiddleware } from '@reduxjs/toolkit';
 import authReducer from './auth/slices';
 import balanceSlice from './balance/slice';
 import reportSlice from './reports/slice';
+import transactionReducer from './transactions/reducer';
 
 const authPersistConfig = {
   key: 'auth',
@@ -54,6 +55,7 @@ const store = configureStore({
     auth: authPersistReducer,
     balance: balancePersistReducer,
     report: reportPersistReducer,
+    transactions: transactionReducer,
   },
   middleware,
   devTools: process.env.NODE_ENV === 'development',

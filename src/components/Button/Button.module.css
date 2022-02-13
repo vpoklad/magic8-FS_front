@@ -10,9 +10,11 @@
     letter-spacing: 0.02em;
     text-transform: uppercase;
 
-    background: var(--basicColor);
+    background: var(--backgroundColor);
     border: 1px solid var(--backgroundColor);
     border-radius: 16px;
+
+    cursor: pointer;
   }
 
 .Button:hover,
@@ -22,7 +24,7 @@
 }
 
 .Button:active {
-  background-color: #e76615;
+  background-color: var(--accentColor);
   box-shadow: 0 3px #d37134;
   transform: translateY(1px);
 
