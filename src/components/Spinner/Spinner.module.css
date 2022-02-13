@@ -1,0 +1,38 @@
+.backdrop {
+  position: absolute;
+  top: 0;
+  width: 100hv;
+  height: 100vh;
+  background-color: #ffff;
+
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.loader {
+  background-image: url('../../img/kapusta.svg');
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  width: 200px;
+  height: 200px;
+  animation: skew 5s 1s infinite cubic-bezier(0.09, 0.57, 0.49, 0.9);
+  animation-fill-mode: both;
+}
+
+@keyframes skew {
+  25% {
+    transform: perspective(300px) rotateX(180deg) rotateY(0);
+  }
+  50% {
+    transform: perspective(300px) rotateX(180deg) rotateY(180deg);
+  }
+  75% {
+    transform: perspective(300px) rotateX(0) rotateY(180deg);
+  }
+  100% {
+    transform: perspective(300px) rotateX(0) rotateY(0);
+  }
+}
