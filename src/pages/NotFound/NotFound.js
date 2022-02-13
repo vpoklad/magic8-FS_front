@@ -1,8 +1,10 @@
-import Title from '../../Title/Title';
+// import Title from '../../Title/Title';
 
 const NotFound = () => {
   return (
-  <Title text="Page not found" />
-  )
+    <>
+      <h1>Page not found</h1>
+    </>
+  );
 };
 export default NotFound;

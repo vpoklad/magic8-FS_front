@@ -9,26 +9,30 @@ import AppBar from './components/AppBar/AppBar';
 // import AuthForm from './components/AuthForm/AuthForm';
 // import ReportPage from './pages/ReportPage/ReportPage';
 // import CountingTable from './components/CountingTable/CountingTable';
-// import { GoogleAuthPage } from './pages/GoogleAuthPage';
+import { GoogleAuthPage } from './pages/GoogleAuthPage';
 import Container from './components/Container/Container';
+import GreetingPage from './pages/GreetingPage/GreetingPage';
 // import MainPage from './pages/MainPage/MainPage';
 // import Balance from './components/Balance/Balance';
-
 
 import PrivateRoute from './routes/Private';
 import PublicRoute from './routes/Public';
 
 const AuthForm = lazy(() =>
-   import("./components/AuthForm/AuthForm" /* webpackChunkName: "AuthForm" */))
-const GoogleAuthPage = lazy(() =>
-   import("./pages/GoogleAuthPage" /* webpackChunkName: "GoogleAuthPage" */))
+  import('./components/AuthForm/AuthForm' /* webpackChunkName: "AuthForm" */),
+);
+// const GoogleAuthPage = lazy(() =>
+//   import('./pages/GoogleAuthPage' /* webpackChunkName: "GoogleAuthPage" */),
+// );
 const MainPage = lazy(() =>
-   import("./pages/MainPage/MainPage" /* webpackChunkName: "MainPage" */))
+  import('./pages/MainPage/MainPage' /* webpackChunkName: "MainPage" */),
+);
 const ReportPage = lazy(() =>
-   import("./pages/ReportPage/ReportPage" /* webpackChunkName: "ReportPage" */))
+  import('./pages/ReportPage/ReportPage' /* webpackChunkName: "ReportPage" */),
+);
 const NotFound = lazy(() =>
-   import("./pages/NotFound/NotFound" /* webpackChunkName: "NotFound" */));
-
+  import('./pages/NotFound/NotFound' /* webpackChunkName: "NotFound" */),
+);
 
 function App() {
   const dispatch = useDispatch();
@@ -45,37 +49,49 @@ function App() {
         <AppBar />
         <main>
           <Container>
-            <Suspense fallback={'Loading...'} >
+            <Suspense fallback={'Loading...'}>
               <Routes>
                 <Route
-                path="/login"
-                element={
-                  <PublicRoute restricted>
+                  path="/login"
+                  element={
+                    <PublicRoute restricted>
                       <AuthForm />
-                  </PublicRoute>
-                }/>
+                    </PublicRoute>
+                  }
+                />
                 <Route
-                path="/google"
-                element={
-                  <PublicRoute restricted>
+                  path="/google"
+                  element={
+                    <PublicRoute restricted>
                       <GoogleAuthPage />
-                  </PublicRoute>
-                }/>
+                    </PublicRoute>
+                  }
+                />
                 <Route
-                path="/"
-                element={
-                  <PrivateRoute restricted redirectTo="/login" >
-                      <MainPage/>
-                  </PrivateRoute>
-                }/>
+                  path="/greeting"
+                  element={
+                    <PublicRoute restricted>
+                      <GreetingPage />
+                    </PublicRoute>
+                  }
+                />
                 <Route
-                path="/reports"
-                element={
-                  <PrivateRoute restricted redirectTo="/login" >
-                      <ReportPage/>
-                  </PrivateRoute>
-                }/>
-                <Route element={<NotFound />} />
+                  path="/"
+                  element={
+                    <PrivateRoute restricted redirectTo="/login">
+                      <MainPage />
+                    </PrivateRoute>
+                  }
+                />
+                <Route
+                  path="/reports"
+                  element={
+                    <PrivateRoute restricted redirectTo="/login">
+                      <ReportPage />
+                    </PrivateRoute>
+                  }
+                />
+                <Route path="*" element={<NotFound />} />
               </Routes>
             </Suspense>
           </Container>
