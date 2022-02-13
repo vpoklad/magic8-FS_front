@@ -2,26 +2,29 @@ import s from './InputTable.module.css';
 import React, { useState, forwardRef, useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import DatePicker from 'react-datepicker';
-// import { format } from 'date-fns';
-import { getAllTransactions } from '../../redux/transactions/selectors';
+import { format } from 'date-fns';
 import thunks from '../../redux/transactions/thunks';
 import 'react-datepicker/dist/react-datepicker.css';
 import Select from 'react-select';
 import Button from '../Button/Button';
 
-const InputTable = ({ options }) => {
+const InputTable = ({ options, typeOfTrans }) => {
   const initialDate = new Date();
   const [date, setDate] = useState(initialDate);
-  const [productName, setProductName] = useState('');
-  const [payValue, setPayValue] = useState('');
+  const [description, setDescription] = useState('');
   const [category, setCategory] = useState([]);
+  const [sum, setSum] = useState('');
+  const [typeOfTransaction, setTypeOfTransaction] = useState('');
 
-  // const transactions = useSelector(getAllTransactions);
+  useEffect(() => {
+    return setTypeOfTransaction(typeOfTrans);
+  }, [typeOfTrans]);
+
   const dispatch = useDispatch();
 
   const resetInput = () => {
-    setProductName('');
-    setPayValue('');
+    setDescription('');
+    setSum('');
     setCategory([]);
   };
   const CustomDate = forwardRef(({ value, onClick }, ref) => (
@@ -72,14 +75,14 @@ const InputTable = ({ options }) => {
     const { name, category, value } = e.target;
 
     switch (name) {
-      // case 'date':
-      //   return setDate(date);
-      case 'name':
-        return setProductName(value);
+      case 'date':
+        return setDate(format(new Date('dd-mm-yyyy')));
+      case 'description':
+        return setDescription(value);
       case 'category':
         return setCategory([category]);
-      case 'price':
-        return setPayValue(value);
+      case 'sum':
+        return setSum(value);
       default:
         return;
     }
@@ -89,7 +92,24 @@ const InputTable = ({ options }) => {
     e.preventDefault();
 
     dispatch(
-      thunks.addNewTransactionThunk({ productName, category, payValue }),
+      thunks.addNewTransactionThunk({
+        date,
+        description,
+        category,
+        sum,
+        typeOfTransaction,
+      }),
+    );
+
+    console.log(
+      'dispatch:',
+      thunks.addNewTransactionThunk({
+        date,
+        description,
+        category,
+        sum,
+        typeOfTransaction,
+      }),
     );
 
     resetInput();
@@ -111,11 +131,11 @@ const InputTable = ({ options }) => {
         <form onSubmit={handleSubmit} className={s.inputForm}>
           <label>
             <input
-              className={s.productName}
+              className={s.description}
               placeholder="Опис товару"
               required
-              name="name"
-              value={productName}
+              name="description"
+              value={description}
               type="text"
               onChange={handleChange}
             ></input>
@@ -135,11 +155,11 @@ const InputTable = ({ options }) => {
             <input
               className={s.productAmount}
               placeholder="00,0"
-              name="price"
+              name="sum"
               type="text"
-              value={payValue}
+              value={sum}
               onChange={handleChange}
-              // {e => setPayValue(e.target.value)}
+              // {e => setSum(e.target.value)}
               autoComplete="off"
             />
             <svg
