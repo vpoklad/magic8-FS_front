@@ -7,57 +7,9 @@ import { useSelector } from 'react-redux';
 import { getReports } from '../../redux/reports/selectors';
 
 export default function ExpenseIncomeInReport() {
-    // const detailedCategoryStatistic = [
-    //         {
-    //             "_id": {
-    //                 "typeOfTransaction": false,
-    //                 "category": "health",
-    //                 "label": "Здоров'я",
-    //             },
-    //             "total": 5152.2
-    //         },
-    //         {
-    //             "_id": {
-    //                 "typeOfTransaction": true,
-    //                 "category": "salary",
-    //             },
-    //             "total": 40408.52
-    //         },
-    //         {
-    //             "_id": {
-    //                 "typeOfTransaction": false,
-    //                 "category": "foods",
-    //             },
-    //             "total": 4058
-    //         },
-    //         {
-    //             "_id": {
-    //                 "typeOfTransaction": true,
-    //                 "category": "addIncome",
-    //             },
-    //             "total": 9712.52
-    //         },
-    //         {
-    //             "_id": {
-    //                 "typeOfTransaction": false,
-    //                 "category": "transport",
-    //             },
-    //             "total": 5905.65
-    //         },
-    //         {
-    //             "_id": {
-    //                 "typeOfTransaction": false,
-    //                 "category": "alcohol",
-    //             },
-    //             "total": 852.55
-    //         }
-    // ]
-
     const [expense, setExpense] = useState(true);
     const [income, setIncome] = useState(false);
-
-    const dataReports = useSelector(getReports).detailedCategoryStatistic;
-
+    const dataReports = useSelector(getReports);
 
     const clickChange = () => {
         if (expense) {
@@ -85,7 +37,11 @@ export default function ExpenseIncomeInReport() {
                     <svg className={s.item_svg} width="4" height="10"><use href={`${sprite}#icon-chevronRight`}></use></svg>
                 </button>
             </div>
-            {expense ? <ExpenseInReport data={dataReports} /> : <IncomeInReport data={dataReports} />}
+            {dataReports &&
+                <>
+                {expense ? <ExpenseInReport data={dataReports} /> : <IncomeInReport data={dataReports} />}
+            </>
+            }
 
         </div>
 

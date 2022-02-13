@@ -6,19 +6,7 @@ import { useSelector } from 'react-redux';
 import { getReports } from '../../redux/reports/selectors';
 
 export default function ReportPage() {
-    const dataReportsTotal = useSelector(getReports).totalExpInc;
-    const income = dataReportsTotal.filter((el) => (el._id));
-    const expense = dataReportsTotal.filter((el) => (el._id === false));
-
-    const incomeData = income[0]['total'];
-
-
-    console.log('income', income[0]['total']);
-    console.log('expense', expense[0]);
-
-
-
-    console.log(dataReportsTotal);
+    const dataReportsTotal = useSelector(getReports);
 
     return (
         <div>
@@ -27,12 +15,18 @@ export default function ReportPage() {
             <div className={s.generalData}>
                 <div className={s.generalData__item}>
                     <span>Витрати:</span>
-                    <span className={s.item__dataExpense}>-15000 грн.</span>
+                    <span className={s.item__dataExpense}>
+                        - {dataReportsTotal ?
+                            <>{dataReportsTotal.totalExpInc.filter((el) => (el._id === false)).length>0 ? dataReportsTotal.totalExpInc.filter((el) => (el._id === false))[0].total : 0}</>
+                            : 0} грн.</span>
                 </div>
                 <div className={s.generalData__divider}></div>
                 <div className={s.generalData__item}>
                     <span>Доходи:</span>
-                    <span className={s.item__dataIncome}>{incomeData} грн.</span>
+                    <span className={s.item__dataIncome}>
+                        {dataReportsTotal ?
+                            <>{dataReportsTotal.totalExpInc.filter((el) => (el._id)).length>0 ? dataReportsTotal.totalExpInc.filter((el) => (el._id))[0].total : 0}</>
+                            : 0} грн.</span>
                 </div>
             </div>
             <div className={s.dataExpenseIncome}>

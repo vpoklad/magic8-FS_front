@@ -26,6 +26,7 @@
     "react-scripts": "5.0.0",
     "react-select": "^5.2.2",
     "redux-persist": "^6.0.0",
+    "shortid": "^2.2.16",
     "web-vitals": "^2.1.4"
   },
   "scripts": {
