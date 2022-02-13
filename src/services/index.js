@@ -18,9 +18,7 @@ export const addBalance = balance => {
 };
 
 export const addTransaction = transaction => {
-  console.log('transaction in service:', transaction);
-
-  return axios.post(addTransactionEndpoint, { transaction });
+  return axios.post(addTransactionEndpoint, transaction);
 };
 
 export const getAllTransactions = transactions => {

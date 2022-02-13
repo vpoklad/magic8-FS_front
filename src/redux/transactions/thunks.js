@@ -28,13 +28,10 @@ axios.defaults.baseURL = BASE_USER_URL;
 // );
 
 const addNewTransactionThunk = createAsyncThunk(
-  'transaction/addNewTransactionThunk',
+  'transactions/addNewTransactionThunk',
   async (transaction, { rejectWithValue }) => {
     try {
-      console.log('transaction in thunk before fetch:', transaction);
       const { data } = await addTransaction(transaction);
-
-      console.log(data);
 
       return data.data;
     } catch (error) {

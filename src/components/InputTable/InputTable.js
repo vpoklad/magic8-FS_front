@@ -71,15 +71,13 @@ const InputTable = ({ options, typeOfTransaction }) => {
 
     switch (name) {
       case 'date':
-        return setDate(format(new Date('dd-mm-yyyy')));
+        return setDate(date);
       case 'description':
         return setDescription(value);
       case 'category':
-        return setCategory([category]);
+        return setCategory(category.value);
       case 'sum':
         return setSum(value);
-      case 'typeOfTransaction':
-        return typeOfTransaction;
       default:
         return;
     }
@@ -98,17 +96,6 @@ const InputTable = ({ options, typeOfTransaction }) => {
       }),
     );
 
-    console.log(
-      'dispatch:',
-      thunks.addNewTransactionThunk({
-        date,
-        description,
-        category,
-        sum,
-        typeOfTransaction,
-      }),
-    );
-
     resetInput();
   };
 
@@ -118,7 +105,7 @@ const InputTable = ({ options, typeOfTransaction }) => {
         <div className={s.datepieckerWrapper}>
           <DatePicker
             selected={date}
-            onChange={date => format(new Date(date), 'dd-mm-yyyy')}
+            onChange={date => setDate(date)}
             name="date"
             dateFormat="dd.MM.yyyy"
             todayButton="Сьогодні"
