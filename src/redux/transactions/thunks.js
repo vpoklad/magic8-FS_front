@@ -7,9 +7,9 @@ import {
   delTransaction,
 } from '../../services/index';
 
-const BASE_USER_URL = 'https://kapusta-magic8.herokuapp.com/';
+// const BASE_USER_URL = 'https://kapusta-magic8.herokuapp.com/';
 
-axios.defaults.baseURL = BASE_USER_URL;
+// axios.defaults.baseURL = BASE_USER_URL;
 
 // const addNewTransactionThunk = createAsyncThunk(
 //   'transactions/addNewTransactionThunk',

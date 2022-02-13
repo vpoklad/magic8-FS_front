@@ -75,7 +75,7 @@ const InputTable = ({ options, typeOfTransaction }) => {
       case 'description':
         return setDescription(value);
       case 'category':
-        return setCategory(category.value);
+        return setCategory(category);
       case 'sum':
         return setSum(value);
       default:

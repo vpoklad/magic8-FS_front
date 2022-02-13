@@ -62,7 +62,7 @@ const CountingTable = () => {
 
       {expense ? (
         <div className={s.counterContainer}>
-          <InputTable options={categoryExpense} typeOfTransaction={false} />
+          <InputTable options={categoryExpense} typeOfTrans={false} />
           <div>
             <TransactionTable></TransactionTable>
           </div>
