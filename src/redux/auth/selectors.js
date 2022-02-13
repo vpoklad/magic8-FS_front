@@ -1,4 +1,5 @@
 export const getUser = state => state.auth.email;
+export const getUserAvatar = state => state.auth.avatarURL;
 export const getToken = state => state.auth.token;
 export const getIsFetchingCurrentUser = state =>
   state.auth.isFetchingCurrentUser;

@@ -86,3 +86,14 @@ export const fetchCurrentUser = createAsyncThunk(
     }
   },
 );
+
+export const googleAuth = createAsyncThunk(
+  'auth/logInWithGoogle',
+  async credentials => {
+    console.log('thunks_log_credentials from dispatch:', credentials);
+
+    return {
+      ...credentials,
+    };
+  },
+);
