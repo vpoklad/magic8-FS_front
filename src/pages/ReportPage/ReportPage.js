@@ -11,7 +11,7 @@ export default function ReportPage() {
     return (
         <div>
             <GoToBack />
-            <Balance showReport={true} showBtn={true} />
+            <Balance  showBtn={true} />
             <div className={s.generalData}>
                 <div className={s.generalData__item}>
                     <span>Витрати:</span>

@@ -4,33 +4,39 @@ import { useDispatch, useSelector } from 'react-redux';
 
 import EditOutlinedIcon from '@mui/icons-material/EditOutlined';
 
-import { addBalanceThunk } from '../../redux/balance/thunk';
+import { addBalanceThunk, getBalanceThunk } from '../../redux/balance/thunk';
 import { getBalance } from '../../redux/balance/selectors';
 import { Notification } from '../Notification/Notification';
 import Modal from '../Modal/Modal';
+import Button from '../Button/Button';
 import Report from '../Report/Report';
 
-export default function Balance({ showBtn }) {
-  const [value, setValue] = useState('00.00');
+export default function Balance({ showBtn = true }) {
+  const balance = useSelector(getBalance);
+  const [value, setValue] = useState(() => balance);
   const [readonly, setReadonly] = useState(null);
 
   const [showModal, setShowModal] = useState(false);
 
   const dispatch = useDispatch();
 
-  const balance = useSelector(getBalance);
-
   useEffect(() => {
     if (!showBtn) {
       setReadonly(true);
     }
-  }, [showBtn]);
-  useEffect(() => {
-    setValue(balance);
     if (balance > 0) {
       setReadonly('readonly');
     }
+  }, [showBtn, balance]);
+
+  useEffect(() => {
+    setValue(balance);
   }, [balance]);
+
+  useEffect(() => {
+    dispatch(getBalanceThunk());
+  }, []);
+
   const сhangeBalance = e => {
     const { value } = e.target;
     setValue(value);
@@ -38,8 +44,11 @@ export default function Balance({ showBtn }) {
 
   const handleBalance = () => {
     dispatch(addBalanceThunk(value));
+
     setReadonly('readonly');
     toggleModal();
+    console.log('balance', balance);
+    console.log('value', value);
   };
 
   const toggleModal = () => {
@@ -62,7 +71,7 @@ export default function Balance({ showBtn }) {
                 readOnly={readonly}
                 pattern="\d+(\.\d{2})?"
               />
-              <span className={s.span}>UAN</span>
+              <span className={s.span}>UAH</span>
               {!balance && <Notification />}
             </div>
             {readonly && showBtn && (
@@ -88,11 +97,9 @@ export default function Balance({ showBtn }) {
         </div>
       </div>
       {showModal && (
-        <Modal
-          text={'Ви впевнені?'}
-          toggleModal={toggleModal}
-          submitModal={handleBalance}
-        />
+        <Modal text={'Ви впевнені?'} toggleModal={toggleModal}>
+          <Button type="button" text="так" onClick={handleBalance} />
+        </Modal>
       )}
     </>
   );

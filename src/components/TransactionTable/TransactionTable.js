@@ -2,7 +2,7 @@ import s from './TransactionTable.module.css'
 import Transaction from './Transaction'
 
 
-const TransactionTable = () => {
+const TransactionTable = ({income, transactions, onDelete}) => {
 
     return(
           <div className={s.tableDesk}>
@@ -16,8 +16,16 @@ const TransactionTable = () => {
           </tr>
         </thead>
 
-        <tbody className={s.tableBody}>
-              <Transaction/>
+          <tbody className={s.tableBody}>
+            {(transactions.length > 0 &&
+              transactions.map(item => (
+                <Transaction
+                  key={item.id}
+                  item={item}
+                  income={income}
+                  onDelte = {onDelete}
+                />)
+            )) }
         </tbody>
       </table>
     </div>
