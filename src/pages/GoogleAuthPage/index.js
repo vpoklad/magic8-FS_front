@@ -12,21 +12,14 @@ const GoogleAuthPage = () => {
   const email = searchParams.get('email');
   const token = searchParams.get('token');
   const avatarURL = searchParams.get('avatarURL');
-  const navigate = useNavigate();
+
   const dispatch = useDispatch();
-  const isLoggedIn = useSelector(getUser);
 
   useEffect(() => {
-    if (isLoggedIn) {
-      navigate('/', { replace: true });
+    if (email && token) {
+      dispatch(googleAuth({ email, token, avatarURL }));
     }
-  });
-
-  if (email && token) {
-    dispatch(googleAuth({ email, token, avatarURL }));
-
-    return <p>Redirecting...</p>;
-  }
+  }, []);
 
   return (
     <>

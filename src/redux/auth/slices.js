@@ -20,6 +20,15 @@ const authSlice = createSlice({
     errorCode: null,
     isLoading: false,
   },
+  // reducers: {
+  //   googleAuth(state, action) {
+  //     state.email = action.payload.email;
+  //     state.token = action.payload.token;
+  //     state.avatarURL = action.payload.avatarURL;
+  //     state.isLoading = false;
+  //     state.errorCode = null;
+  //   },
+  // },
 
   extraReducers: {
     [register.pending](state, action) {
@@ -72,6 +81,7 @@ const authSlice = createSlice({
     },
     [fetchCurrentUser.fulfilled](state, action) {
       state.email = action.payload.email;
+      state.avatarURL = action.payload.avatarURL;
       state.isLoading = false;
       state.errorCode = null;
     },
@@ -118,3 +128,4 @@ const authSlice = createSlice({
 
 // export  googleAuth = authSlice.actions;
 export default authSlice.reducer;
+// export const { googleAuth } = authSlice.actions;

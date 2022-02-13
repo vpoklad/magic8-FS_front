@@ -47,7 +47,7 @@ function App() {
 
   useEffect(() => {
     if (token) dispatch(fetchCurrentUser());
-  });
+  }, []);
 
   return (
     !isFetchingCurrentUser && (
@@ -73,14 +73,7 @@ function App() {
                     </PublicRoute>
                   }
                 />
-                <Route
-                  path="/greeting"
-                  element={
-                    <PublicRoute restricted>
-                      <GreetingPage />
-                    </PublicRoute>
-                  }
-                />
+
                 <Route
                   path="/"
                   element={
@@ -105,23 +98,6 @@ function App() {
             </Suspense>
           </Container>
         </main>
-
-        {/*
-        <Routes>
-        <Route path="/google" element={<GoogleAuthPage />} />
-        </Routes>
-        <Container>
-          {!token && <AuthForm />}
-          {token && (
-            <>
-              <MainPage>
-                <Balance />
-                <CountingTable />
-              </MainPage>
-              <ReportPage />
-            </>
-          )}
-        </Container> */}
       </div>
     )
   );
