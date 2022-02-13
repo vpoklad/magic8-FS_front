@@ -13,7 +13,7 @@ import { configureStore, getDefaultMiddleware } from '@reduxjs/toolkit';
 
 import authReducer from './auth/slices';
 import balanceSlice from './balance/slice';
-import reportSlice from './reports/slice';
+import reportsSlice from './reports/slice';
 
 const authPersistConfig = {
   key: 'auth',
@@ -33,13 +33,16 @@ const authPersistReducer = persistReducer(authPersistConfig, authReducer);
 //   balanceSlice,
 // );
 
-const reportPersistConfig = {
+const reportsPersistConfig = {
   key: 'data',
   storage,
   whitelist: ['data'],
 };
 
-const reportPersistReducer = persistReducer(reportPersistConfig, reportSlice);
+const reportsPersistReducer = persistReducer(
+  reportsPersistConfig,
+  reportsSlice,
+);
 
 const middleware = [
   ...getDefaultMiddleware({
@@ -53,7 +56,7 @@ const store = configureStore({
   reducer: {
     auth: authPersistReducer,
     balance: balanceSlice,
-    report: reportPersistReducer,
+    reports: reportsPersistReducer,
   },
   middleware,
   devTools: process.env.NODE_ENV === 'development',
