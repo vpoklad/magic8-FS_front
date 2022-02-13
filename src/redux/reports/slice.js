@@ -7,8 +7,8 @@ const initialStateReport = {
   error: null,
 };
 
-const reportSlice = createSlice({
-  name: 'report',
+const reportsSlice = createSlice({
+  name: 'reports',
   initialState: initialStateReport,
   extraReducers: {
     [getReportThunk.pending]: (state, _) => {
@@ -26,4 +26,4 @@ const reportSlice = createSlice({
   },
 });
 
-export default reportSlice.reducer;
+export default reportsSlice.reducer;
