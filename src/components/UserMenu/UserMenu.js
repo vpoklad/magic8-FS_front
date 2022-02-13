@@ -25,7 +25,6 @@ export default function UserMenu() {
   const onClickConfirm = () => {
     dispatch(logout());
   };
-  console.log(userAvatar);
   return (
     <div className={s.header__menu}>
       <div className={s.header__avatar}>

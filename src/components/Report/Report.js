@@ -10,9 +10,9 @@ export default function Report() {
   const dispatch = useDispatch();
 
   const getReport = () => {
-    // const value = { year: 2022, month: 1 };
-    const year = 2022;
-    const month = 1;
+    const date = new Date();
+    const year = date.getFullYear();
+    const month = date.getMonth();
     const params = { year: year, month: month };
     dispatch(getReportThunk(params));
   };

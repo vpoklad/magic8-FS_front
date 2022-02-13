@@ -1,1 +1,1 @@
-// export const getReports = state => state.balance.value;
+export const getReports = state => state.reports.data;
