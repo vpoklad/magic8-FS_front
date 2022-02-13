@@ -12,28 +12,30 @@ import Button from '../Button/Button';
 import Report from '../Report/Report';
 
 export default function Balance({ showBtn = true }) {
-  const [value, setValue] = useState('00.00');
+  const balance = useSelector(getBalance);
+  const [value, setValue] = useState(() => balance);
   const [readonly, setReadonly] = useState(null);
 
   const [showModal, setShowModal] = useState(false);
 
   const dispatch = useDispatch();
 
-  const balance = useSelector(getBalance);
-
   useEffect(() => {
     if (!showBtn) {
       setReadonly(true);
     }
-  }, [showBtn]);
-
-  useEffect(() => {
-    dispatch(getBalanceThunk());
-    setValue(balance);
     if (balance > 0) {
       setReadonly('readonly');
     }
-  }, [balance, dispatch]);
+  }, [showBtn, balance]);
+
+  useEffect(() => {
+    setValue(balance);
+  }, [balance]);
+
+  useEffect(() => {
+    dispatch(getBalanceThunk());
+  }, []);
 
   const сhangeBalance = e => {
     const { value } = e.target;
@@ -69,7 +71,7 @@ export default function Balance({ showBtn = true }) {
                 readOnly={readonly}
                 pattern="\d+(\.\d{2})?"
               />
-              <span className={s.span}>UAN</span>
+              <span className={s.span}>UAH</span>
               {!balance && <Notification />}
             </div>
             {readonly && showBtn && (

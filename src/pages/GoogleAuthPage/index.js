@@ -14,13 +14,16 @@ const GoogleAuthPage = () => {
   const avatarURL = searchParams.get('avatarURL');
   const navigate = useNavigate();
   const dispatch = useDispatch();
-  const isLoggedIn = useSelector(getUser);
+  // const isLoggedIn = useSelector(getUser);
 
-  useEffect(() => {
-    if (isLoggedIn) {
-      navigate('/', { replace: true });
-    }
-  });
+  // useEffect(() => {
+  //   if (isLoggedIn) {
+  //     setTimeout(() => {
+  //       console.log('redirect');
+  //       // navigate('/', { replace: true });
+  //     }, 1000);
+  //   }
+  // });
 
   if (email && token) {
     dispatch(googleAuth({ email, token, avatarURL }));
