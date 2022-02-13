@@ -1,19 +1,34 @@
 import './App.css';
-import { useEffect } from 'react';
+import { useEffect, lazy, Suspense } from 'react';
 import { Routes, Route } from 'react-router-dom';
 
 import { useDispatch, useSelector } from 'react-redux';
-import { getIsFetchingCurrentUser } from './redux/auth/selectors';
+import { getToken, getIsFetchingCurrentUser } from './redux/auth/selectors';
 import { fetchCurrentUser } from './redux/auth/thunks';
 import AppBar from './components/AppBar/AppBar';
-import AuthForm from './components/AuthForm/AuthForm';
-import ReportPage from './pages/ReportPage/ReportPage';
-import CountingTable from './components/CountingTable/CountingTable';
-import { GoogleAuthPage } from './pages/GoogleAuthPage';
+// import AuthForm from './components/AuthForm/AuthForm';
+// import ReportPage from './pages/ReportPage/ReportPage';
+// import CountingTable from './components/CountingTable/CountingTable';
+// import { GoogleAuthPage } from './pages/GoogleAuthPage';
 import Container from './components/Container/Container';
-import MainPage from './pages/MainPage/MainPage';
-import Balance from './components/Balance/Balance';
-import { getToken } from './redux/auth/selectors';
+// import MainPage from './pages/MainPage/MainPage';
+// import Balance from './components/Balance/Balance';
+
+
+import PrivateRoute from './routes/Private';
+import PublicRoute from './routes/Public';
+
+const AuthForm = lazy(() =>
+   import("./components/AuthForm/AuthForm" /* webpackChunkName: "AuthForm" */))
+const GoogleAuthPage = lazy(() =>
+   import("./pages/GoogleAuthPage" /* webpackChunkName: "GoogleAuthPage" */))
+const MainPage = lazy(() =>
+   import("./pages/MainPage/MainPage" /* webpackChunkName: "MainPage" */))
+const ReportPage = lazy(() =>
+   import("./pages/ReportPage/ReportPage" /* webpackChunkName: "ReportPage" */))
+const NotFound = lazy(() =>
+   import("./pages/NotFound/NotFound" /* webpackChunkName: "NotFound" */));
+
 
 function App() {
   const dispatch = useDispatch();
@@ -28,8 +43,47 @@ function App() {
     !isFetchingCurrentUser && (
       <div className="App">
         <AppBar />
+        <main>
+          <Container>
+            <Suspense fallback={'Loading...'} >
+              <Routes>
+                <Route
+                path="/login"
+                element={
+                  <PublicRoute restricted>
+                      <AuthForm />
+                  </PublicRoute>
+                }/>
+                <Route
+                path="/google"
+                element={
+                  <PublicRoute restricted>
+                      <GoogleAuthPage />
+                  </PublicRoute>
+                }/>
+                <Route
+                path="/"
+                element={
+                  <PrivateRoute restricted redirectTo="/login" >
+                      <MainPage/>
+                  </PrivateRoute>
+                }/>
+                <Route
+                path="/reports"
+                element={
+                  <PrivateRoute restricted redirectTo="/login" >
+                      <ReportPage/>
+                  </PrivateRoute>
+                }/>
+                <Route element={<NotFound />} />
+              </Routes>
+            </Suspense>
+          </Container>
+        </main>
+
+        {/*
         <Routes>
-          <Route path="/google" element={<GoogleAuthPage />} />
+        <Route path="/google" element={<GoogleAuthPage />} />
         </Routes>
         <Container>
           {!token && <AuthForm />}
@@ -42,7 +96,7 @@ function App() {
               <ReportPage />
             </>
           )}
-        </Container>
+        </Container> */}
       </div>
     )
   );
