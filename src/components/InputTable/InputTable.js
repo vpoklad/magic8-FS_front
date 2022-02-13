@@ -107,7 +107,8 @@ const InputTable = ( {options, income, onSubmit}) => {
   const params = {
     description: productName,
     category: category.label,
-    sum: payValue.includes(',') ? +payValue.replace(/,/g, '.') : +payValue ,
+    sum: payValue.includes(',') ? +payValue.replace(/,/g, '.') : +payValue,
+    date: format(new Date(date), 'yyyy-MM-dd'),
     year: format(new Date(date), 'yyyy'),
     month: format(new Date(date), 'MM'),
     day: format(new Date(date), 'dd'),

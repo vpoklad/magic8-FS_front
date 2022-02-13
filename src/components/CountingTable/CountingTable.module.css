@@ -31,6 +31,15 @@
     color: inherit;
     cursor: pointer;
   }
+  .counterAccentBtn {
+    color: var(--accentColor);
+    background-color: #fefefe;
+    font-weight: 700;
+    font-size: 12px;
+    line-height: 14px;
+    letter-spacing: 0.02em;
+    transition: color 0.1s linear;
+  }
 }
 
 .counterContainer {
@@ -52,7 +61,6 @@
     margin: 0;
     padding: 0;
     height: 56px;
-    width: 50vw;
     display: flex;
     justify-content: space-between;
     position: fixed;
@@ -61,20 +69,4 @@
     flex-direction: row;
     background-color: var(--basicColor);
   }
-}
-
-.counterAccentBtn {
-  color: var(--accentColor);
-  background-color: #fefefe;
-  margin: 0;
-  height: 40px;
-  width: 140px;
-  font-weight: 700;
-  font-size: 12px;
-  line-height: 14px;
-  letter-spacing: 0.02em;
-  transition: color 0.1s linear;
-  border-radius: 20px 20px 0 0;
-  border: none;
-  cursor: pointer;
 }

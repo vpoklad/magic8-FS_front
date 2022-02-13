@@ -98,12 +98,12 @@ const CountingTable = () => {
         <div className={s.counterWrapper}>
             <div className={s.mobileBtn}>
                 <button
-                    className={expense ? s['counterAccentBtn'] : s['counterBtn']}
+                    className={expense ? `${s.counterAccentBtn} ${s.counterBtn}` : s['counterBtn']}
                 onClick ={clickExpense}>
             Витрати
           </button>
                 <button
-                    className={income ? s['counterAccentBtn'] : s['counterBtn']}
+                    className={income ? `${s.counterAccentBtn} ${s.counterBtn}` : s['counterBtn']}
                     onClick={clickIncome}>
             Дохід
                 </button>
