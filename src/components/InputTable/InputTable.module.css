@@ -49,7 +49,7 @@
   letter-spacing: 0.02em;
 }
 
-.productName {
+.description {
   padding: 13px;
   border-radius: 16px 0 0 0;
   border: 2px solid var(--backgroundColor);

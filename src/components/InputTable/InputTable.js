@@ -8,17 +8,12 @@ import 'react-datepicker/dist/react-datepicker.css';
 import Select from 'react-select';
 import Button from '../Button/Button';
 
-const InputTable = ({ options, typeOfTrans }) => {
+const InputTable = ({ options, typeOfTransaction }) => {
   const initialDate = new Date();
   const [date, setDate] = useState(initialDate);
   const [description, setDescription] = useState('');
   const [category, setCategory] = useState([]);
   const [sum, setSum] = useState('');
-  const [typeOfTransaction, setTypeOfTransaction] = useState('');
-
-  useEffect(() => {
-    return setTypeOfTransaction(typeOfTrans);
-  }, [typeOfTrans]);
 
   const dispatch = useDispatch();
 
@@ -83,6 +78,8 @@ const InputTable = ({ options, typeOfTrans }) => {
         return setCategory([category]);
       case 'sum':
         return setSum(value);
+      case 'typeOfTransaction':
+        return typeOfTransaction;
       default:
         return;
     }
@@ -121,7 +118,7 @@ const InputTable = ({ options, typeOfTrans }) => {
         <div className={s.datepieckerWrapper}>
           <DatePicker
             selected={date}
-            onChange={date => setDate(date)}
+            onChange={date => format(new Date(date), 'dd-mm-yyyy')}
             name="date"
             dateFormat="dd.MM.yyyy"
             todayButton="Сьогодні"

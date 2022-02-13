@@ -27,17 +27,20 @@ const CountingTable = () => {
   const dispatch = useDispatch();
   const [expense, setExpense] = useState(true);
   const [income, setIncome] = useState(false);
+  const [typeOfTransaction, setTypeOfTransaction] = useState(false);
 
   const clickExpense = () => {
     if (expense) return;
     setIncome(false);
     setExpense(true);
+    setTypeOfTransaction(false);
   };
 
   const clickIncome = () => {
     if (income) return;
     setIncome(true);
     setExpense(false);
+    setTypeOfTransaction(true);
   };
 
   return (
@@ -59,14 +62,20 @@ const CountingTable = () => {
 
       {expense ? (
         <div className={s.counterContainer}>
-          <InputTable options={categoryExpense} typeOfTransaction={false} />
+          <InputTable
+            options={[categoryExpense, typeOfTransaction]}
+            typeOfTransaction={false}
+          />
           <div>
             <TransactionTable></TransactionTable>
           </div>
         </div>
       ) : (
         <div className={s.counterContainer}>
-          <InputTable options={categoryIncome} typeOfTransaction={true} />
+          <InputTable
+            options={[categoryIncome, typeOfTransaction]}
+            typeOfTransaction={true}
+          />
           <div>
             <TransactionTable></TransactionTable>
           </div>
