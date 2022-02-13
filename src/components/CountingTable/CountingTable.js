@@ -28,19 +28,18 @@ const categoryIncome = [
         { value: 'addIncome', label: 'Дод. дох' },
 ]
     
-
+console.log(getBalance())
 const CountingTable = () => {
     const dispatch = useDispatch();
     const [expense, setExpense] = useState(true);
     const [income, setIncome] = useState(false);
-    /* const selectedDate = useSelector(transactionsSelectors.currentDate); */
+    const transactions = useSelector(transactionsSelectors.getTransactions)
 
     const clickExpense = () => {
     if (expense) return;
     setIncome(false);
     setExpense(true);
     };
-
 
     const onError = error => {
     toast.error('Something went wrong, please try again later.');
@@ -70,7 +69,32 @@ const CountingTable = () => {
     if (expense) {
         dispatch(transactionsOperations.addExpense(params, onSuccess, onError));
     }
-}
+    }
+    
+    const onDeleteTransaction = id => {
+    dispatch(
+      transactionsOperations.deleteTransaction(
+        id,
+        onDeleteTransactionSuccess,
+        onDeleteTransactionError,
+      ),
+    );
+  };
+
+  const onDeleteTransactionSuccess = () => {
+    toast.success('Transaction has been deleted.');
+    dispatch(getBalance());
+    if (income) {
+      dispatch(transactionsOperations.getIncomeByDate());
+    }
+    if (expense) {
+      dispatch(transactionsOperations.getExpenseByDate());
+    }
+  };
+
+  const onDeleteTransactionError = error => {
+    toast.error('Something went wrong, please try again later.');
+  };
     return (
         <div className={s.counterWrapper}>
             <div className={s.mobileBtn}>
@@ -89,10 +113,14 @@ const CountingTable = () => {
             {expense ? (
                 <div className={s.counterContainer}>
                     <InputTable
-                        options = {categoryExpense}
+                        options={categoryExpense}
+                        onSubmit={handleSubmit}
                     />
                 <div>
-            <TransactionTable></TransactionTable>
+                        <TransactionTable
+                            transactions={transactions}
+                            onDelete = {onDeleteTransaction}
+                        />
                     </div>
                      </div>)
          : ( <div className={s.counterContainer}>
@@ -102,7 +130,11 @@ const CountingTable = () => {
                         onSubmit={handleSubmit}
                     />
                 <div>
-            <TransactionTable></TransactionTable>
+                        <TransactionTable
+                            transactions={transactions}
+                            income={income}
+                            onDelete = {onDeleteTransaction}
+                        />
                     </div>
                      </div>)}
         

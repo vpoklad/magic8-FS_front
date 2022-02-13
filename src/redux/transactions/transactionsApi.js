@@ -1,15 +1,15 @@
 import axios from 'axios'
 import transactionsActions from './transactionsActions'
 
-/* const BASE_USER_URL = 'https://kapusta-magic8.herokuapp.com'
+const BASE_USER_URL = 'https://kapusta-magic8.herokuapp.com'
 
-axios.defaults.baseURL = BASE_USER_URL */
+axios.defaults.baseURL = BASE_USER_URL
 
 const addIncome = (params, onSucces, onError) => async dispatch => {
     dispatch(transactionsActions.incomeRequest())
 
     try {
-        await axios.post('https://kapusta-magic8.herokuapp.com/api/transactions', params);
+        await axios.post('/api/transactions', params);
         dispatch(transactionsActions.incomeSucces);
         onSucces();
     } catch (error) {
@@ -48,7 +48,7 @@ const deleteTransaction = (id, onSuccess, onError) => async dispatch => {
   dispatch(transactionsActions.deleteTransactionRequest());
 
   try {
-    await axios.delete(`/api/v1/transactions/${id}`);
+    await axios.delete(`/api/transactions/${id}`);
     dispatch(transactionsActions.deleteTransactionSuccess());
     onSuccess();
   } catch (error) {

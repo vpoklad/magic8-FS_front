@@ -108,7 +108,9 @@ const InputTable = ( {options, income, onSubmit}) => {
     description: productName,
     category: category.label,
     sum: payValue.includes(',') ? +payValue.replace(/,/g, '.') : +payValue ,
-    date: format(new Date(date), 'yyyy-MM-dd'),
+    year: format(new Date(date), 'yyyy'),
+    month: format(new Date(date), 'MM'),
+    day: format(new Date(date), 'dd'),
     typeOfTransactions: income? true : false
   }
     console.log(params)
@@ -198,7 +200,7 @@ const InputTable = ( {options, income, onSubmit}) => {
           <button className={s.mainBtn} type='submit' onClick={() => {
             onSubmit(params);
             resetInput();
-          }} >Ввести</button>
+          }}>Ввести</button>
           <button className={s.changeBtn} type='button' onClick = {resetInput} >Очистити</button>
             </div>
 
