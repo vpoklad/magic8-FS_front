@@ -39,6 +39,7 @@ export default function AuthForm() {
     dispatch(register({ email, password }));
     setEmail('');
     setPassword('');
+    toggleModal();
   };
   const toggleModal = () => {
     setShowModal(!showModal);
@@ -129,10 +130,9 @@ export default function AuthForm() {
               text="РЕЄСТРАЦІЯ"
             ></Button>
             {showModal && (
-            <Modal
-              submitModal={handleRegister}
-              toggleModal={setShowModal}
+            <Modal toggleModal={setShowModal}
               text="На вашу електронну скриньку надісланий лист. Для підтвердження реєстрації натисніть посилання в листі.">
+                <Button type="submit" text="OK" onClick={handleRegister} />
               {/* <p className={s.authformInfo_header}>якщо лист не отриманий, натисніть
               <button className={s.info} type="submit" onClick={handleRegister}>надіслати ще раз</button>
               </p> */}
