@@ -1,14 +1,16 @@
 import { useSearchParams, useNavigate, Link } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { useEffect } from 'react';
-// import { set } from 'date-fns';
 import { googleAuth } from '../../redux/auth/thunks';
+// import { googleReducer } from '../../redux/auth/slices';
 import { getUser } from '../../redux/auth/selectors';
+
+// const googleAuth = googleReducer();
 
 const GoogleAuthPage = () => {
   const [searchParams] = useSearchParams();
   const email = searchParams.get('email');
-  const verificationToken = searchParams.get('token');
+  const token = searchParams.get('token');
   const avatarURL = searchParams.get('avatarURL');
   const navigate = useNavigate();
   const dispatch = useDispatch();
@@ -20,12 +22,9 @@ const GoogleAuthPage = () => {
     }
   });
 
-  if (email && verificationToken) {
-    // Тут диспатчим action по заполнению полей в редаксе
+  if (email && token) {
+    dispatch(googleAuth({ email, token, avatarURL }));
 
-    dispatch(googleAuth({ email, verificationToken, avatarURL }));
-
-    // setTimeout(() => navigate('/', { replace: true }), 1000);
     return <p>Redirecting...</p>;
   }
 
@@ -33,7 +32,7 @@ const GoogleAuthPage = () => {
     <>
       <h2>Google Auth page</h2>
 
-      {(!email || !verificationToken) && (
+      {(!email || !token) && (
         <>
           <p>Халепа! Щось трапилось! Спробуй пізніше... </p>
           <p>Або скористайся звичайною </p>

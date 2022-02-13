@@ -1,10 +1,9 @@
 import s from "./Modal.module.css";
 import CloseIcon from '@mui/icons-material/Close';
-import Button from "../Button/Button";
 import { useEffect } from "react";
 
 
-const Modal = ({ text, submitModal, toggleModal }) => {
+const Modal = ({ text, children, toggleModal }) => {
   useEffect(() => {
      window.addEventListener("keydown", handleEscape);
       return () => {
@@ -35,8 +34,7 @@ const Modal = ({ text, submitModal, toggleModal }) => {
       <p className={s.Header}> {text} </p>
 
       <div className={s.ModalButtons}>
-         <Button text="так" onClick={submitModal}/>
-         <Button text="ні" onClick={handleClose}/>
+        {children}
       </div>
      </div>
     </div>

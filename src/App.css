@@ -1,0 +1,10 @@
+:root {
+    --basicColor: #FFFFFF;
+    --backgroundColor: #F5F6FB;
+    --titleTextColor: #000000;
+    --mainTextColor: #52555F;
+    --accentColor: #FF751D;
+    --accentBackgroundColor: #FFDAC0;
+    --incomeText: #407946;
+    --expenseText: #E53935;
+}

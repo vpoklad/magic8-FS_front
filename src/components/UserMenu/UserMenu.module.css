@@ -10,12 +10,18 @@
   width: 32px;
   height: 32px;
   margin-right: 15px;
-  background-color: #f5f6fa;
+  background-color: var(--backgroundColor);
   border-radius: 50%;
   text-transform: uppercase;
-  color: #52555f;
+  color: var(--mainTextColor);
   font-size: 1rem;
   font-weight: 700;
+  overflow: hidden;
+}
+.header__avatarImg {
+  width: 100%;
+  display: block;
+  height: auto;
 }
 
 @media (min-width: 768px) {
@@ -40,7 +46,7 @@
   background: none;
   border: none;
   text-decoration: underline;
-  color: #52555f;
+  color: var(--mainTextColor);
 }
 
 .header__logout:hover {

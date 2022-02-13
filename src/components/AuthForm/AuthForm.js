@@ -1,8 +1,9 @@
 import { React, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-
 import { register, logIn } from '../../redux/auth/thunks';
 import { getFormError, getVerifyMessage } from '../../redux/auth/selectors';
+import { useToggle } from '../../hooks/useToggle';
+import Modal from '../Modal/Modal';
 import Button from '../Button/Button';
 import sBtn from '../Button/Button.module.css';
 import s from './authform.module.css';
@@ -14,6 +15,8 @@ export default function AuthForm() {
   const dispatch = useDispatch();
   const formError = useSelector(getFormError);
   const verifyMessage = useSelector(getVerifyMessage);
+
+  const [showModal, setShowModal] = useToggle(false);
 
   const handleChange = ({ target: { name, value } }) => {
     switch (name) {
@@ -36,6 +39,10 @@ export default function AuthForm() {
     dispatch(register({ email, password }));
     setEmail('');
     setPassword('');
+    toggleModal();
+  };
+  const toggleModal = () => {
+    setShowModal(!showModal);
   };
 
   return (
@@ -114,32 +121,23 @@ export default function AuthForm() {
               title="Ввійти"
               className={sBtn.Button}
               text="ВВІЙТИ"
-            >
-              {/* ВВІЙТИ */}
-            </Button>
+            ></Button>
             <Button
               type="button"
-              onClick={handleRegister}
+              onClick={toggleModal}
               title="Реєстрація"
               className={sBtn.Button}
               text="РЕЄСТРАЦІЯ"
             ></Button>
-
-            {/* <button
-              type="submit"
-              title="Ввійти"
-              className={(s.authBtn, s.activeBtn)}
-            >
-              ВВІЙТИ
-            </button> */}
-            {/* <button
-              type="button"
-              onClick={handleRegister}
-              title="Реєстрація"
-              className={s.authBtn}
-            >
-              РЕЄСТРАЦІЯ
-            </button> */}
+            {showModal && (
+            <Modal toggleModal={setShowModal}
+              text="На вашу електронну скриньку надісланий лист. Для підтвердження реєстрації натисніть посилання в листі.">
+                <Button type="submit" text="OK" onClick={handleRegister} />
+              {/* <p className={s.authformInfo_header}>якщо лист не отриманий, натисніть
+              <button className={s.info} type="submit" onClick={handleRegister}>надіслати ще раз</button>
+              </p> */}
+            </Modal>
+            )}
           </div>
         </form>
       </div>

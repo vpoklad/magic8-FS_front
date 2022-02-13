@@ -4,7 +4,7 @@ import Balance from '../../components/Balance/Balance';
 export default function ReportPage() {
   return (
     <div>
-      <Balance showReport={true} showBtn={true} />
+      <Balance  showBtn={true} />
       <div className={s.generalData}>
         <div className={s.generalData__item}>
           <span>Витрати:</span>

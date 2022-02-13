@@ -1,51 +1,62 @@
 import s from './Balance.module.css';
 import { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { Link } from 'react-router-dom';
+
 import EditOutlinedIcon from '@mui/icons-material/EditOutlined';
-import sprite from '../../sprite.svg';
-import { addBalanceThunk } from '../../redux/balance/thunk';
+
+import { addBalanceThunk, getBalanceThunk } from '../../redux/balance/thunk';
 import { getBalance } from '../../redux/balance/selectors';
 import { Notification } from '../Notification/Notification';
-import GoToBack from '../GoToBack/GoToBack';
+import Modal from '../Modal/Modal';
+import Button from '../Button/Button';
+import Report from '../Report/Report';
 
-export default function Balance({ showReport, showBtn }) {
+export default function Balance({ showBtn = true }) {
   const [value, setValue] = useState('00.00');
   const [readonly, setReadonly] = useState(null);
+
+  const [showModal, setShowModal] = useState(false);
+
   const dispatch = useDispatch();
+
   const balance = useSelector(getBalance);
+
   useEffect(() => {
     if (!showBtn) {
       setReadonly(true);
     }
   }, [showBtn]);
+
   useEffect(() => {
+    dispatch(getBalanceThunk());
     setValue(balance);
     if (balance > 0) {
       setReadonly('readonly');
     }
-  }, [balance]);
+  }, [balance, dispatch]);
+
   const сhangeBalance = e => {
     const { value } = e.target;
     setValue(value);
   };
+
   const handleBalance = () => {
     dispatch(addBalanceThunk(value));
+
     setReadonly('readonly');
+    toggleModal();
+    console.log('balance', balance);
+    console.log('value', value);
   };
+
+  const toggleModal = () => {
+    setShowModal(!showModal);
+  };
+
   return (
     <>
       <div className={s.container}>
-        {showReport && (
-          <div className={s.reports}>
-            <Link to="/reports" className={s.link}>
-              Перейти до звітів
-            </Link>
-            <svg width="24" height="24" className={s.icon}>
-              <use href={`${sprite}#icon-barchart`} />
-            </svg>
-          </div>
-        )}
+        <Report />
         <div className={s.containerBalance}>
           <span className={s.text}>Баланс:</span>
           <div className={s.containerInput}>
@@ -75,7 +86,7 @@ export default function Balance({ showReport, showBtn }) {
                 <button
                   className={s.confirmBtn}
                   type="button"
-                  onClick={handleBalance}
+                  onClick={toggleModal}
                 >
                   Підтвердити
                 </button>
@@ -83,6 +94,11 @@ export default function Balance({ showReport, showBtn }) {
           </div>
         </div>
       </div>
+      {showModal && (
+        <Modal text={'Ви впевнені?'} toggleModal={toggleModal}>
+          <Button type="button" text="так" onClick={handleBalance} />
+        </Modal>
+      )}
     </>
   );
 }
