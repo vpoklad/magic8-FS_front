@@ -1,8 +1,12 @@
 import { useState } from 'react';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import InputTable from '../InputTable/InputTable';
+import { toast } from 'react-toastify';
 import TransactionTable from '../TransactionTable/TransactionTable';
 import s from './CountingTable.module.css'
+import transactionsOperations from '../../redux/transactions/transactionsApi';
+import transactionsSelectors from '../../redux/transactions/transactionsSelectors';
+import { getBalance } from '../../redux/balance/selectors';
 
 
 const categoryExpense = [
@@ -29,19 +33,44 @@ const CountingTable = () => {
     const dispatch = useDispatch();
     const [expense, setExpense] = useState(true);
     const [income, setIncome] = useState(false);
+    /* const selectedDate = useSelector(transactionsSelectors.currentDate); */
 
     const clickExpense = () => {
     if (expense) return;
     setIncome(false);
     setExpense(true);
-  };
+    };
+
+
+    const onError = error => {
+    toast.error('Something went wrong, please try again later.');
+    };
 
   const clickIncome = () => {
     if (income) return;
     setIncome(true);
     setExpense(false);
-  };
+    };
 
+    const onSuccess = () => {
+        toast.succes('Transaction added');
+        dispatch(getBalance());
+        if (income) {
+            dispatch(transactionsOperations.getIncomeByDate());
+        }
+        if (expense) {
+            dispatch(transactionsOperations.getExpenseByDate());
+        };
+    };
+    
+    const handleSubmit = params => {
+    if (income) {
+        dispatch(transactionsOperations.addIncome(params, onSuccess, onError));
+    }
+    if (expense) {
+        dispatch(transactionsOperations.addExpense(params, onSuccess, onError));
+    }
+}
     return (
         <div className={s.counterWrapper}>
             <div className={s.mobileBtn}>
@@ -68,7 +97,9 @@ const CountingTable = () => {
                      </div>)
          : ( <div className={s.counterContainer}>
                     <InputTable
-                        options = {categoryIncome}
+                        options={categoryIncome}
+                        income={income}
+                        onSubmit={handleSubmit}
                     />
                 <div>
             <TransactionTable></TransactionTable>

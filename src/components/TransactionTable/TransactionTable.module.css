@@ -43,6 +43,7 @@
     letter-spacing: 0.02em;
     display: flex;
     align-items: center;
+    justify-content: space-around;
     text-transform: uppercase;
     color: #000;
   }
@@ -108,7 +109,7 @@
     cursor: pointer;
   }
 
-  @media screen and (min-width: 1060px) {
+  @media screen and (min-width: 1280px) {
     .tableDesk {
       margin-right: 30px;
       margin-top: 60px;
