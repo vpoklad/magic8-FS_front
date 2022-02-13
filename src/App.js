@@ -26,6 +26,8 @@ const MainPage = lazy(() =>
    import("./pages/MainPage/MainPage" /* webpackChunkName: "MainPage" */))
 const ReportPage = lazy(() =>
    import("./pages/ReportPage/ReportPage" /* webpackChunkName: "ReportPage" */))
+const NotFound = lazy(() =>
+   import("./pages/NotFound/NotFound" /* webpackChunkName: "NotFound" */));
 
 
 function App() {
@@ -73,6 +75,7 @@ function App() {
                       <ReportPage/>
                   </PrivateRoute>
                 }/>
+                <Route element={<NotFound />} />
               </Routes>
             </Suspense>
           </Container>
