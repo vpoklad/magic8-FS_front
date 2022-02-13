@@ -3,7 +3,7 @@ import { useEffect, lazy, Suspense } from 'react';
 import { Routes, Route } from 'react-router-dom';
 
 import { useDispatch, useSelector } from 'react-redux';
-import { getIsFetchingCurrentUser } from './redux/auth/selectors';
+import { getToken, getIsFetchingCurrentUser } from './redux/auth/selectors';
 import { fetchCurrentUser } from './redux/auth/thunks';
 import AppBar from './components/AppBar/AppBar';
 // import AuthForm from './components/AuthForm/AuthForm';
@@ -13,7 +13,7 @@ import AppBar from './components/AppBar/AppBar';
 import Container from './components/Container/Container';
 // import MainPage from './pages/MainPage/MainPage';
 // import Balance from './components/Balance/Balance';
-import { getToken } from './redux/auth/selectors';
+
 
 import PrivateRoute from './routes/Private';
 import PublicRoute from './routes/Public';
@@ -70,7 +70,7 @@ function App() {
                 path="/reports"
                 element={
                   <PrivateRoute restricted redirectTo="/login" >
-                      <ReportPage />
+                      <ReportPage/>
                   </PrivateRoute>
                 }/>
               </Routes>
