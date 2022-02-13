@@ -2,8 +2,23 @@ import s from './ReportPage.module.css';
 import Balance from '../../components/Balance/Balance';
 import GoToBack from '../../components/GoToBack/GoToBack';
 import ExpenseIncomeInReport from '../../components/ExpenseIncomeInReport/ExpenseIncomeInReport';
+import { useSelector } from 'react-redux';
+import { getReports } from '../../redux/reports/selectors';
 
 export default function ReportPage() {
+    const dataReportsTotal = useSelector(getReports).totalExpInc;
+    const income = dataReportsTotal.filter((el) => (el._id));
+    const expense = dataReportsTotal.filter((el) => (el._id === false));
+
+    const incomeData = income[0]['total'];
+
+
+    console.log('income', income[0]['total']);
+    console.log('expense', expense[0]);
+
+
+
+    console.log(dataReportsTotal);
 
     return (
         <div>
@@ -17,7 +32,7 @@ export default function ReportPage() {
                 <div className={s.generalData__divider}></div>
                 <div className={s.generalData__item}>
                     <span>Доходи:</span>
-                    <span className={s.item__dataIncome}>13000 грн.</span>
+                    <span className={s.item__dataIncome}>{incomeData} грн.</span>
                 </div>
             </div>
             <div className={s.dataExpenseIncome}>

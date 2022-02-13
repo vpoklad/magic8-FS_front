@@ -12,7 +12,7 @@ export default function Report() {
   const getReport = () => {
     // const value = { year: 2022, month: 1 };
     const year = 2022;
-    const month = 1;
+    const month = 5;
     const params = { year: year, month: month };
     dispatch(getReportThunk(params));
   };

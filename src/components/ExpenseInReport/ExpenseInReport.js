@@ -1,5 +1,7 @@
 import s from './ExpenseInReport.module.css';
 import sprite from '../../sprite.svg';
+import { useSelector } from 'react-redux';
+import { getReports } from '../../redux/reports/selectors';
 
 export default function ExpenseInReport({ data }) {
     const categoryExpense = {
@@ -16,8 +18,11 @@ export default function ExpenseInReport({ data }) {
         other: 'Інше'
     };
 
+    const dataReports = useSelector(getReports).detailedCategoryStatistic;
 
-    const expense = data.filter((el) => (el._id.typeOfTransaction === false));
+
+
+    const expense = dataReports.filter((el) => (el._id.typeOfTransaction === false));
 
     return (
         <>
