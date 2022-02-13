@@ -1,8 +1,12 @@
 import { useState } from 'react';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import InputTable from '../InputTable/InputTable';
+import { toast } from 'react-toastify';
 import TransactionTable from '../TransactionTable/TransactionTable';
 import s from './CountingTable.module.css'
+import transactionsOperations from '../../redux/transactions/transactionsApi';
+import transactionsSelectors from '../../redux/transactions/transactionsSelectors';
+import { getBalance } from '../../redux/balance/selectors';
 
 
 const categoryExpense = [
@@ -24,24 +28,72 @@ const categoryIncome = [
         { value: 'addIncome', label: 'Дод. дох' },
 ]
     
-
 const CountingTable = () => {
     const dispatch = useDispatch();
     const [expense, setExpense] = useState(true);
     const [income, setIncome] = useState(false);
+    const transactions = 0;
 
     const clickExpense = () => {
     if (expense) return;
     setIncome(false);
     setExpense(true);
-  };
+    };
+
+    const onError = error => {
+    toast.error('Something went wrong, please try again later.');
+    };
 
   const clickIncome = () => {
     if (income) return;
     setIncome(true);
     setExpense(false);
+    };
+
+    const onSuccess = () => {
+        toast.succes('Transaction added');
+        dispatch(getBalance());
+        if (income) {
+            dispatch(transactionsOperations.getIncomeByDate());
+        }
+        if (expense) {
+            dispatch(transactionsOperations.getExpenseByDate());
+        };
+    };
+    
+    const handleSubmit = params => {
+    if (income) {
+        dispatch(transactionsOperations.addIncome(params, onSuccess, onError));
+    }
+    if (expense) {
+        dispatch(transactionsOperations.addExpense(params, onSuccess, onError));
+    }
+    }
+    
+    const onDeleteTransaction = id => {
+    dispatch(
+      transactionsOperations.deleteTransaction(
+        id,
+        onDeleteTransactionSuccess,
+        onDeleteTransactionError,
+      ),
+    );
   };
 
+  const onDeleteTransactionSuccess = () => {
+    toast.success('Transaction has been deleted.');
+    dispatch(getBalance());
+    if (income) {
+      dispatch(transactionsOperations.getIncomeByDate());
+    }
+    if (expense) {
+      dispatch(transactionsOperations.getExpenseByDate());
+    }
+  };
+
+  const onDeleteTransactionError = error => {
+    toast.error('Something went wrong, please try again later.');
+  };
     return (
         <div className={s.counterWrapper}>
             <div className={s.mobileBtn}>
@@ -60,18 +112,28 @@ const CountingTable = () => {
             {expense ? (
                 <div className={s.counterContainer}>
                     <InputTable
-                        options = {categoryExpense}
+                        options={categoryExpense}
+                        onSubmit={handleSubmit}
                     />
                 <div>
-            <TransactionTable></TransactionTable>
+                        <TransactionTable
+                            transactions={transactions}
+                            onDelete = {onDeleteTransaction}
+                        />
                     </div>
                      </div>)
          : ( <div className={s.counterContainer}>
                     <InputTable
-                        options = {categoryIncome}
+                        options={categoryIncome}
+                        income={income}
+                        onSubmit={handleSubmit}
                     />
                 <div>
-            <TransactionTable></TransactionTable>
+                        <TransactionTable
+                            transactions={transactions}
+                            income={income}
+                            onDelete = {onDeleteTransaction}
+                        />
                     </div>
                      </div>)}
         
