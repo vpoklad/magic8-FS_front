@@ -23,16 +23,16 @@ const authPersistConfig = {
 };
 const authPersistReducer = persistReducer(authPersistConfig, authReducer);
 
-const balancePersistConfig = {
-  key: 'value',
-  storage,
-  whitelist: ['value'],
-};
+// const balancePersistConfig = {
+//   key: 'value',
+//   storage,
+//   whitelist: ['value'],
+// };
 
-const balancePersistReducer = persistReducer(
-  balancePersistConfig,
-  balanceSlice,
-);
+// const balancePersistReducer = persistReducer(
+//   balancePersistConfig,
+//   balanceSlice,
+// );
 
 const reportPersistConfig = {
   key: 'data',
@@ -53,7 +53,7 @@ const middleware = [
 const store = configureStore({
   reducer: {
     auth: authPersistReducer,
-    balance: balancePersistReducer,
+    balance: balanceSlice,
     report: reportPersistReducer,
     transactions: transactionReducer,
   },

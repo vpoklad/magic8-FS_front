@@ -6,6 +6,7 @@ const BASE_USER_URL = 'https://kapusta-magic8.herokuapp.com/';
 
 axios.defaults.baseURL = BASE_USER_URL;
 
+const getBalanceEndpoint = '/api/users/balance';
 const addBalanceEndpoint = '/api/users/balance';
 
 const addTransactionEndpoint = '/api/transactions';
@@ -28,4 +29,8 @@ export const getAllTransactions = transactions => {
 
 export const delTransaction = id => {
   return axios.delete(delTransactionEndpoint, { id });
+};
+
+export const getBalance = () => {
+  return axios.get(getBalanceEndpoint);
 };
