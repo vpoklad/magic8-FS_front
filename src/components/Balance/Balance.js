@@ -13,12 +13,16 @@ import Report from '../Report/Report';
 
 export default function Balance({ showBtn = true }) {
   const balance = useSelector(getBalance);
-  const [value, setValue] = useState(() => balance);
+
+  const [value, setValue] = useState('');
   const [readonly, setReadonly] = useState(null);
 
   const [showModal, setShowModal] = useState(false);
 
   const dispatch = useDispatch();
+  useEffect(() => {
+    dispatch(getBalanceThunk());
+  }, []);
 
   useEffect(() => {
     if (!showBtn) {
@@ -30,12 +34,8 @@ export default function Balance({ showBtn = true }) {
   }, [showBtn, balance]);
 
   useEffect(() => {
-    setValue(balance);
+    if (balance) setValue(balance);
   }, [balance]);
-
-  useEffect(() => {
-    dispatch(getBalanceThunk());
-  }, []);
 
   const сhangeBalance = e => {
     const { value } = e.target;
