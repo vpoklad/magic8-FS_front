@@ -28,12 +28,11 @@ const categoryIncome = [
         { value: 'addIncome', label: 'Дод. дох' },
 ]
     
-console.log(getBalance())
 const CountingTable = () => {
     const dispatch = useDispatch();
     const [expense, setExpense] = useState(true);
     const [income, setIncome] = useState(false);
-    const transactions = useSelector(transactionsSelectors.getTransactions)
+    const transactions = 0;
 
     const clickExpense = () => {
     if (expense) return;

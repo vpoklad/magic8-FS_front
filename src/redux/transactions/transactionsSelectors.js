@@ -1,4 +1,4 @@
-const getTransactions = state => state.transactions.transactions;
+/* const getTransactions = state => state.transactions.length;
 const currentDate = state => state.transactions.currentDate;
 
 const transactionsSelectors = {
@@ -7,5 +7,5 @@ const transactionsSelectors = {
 }
 
 
-export default transactionsSelectors
+export default transactionsSelectors */
 
