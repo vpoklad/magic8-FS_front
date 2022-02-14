@@ -1,27 +1,97 @@
-// import s from './CurrentPeriod.module.css';
+import s from './CurrentPeriod.module.css';
+import { useDispatch } from 'react-redux';
+import 'react-datepicker/dist/react-datepicker.css';
+import React, { useState } from 'react';
+import sprite from '../../sprite.svg';
+import { getReportThunk } from '../../redux/reports/thunk';
 
-// import DatePicker from 'react-datepicker';
-// import { uk } from 'date-fns/locale';
+export default function CurrentPeriod() {
+  // const dispatch = useDispatch();
+
+  // const initialDate = new Date();
+  // const year = initialDate.getFullYear();
+  // const month = initialDate.getMonth();
+  // const modDate = `${year}-0${month + 1}`;
+
+  // const [date, setDate] = useState(modDate);
+
+  // const getReport = (month, year) => {
+  //   const params = { year: year, month: month };
+  //   dispatch(getReportThunk(params));
+  // };
+
+  // const onClick = e => {
+  //   const input = document.getElementById('date');
+
+  //   switch (e.currentTarget.name) {
+  //     case 'increment':
+  //       input.stepUp(1);
+  //       break;
+  //     case 'decrement':
+  //       input.stepDown(1);
+  //       break;
+  //     default:
+  //       break;
+  //   }
+  //   setDate(input.value);
+  //   const month = input.value.substring(5);
+  //   const year = input.value.substring(0, 4);
+  //   getReport(Number(month) - 1, year);
+  // };
+
+  return (
+    <div className={s.containerCurrentPeriod}>
+      <div>
+        <p className={s.CurrentPeriodTitle}>Поточний період:</p>
+        <div className={s.selectorWrapper}>
+          <button className={s.btnChevron} name="decrement" onClick={onClick}>
+            <svg className={s.item_svg} width="6" height="11">
+              <use href={`${sprite}#icon-chevronLeft`}></use>
+            </svg>
+          </button>
+          <input
+            id="date"
+            type="month"
+            step="1"
+            value={date}
+            className={s.period}
+            readOnly={true}
+          />
+          <button className={s.btnChevron} name="increment" onClick={onClick}>
+            <svg className={s.item_svg} width="6" height="11">
+              <use href={`${sprite}#icon-chevronRight`}></use>
+            </svg>
+          </button>
+        </div>
+      </div>
+    </div>
+  );
+}
+
+/////////////////////////////////////////
+
+// import s from './CurrentPeriod.module.css';
+// import { useDispatch } from 'react-redux';
 // import 'react-datepicker/dist/react-datepicker.css';
-// import React, { useState, forwardRef } from 'react';
+// import React, { useState } from 'react';
 // import sprite from '../../sprite.svg';
+// import { getReportThunk } from '../../redux/reports/thunk';
 
 // export default function CurrentPeriod() {
+//   const dispatch = useDispatch();
+
 //   const initialDate = new Date();
-//   console.log(initialDate);
-//   const [date, setDate] = useState(initialDate);
-//   // const date = new Date();
-//   // const year = date.getFullYear();
-//   // const month = date.getMonth();
-//   // const value = `${year}-0${month}`;
+//   const year = initialDate.getFullYear();
+//   const month = initialDate.getMonth();
+//   const modDate = `${year}-0${month + 1}`;
 
-//   // const locale = Locale();
+//   const [date, setDate] = useState(modDate);
 
-//   const year = date.getFullYear();
-//   const month = date.getMonth();
-//   const value = `${year}-0${month}`;
+//   const getReport = (month, year) => {
+//     const params = { year: year, month: month };
+//     dispatch(getReportThunk(params));
+//   };
 
-//   console.log();
 //   const onClick = e => {
 //     const input = document.getElementById('date');
 
@@ -35,46 +105,30 @@
 //       default:
 //         break;
 //     }
-
-//     console.log(input);
+//     setDate(input.value);
+//     const month = input.value.substring(5);
+//     const year = input.value.substring(0, 4);
+//     getReport(Number(month) - 1, year);
 //   };
-
-//   // const CustomDate = forwardRef(({ value, onClick }, ref) => (
-//   //   <button className={s.dateBtn} onClick={onClick} ref={ref}>
-//   //     <div className={s.date}>{value}</div>
-//   //   </button>
-//   // ));
 
 //   return (
 //     <div className={s.containerCurrentPeriod}>
 //       <div>
-//         <p className={s.CurrentPeriodTitle}>Поточний період</p>
+//         <p className={s.CurrentPeriodTitle}>Поточний період:</p>
 //         <div className={s.selectorWrapper}>
 //           <button className={s.btnChevron} name="decrement" onClick={onClick}>
 //             <svg className={s.item_svg} width="6" height="11">
 //               <use href={`${sprite}#icon-chevronLeft`}></use>
 //             </svg>
 //           </button>
-//           {/* <DatePicker
-//             selected={date}
-//             locale={uk}
-//             onChange={date => setDate(date)}
-//             dateFormat="MMMM yyyy"
-//             // customInput={<CustomDate />}
-//             readOnly="true"
-//             sshowMonthYearPicker
-//             showFullMonthYearPicker
-//           /> */}
 //           <input
 //             id="date"
 //             type="month"
 //             step="1"
-//             value={value}
+//             value={date}
 //             className={s.period}
-//             readonly="true"
+//             readOnly={true}
 //           />
-
-//           {/* <p className={s.period}>МІСЯЦЬ 2022</p> */}
 //           <button className={s.btnChevron} name="increment" onClick={onClick}>
 //             <svg className={s.item_svg} width="6" height="11">
 //               <use href={`${sprite}#icon-chevronRight`}></use>
@@ -85,64 +139,3 @@
 //     </div>
 //   );
 // }
-
-import { useState } from 'react';
-// import { set } from 'date-fns';
-import sprite from '../../sprite.svg';
-import s from './CurrentPeriod.module.css';
-import { useSelector } from 'react-redux';
-import { getReports } from '../../redux/reports/selectors';
-
-export default function CurrentPeriod() {
-  const date = new Date();
-  const year = date.getFullYear();
-  const month = date.getMonth();
-  const value = `${year}-0${month}`;
-
-  const onClick = e => {
-    const input = document.getElementById('date');
-
-    switch (e.currentTarget.name) {
-      case 'increment':
-        input.stepUp(1);
-        break;
-      case 'decrement':
-        input.setepDoen(-1);
-        break;
-      default:
-        break;
-    }
-
-    console.log(input);
-  };
-
-  return (
-    <div className={s.containerCurrentPeriod}>
-      <div>
-        <p className={s.CurrentPeriodTitle}>Поточний період</p>
-        <div className={s.selectorWrapper}>
-          <button className={s.btnChevron} name="decrement" onClick={onClick}>
-            <svg className={s.item_svg} width="6" height="11">
-              <use href={`${sprite}#icon-chevronLeft`}></use>
-            </svg>
-          </button>
-          <input
-            id="date"
-            type="month"
-            step="1"
-            value={value}
-            className={s.period}
-            readonly="true"
-          />
-
-          {/* <p className={s.period}>МІСЯЦЬ 2022</p> */}
-          <button className={s.btnChevron} name="increment" onClick={onClick}>
-            <svg className={s.item_svg} width="6" height="11">
-              <use href={`${sprite}#icon-chevronRight`}></use>
-            </svg>
-          </button>
-        </div>
-      </div>
-    </div>
-  );
-}
