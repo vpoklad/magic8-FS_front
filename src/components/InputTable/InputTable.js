@@ -1,9 +1,11 @@
 import s from './InputTable.module.css'
-import React, { useState, forwardRef} from "react";
+import React, { useState, forwardRef, useEffect} from "react";
 import DatePicker from "react-datepicker";
 import { format } from 'date-fns';
 import "react-datepicker/dist/react-datepicker.css";
 import Select from 'react-select';
+import {addNewTransactionThunk} from '../../redux/transactions/thunk'
+import { useDispatch } from 'react-redux';
 
 
 const InputTable = ( {options, income, onSubmit}) => {
@@ -12,6 +14,7 @@ const InputTable = ( {options, income, onSubmit}) => {
   const [productName, setProductName] = useState('');
   const [payValue, setPayValue] = useState('');
   const [category, setCategory] = useState([]);
+  const dispatch = useDispatch();
 
 
     const resetInput = () => {
@@ -103,18 +106,24 @@ const InputTable = ( {options, income, onSubmit}) => {
         </button>
         
     ));
-  
+  const addTransaction = () => {
+    dispatch(addNewTransactionThunk(params))
+    console.log(params)
+  }
+
+
   const params = {
     description: productName,
-    category: category.label,
+    category: category.value,
+    categoryLabel: category.label,
     sum: payValue.includes(',') ? +payValue.replace(/,/g, '.') : +payValue,
     date: format(new Date(date), 'yyyy-MM-dd'),
     year: format(new Date(date), 'yyyy'),
     month: format(new Date(date), 'MM'),
     day: format(new Date(date), 'dd'),
-    typeOfTransactions: income? true : false
-  }
-    console.log(params)
+    typeOfTransaction: income ? true : false
+  };
+
     return (
         <div className={s.inputContainer}>
             <div className={s.inputShell}>
@@ -199,7 +208,7 @@ const InputTable = ( {options, income, onSubmit}) => {
             </div>
             <div className={s.mainBtnTable}>
           <button className={s.mainBtn} type='submit' onClick={() => {
-            onSubmit(params);
+            addTransaction();
             resetInput();
           }}>Ввести</button>
           <button className={s.changeBtn} type='button' onClick = {resetInput} >Очистити</button>

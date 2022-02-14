@@ -1,8 +1,12 @@
 import s from './TransactionTable.module.css'
 import Transaction from './Transaction'
+import { useDispatch, useSelector } from 'react-redux'
+import { getTransactionsThunk } from '../../redux/transactions/thunk';
+import { getTransactions } from '../../redux/transactions/transactionsSelectors';;
 
 
-const TransactionTable = ({income, transactions, onDelete}) => {
+const TransactionTable = ({income, onDelete}) => {
+  const dispatch = useDispatch();
 
     return(
           <div className={s.tableDesk}>
@@ -16,7 +20,7 @@ const TransactionTable = ({income, transactions, onDelete}) => {
           </tr>
         </thead>
 
-          <tbody className={s.tableBody}>
+         {/*  <tbody className={s.tableBody}>
             {(transactions.length > 0 &&
               transactions.map(item => (
                 <Transaction
@@ -26,7 +30,7 @@ const TransactionTable = ({income, transactions, onDelete}) => {
                   onDelte = {onDelete}
                 />)
             )) }
-        </tbody>
+        </tbody> */}
       </table>
     </div>
     )

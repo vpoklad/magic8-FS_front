@@ -1,11 +1,9 @@
 import { useState } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
+import { useDispatch } from 'react-redux';
 import InputTable from '../InputTable/InputTable';
 import { toast } from 'react-toastify';
 import TransactionTable from '../TransactionTable/TransactionTable';
 import s from './CountingTable.module.css'
-import transactionsOperations from '../../redux/transactions/transactionsApi';
-import transactionsSelectors from '../../redux/transactions/transactionsSelectors';
 import { getBalance } from '../../redux/balance/selectors';
 
 
@@ -53,43 +51,16 @@ const CountingTable = () => {
     const onSuccess = () => {
         toast.succes('Transaction added');
         dispatch(getBalance());
-        if (income) {
-            dispatch(transactionsOperations.getIncomeByDate());
-        }
-        if (expense) {
-            dispatch(transactionsOperations.getExpenseByDate());
-        };
     };
     
-    const handleSubmit = params => {
-    if (income) {
-        dispatch(transactionsOperations.addIncome(params, onSuccess, onError));
-    }
-    if (expense) {
-        dispatch(transactionsOperations.addExpense(params, onSuccess, onError));
-    }
-    }
-    
-    const onDeleteTransaction = id => {
-    dispatch(
-      transactionsOperations.deleteTransaction(
-        id,
-        onDeleteTransactionSuccess,
-        onDeleteTransactionError,
-      ),
-    );
-  };
+ /*    const onDeleteTransaction = id => {
+    dispatch
+  }; */
 
-  const onDeleteTransactionSuccess = () => {
+ /*  const onDeleteTransactionSuccess = () => {
     toast.success('Transaction has been deleted.');
     dispatch(getBalance());
-    if (income) {
-      dispatch(transactionsOperations.getIncomeByDate());
-    }
-    if (expense) {
-      dispatch(transactionsOperations.getExpenseByDate());
-    }
-  };
+  }; */
 
   const onDeleteTransactionError = error => {
     toast.error('Something went wrong, please try again later.');
@@ -113,12 +84,11 @@ const CountingTable = () => {
                 <div className={s.counterContainer}>
                     <InputTable
                         options={categoryExpense}
-                        onSubmit={handleSubmit}
+                        
                     />
                 <div>
                         <TransactionTable
                             transactions={transactions}
-                            onDelete = {onDeleteTransaction}
                         />
                     </div>
                      </div>)
@@ -126,13 +96,11 @@ const CountingTable = () => {
                     <InputTable
                         options={categoryIncome}
                         income={income}
-                        onSubmit={handleSubmit}
                     />
                 <div>
                         <TransactionTable
                             transactions={transactions}
                             income={income}
-                            onDelete = {onDeleteTransaction}
                         />
                     </div>
                      </div>)}
