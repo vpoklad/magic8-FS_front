@@ -35,12 +35,21 @@ export default function AuthForm() {
     setPassword('');
   };
   const handleRegister = e => {
+    toggleModal()
     e.preventDefault();
     dispatch(register({ email, password }));
     setEmail('');
     setPassword('');
-    toggleModal();
   };
+  const handleResendEmail = (e) => {
+    if (verifyMessage === false )
+    return (
+      setEmail(''),
+      setPassword(''),
+      dispatch(register({ email, password }))
+    )
+    }
+
   const toggleModal = () => {
     setShowModal(!showModal);
   };
@@ -124,18 +133,17 @@ export default function AuthForm() {
             ></Button>
             <Button
               type="button"
-              onClick={toggleModal}
+              onClick={handleRegister}
               title="Реєстрація"
               className={sBtn.Button}
               text="РЕЄСТРАЦІЯ"
-            ></Button>
+            > </Button>
             {showModal && (
-            <Modal toggleModal={setShowModal}
+            <Modal toggleModal={toggleModal}
               text="На вашу електронну скриньку надісланий лист. Для підтвердження реєстрації натисніть посилання в листі.">
-                <Button type="submit" text="OK" onClick={handleRegister} />
-              {/* <p className={s.authformInfo_header}>якщо лист не отриманий, натисніть
-              <button className={s.info} type="submit" onClick={handleRegister}>надіслати ще раз</button>
-              </p> */}
+              <p className={s.authformInfo_header}>якщо лист не отриманий, натисніть
+              <button className={s.info} type="submit" onClick={handleResendEmail}>надіслати ще раз</button>
+              </p>
             </Modal>
             )}
           </div>
