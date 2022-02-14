@@ -10,15 +10,24 @@ import { Notification } from '../Notification/Notification';
 import Modal from '../Modal/Modal';
 import Button from '../Button/Button';
 import Report from '../Report/Report';
+import CurrentPeriod from '../CurrentPeriod/CurrentPeriod';
 
-export default function Balance({ showBtn = true }) {
+export default function Balance({ showBtn = true, showReportBtn = true }) {
   const balance = useSelector(getBalance);
   const [value, setValue] = useState(() => balance);
   const [readonly, setReadonly] = useState(null);
 
   const [showModal, setShowModal] = useState(false);
 
+  const [showReport, setshowReport] = useState(true);
+
   const dispatch = useDispatch();
+
+  useEffect(() => {
+    if (!showReportBtn) {
+      setshowReport(false);
+    }
+  }, [showReportBtn]);
 
   useEffect(() => {
     if (!showBtn) {
@@ -58,7 +67,7 @@ export default function Balance({ showBtn = true }) {
   return (
     <>
       <div className={s.container}>
-        <Report />
+        {showReport ? <Report /> : <CurrentPeriod />}
         <div className={s.containerBalance}>
           <span className={s.text}>Баланс:</span>
           <div className={s.containerInput}>
