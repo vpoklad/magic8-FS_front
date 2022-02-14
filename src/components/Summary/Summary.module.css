@@ -1,10 +1,11 @@
 .wrapper {
   width: 230px;
+  margin: 40px 0px 0px 30px;
 }
 
-@media (min-width: 768px) and (max-width: 1060px) {
+@media (min-width: 1280px) {
   .wrapper {
-    margin: 40px 0 50px 80px;
+    margin: 59px 0px 0px 0px;
   }
 }
 
@@ -20,8 +21,10 @@
   list-style: none;
 }
 .item {
-  padding: 10px 20px;
-  font-size: 12px;
+  padding: 12px 21px 12px 23px;
+  font-family: Roboto;
+  height: 38px;
+  line-height: 14px;
   display: flex;
   align-items: center;
   text-transform: uppercase;
@@ -29,6 +32,7 @@
   margin-top: 2px;
   margin-left: auto;
   margin-right: auto;
+
   color: var(--mainTextColor);
   background-color: transparent;
 }
@@ -37,23 +41,17 @@
   border-bottom: 2px solid var(--basicColor);
 }
 
-.fieldMonth {
-  padding-left: 22px;
-}
-
-.fieldSumm {
-  padding-right: 20px;
-}
-
 .title {
+  font-family: Roboto;
   margin: 0;
-  padding: 15px 0;
+  padding: 12px 0;
   border-top-left-radius: 20px;
   border-top-right-radius: 20px;
   font-size: 12px;
+  line-height: 14px;
   font-weight: 700;
   text-align: center;
   text-transform: uppercase;
-  /* color: $black-cl; */
+
   background-color: var(--backgroundColor);
 }

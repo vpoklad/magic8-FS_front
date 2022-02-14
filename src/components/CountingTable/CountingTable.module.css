@@ -78,3 +78,9 @@
   border: none;
   cursor: pointer;
 }
+
+@media (min-width: 1280px) {
+  .flexContainer {
+    display: flex;
+  }
+}

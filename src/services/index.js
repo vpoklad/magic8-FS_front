@@ -15,3 +15,7 @@ export const addBalance = balance => {
 export const getBalance = () => {
   return axios.get(getBalanceEndpoint);
 };
+
+export const getSummary = aspect => {
+  return axios.get(`/api/stats/${aspect}`);
+};
