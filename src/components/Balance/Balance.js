@@ -12,12 +12,13 @@ import Button from '../Button/Button';
 import Report from '../Report/Report';
 
 export default function Balance({ showBtn = true }) {
-  const balance = useSelector(getBalance);
-
-  const [value, setValue] = useState('');
+  const [value, setValue] = useState('00.00');
   const [readonly, setReadonly] = useState(null);
 
   const [showModal, setShowModal] = useState(false);
+
+  const balanceString = useSelector(getBalance);
+  const balance = Number(balanceString);
 
   const dispatch = useDispatch();
   useEffect(() => {
@@ -34,7 +35,8 @@ export default function Balance({ showBtn = true }) {
   }, [showBtn, balance]);
 
   useEffect(() => {
-    if (balance) setValue(balance);
+    const balanceFix = `${parseFloat(balance).toFixed(2)}`;
+    if (balanceFix) setValue(balanceFix);
   }, [balance]);
 
   const сhangeBalance = e => {
@@ -47,8 +49,6 @@ export default function Balance({ showBtn = true }) {
 
     setReadonly('readonly');
     toggleModal();
-    console.log('balance', balance);
-    console.log('value', value);
   };
 
   const toggleModal = () => {
@@ -65,11 +65,11 @@ export default function Balance({ showBtn = true }) {
             <div className={s.containerRelative}>
               <input
                 className={s.balanceInput}
-                type="text"
                 value={value}
                 onChange={сhangeBalance}
                 readOnly={readonly}
-                pattern="\d+(\.\d{2})?"
+                type="text"
+                pattern="^[ 0-9]+$"
               />
               <span className={s.span}>UAH</span>
               {!balance && <Notification />}
