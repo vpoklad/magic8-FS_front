@@ -23,37 +23,20 @@
     width: 100%;
   }
 
-  .tableHeadTr {
-    background: var(--backgroundColor);
-    border-radius: 20px 20px 0 0;
-    height: 40px;
-    font-weight: 700;
-    letter-spacing: 0.02em;
-    display: flex;
-    align-items: center;
-    text-transform: uppercase;
-    color: var(--titleTextColor);
+  .tableHead {
+    width: 100%;
   }
 
   .tableTr {
-
-    background: #f5f6fb;
-    border-radius: 20px 20px 0 0;
-    height: 40px;
-    font-weight: 700;
-    letter-spacing: 0.02em;
-    display: flex;
-    align-items: center;
-    justify-content: space-around;
-    text-transform: uppercase;
-    color: #000;
-
     width: 100%;
-    
-    border-bottom: 2px solid var(--backgroundColor);
-    
-    color: var(--mainTextColor);
-
+    height: 43px;
+    border-bottom: 2px solid #f5f6fb;
+    display: inline-table;
+    color: #52555f;
+    font-weight: 400;
+    font-size: 12px;
+    line-height: 14px;
+    letter-spacing: 0.04em;
   }
 
   .tableBody {
@@ -75,55 +58,84 @@
     border-radius: 2px;
   }
 
-  .tableDate {
+  .transactionDate {
+    padding-left: 12px;
+    text-align: left;
+    width: 20%;
+  }
+
+  .transactionDescription {
+    text-align: left;
+    width: 23%;
+  }
+  .transactionCategory {
+    width: 25%;
+    text-align: center;
+  }
+  .tableExpense {
+    width: 20%;
+    text-align: right;
+    color: #e7192e;
+    font-weight: 700;
+  }
+
+  .tableHeadTr {
+    background: #f5f6fb;
+    border-radius: 20px 20px 0 0;
+    height: 40px;
+    font-weight: 700;
+    letter-spacing: 0.02em;
+    display: flex;
+    align-items: center;
+    text-transform: uppercase;
+    color: #000;
+  }
+  .tableTransDate {
+    padding-left: 21px;
+    width: 124px;
+    display: flex;
+  }
+
+  .tableTransDescr {
+    width: 189px;
+    display: flex;
+  }
+  .tableTransCategory {
+    width: 105px;
+    display: flex;
+  }
+  .tableTransAmount {
+    width: 125px;
+    display: flex;
+    justify-content: flex-end;
+  }
+  .transactionDate {
     padding-left: 20px;
     text-align: left;
     width: 20%;
   }
+}
 
-  .tableDescription {
-    text-align: left;
-    width: 30%;
+.tableDelete {
+  width: 10%;
+  text-align: center;
+}
+
+.deleteBtn {
+  width: 35px;
+  height: 35px;
+  border-color: transparent;
+  border-radius: 50%;
+  background-color: transparent;
+  cursor: pointer;
+}
+
+@media screen and (min-width: 1280px) {
+  .tableDesk {
+    margin-right: 30px;
+    margin-top: 60px;
   }
-
-  .tableCategory {
-    width: 20%;
-    text-align: center;
-  }
-
-  .tableAmount,
-  .tableAmountIncome {
-    width: 20%;
-    text-align: right;
-    color: var(--expenseText);
-    font-weight: 700;
-  }
-
-  .tableAmountIncome {
-    color: var(--incomeText);
-  }
-
-  .tableDelete {
-    width: 10%;
-    text-align: center;
-  }
-
-  .deleteBtn {
-    width: 35px;
-    height: 35px;
-    border-color: transparent;
-    border-radius: 50%;
-    background-color: transparent;
-    cursor: pointer;
-  }
-
-  @media screen and (min-width: 1280px) {
-    .tableDesk {
-      margin-right: 30px;
-      margin-top: 60px;
-    }
-    .table {
-      width: 760px;
-    }
+  .table {
+    width: 760px;
   }
 }

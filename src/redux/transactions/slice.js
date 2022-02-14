@@ -2,7 +2,7 @@ import { createSlice } from "@reduxjs/toolkit";
 import { getTransactionsThunk } from "./thunk";
 
 const initialStateTransactions = {
-  data: null,
+  data: {},
   isLoading: false,
   error: null,
 };

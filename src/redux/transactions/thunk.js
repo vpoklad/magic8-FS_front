@@ -23,7 +23,7 @@ export const getTransactionsThunk = createAsyncThunk(
   async (_, { rejectWithValue }) => {
     try {
       const { data } = await getTransactions();
-      return data.data;
+      return data;
     } catch (error) {
       rejectWithValue(error);
     }
