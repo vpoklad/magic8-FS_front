@@ -3,9 +3,14 @@ import { useDispatch, useSelector } from 'react-redux';
 import { register, logIn } from '../../redux/auth/thunks';
 import { getFormError, getVerifyMessage } from '../../redux/auth/selectors';
 import { useToggle } from '../../hooks/useToggle';
+
+import axios from 'axios';
+import { toast } from 'react-toastify';
+
 import Modal from '../Modal/Modal';
 import Button from '../Button/Button';
 import sBtn from '../Button/Button.module.css';
+
 import s from './authform.module.css';
 import logo from './google.svg';
 
@@ -35,20 +40,21 @@ export default function AuthForm() {
     setPassword('');
   };
   const handleRegister = e => {
-    toggleModal()
+    toggleModal();
     e.preventDefault();
     dispatch(register({ email, password }));
-    setEmail('');
-    setPassword('');
   };
-  const handleResendEmail = (e) => {
-    if (verifyMessage === false )
-    return (
-      setEmail(''),
-      setPassword(''),
-      dispatch(register({ email, password }))
-    )
+  const handleResendEmail = async e => {
+    const response = await axios.post(
+      'https://kapusta-magic8.herokuapp.com/api/users/verify',
+      { email: email },
+    );
+
+    if (response.data.code === 503) {
+      toast.error('Помилка! Листа не вдалося відправити!');
     }
+    toast.success(`Лист надіслано на пошту ${email}`);
+  };
 
   const toggleModal = () => {
     setShowModal(!showModal);
@@ -137,14 +143,25 @@ export default function AuthForm() {
               title="Реєстрація"
               className={sBtn.Button}
               text="РЕЄСТРАЦІЯ"
-            > </Button>
+            >
+              {' '}
+            </Button>
             {showModal && (
-            <Modal toggleModal={toggleModal}
-              text="На вашу електронну скриньку надісланий лист. Для підтвердження реєстрації натисніть посилання в листі.">
-              <p className={s.authformInfo_header}>якщо лист не отриманий, натисніть
-              <button className={s.info} type="submit" onClick={handleResendEmail}>надіслати ще раз</button>
-              </p>
-            </Modal>
+              <Modal
+                toggleModal={toggleModal}
+                text="На вашу електронну скриньку надісланий лист. Для підтвердження реєстрації натисніть посилання в листі."
+              >
+                <p className={s.authformInfo_header}>
+                  якщо лист не отриманий, натисніть
+                  <button
+                    className={s.info}
+                    type="button"
+                    onClick={handleResendEmail}
+                  >
+                    надіслати ще раз
+                  </button>
+                </p>
+              </Modal>
             )}
           </div>
         </form>
