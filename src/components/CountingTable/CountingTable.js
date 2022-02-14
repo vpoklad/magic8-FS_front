@@ -7,6 +7,7 @@ import TransactionTable from '../TransactionTable/TransactionTable';
 import s from './CountingTable.module.css';
 import transactionsOperations from '../../redux/transactions/transactionsApi';
 import transactionsSelectors from '../../redux/transactions/transactionsSelectors';
+
 import { getBalance } from '../../redux/balance/selectors';
 import Summary from '../Summary/Summary';
 
@@ -83,20 +84,18 @@ const CountingTable = () => {
     );
   };
 
-  const onDeleteTransactionSuccess = () => {
+
+ /*  const onDeleteTransactionSuccess = () => {
     toast.success('Transaction has been deleted.');
     dispatch(getBalance());
-    if (income) {
-      dispatch(transactionsOperations.getIncomeByDate());
-    }
-    if (expense) {
-      dispatch(transactionsOperations.getExpenseByDate());
-    }
-  };
+  }; */
 
   const onDeleteTransactionError = error => {
     toast.error('Something went wrong, please try again later.');
   };
+
+
+
 
   const aspect = expense ? true : false;
 
