@@ -23,6 +23,7 @@
 .item {
   padding: 12px 21px 12px 23px;
   font-family: Roboto;
+  font-size: 12px;
   height: 38px;
   line-height: 14px;
   display: flex;
