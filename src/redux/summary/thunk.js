@@ -1,13 +1,13 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
 import { getSummary } from '../../services';
 
-export const addBalanceThunk = createAsyncThunk(
+export const summaryThunk = createAsyncThunk(
   'summary/get',
-  async (_, { rejectWithValue }) => {
+  async (aspect, { rejectWithValue }) => {
     try {
-      const { data } = await getSummary();
+      const { data } = await getSummary(aspect);
 
-      return data.data.userBalance;
+      return data.data;
     } catch (error) {
       rejectWithValue(error);
     }

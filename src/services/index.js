@@ -18,6 +18,7 @@ export const getBalance = () => {
   return axios.get(getBalanceEndpoint);
 };
 
+
 export const addTransaction = transaction => {
   return axios.post(getTransactionsEndpoint, transaction);
 };
@@ -29,3 +30,8 @@ export const getTransactions = () => {
 export const delTransaction = id => {
   return axios.delete(delTransactionEndpoint, { id });
 };
+
+export const getSummary = aspect => {
+  return axios.get(`/api/stats/${aspect}`);
+};
+
