@@ -14,7 +14,8 @@ import CurrentPeriod from '../CurrentPeriod/CurrentPeriod';
 
 export default function Balance({ showBtn = true, showReportBtn = true }) {
   const balance = useSelector(getBalance);
-  const [value, setValue] = useState(() => balance);
+
+  const [value, setValue] = useState('');
   const [readonly, setReadonly] = useState(null);
 
   const [showModal, setShowModal] = useState(false);
@@ -22,6 +23,9 @@ export default function Balance({ showBtn = true, showReportBtn = true }) {
   const [showReport, setshowReport] = useState(true);
 
   const dispatch = useDispatch();
+  useEffect(() => {
+    dispatch(getBalanceThunk());
+  }, []);
 
   useEffect(() => {
     if (!showReportBtn) {
@@ -39,12 +43,8 @@ export default function Balance({ showBtn = true, showReportBtn = true }) {
   }, [showBtn, balance]);
 
   useEffect(() => {
-    setValue(balance);
+    if (balance) setValue(balance);
   }, [balance]);
-
-  useEffect(() => {
-    dispatch(getBalanceThunk());
-  }, []);
 
   const сhangeBalance = e => {
     const { value } = e.target;
