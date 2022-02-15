@@ -30,6 +30,6 @@ export const delTransaction = id => {
   return axios.delete(`/api/transactions/${id}`);
 };
 
-export const getSummary = aspect => {
-  return axios.get(`/api/stats/${aspect}`);
+export const getSummary = obj => {
+  return axios.get(`/api/stats/${obj.items}`, { params: obj.params });
 };

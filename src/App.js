@@ -20,7 +20,7 @@ import Container from './components/Container/Container';
 // import MainPage from './pages/MainPage/MainPage';
 import Balance from './components/Balance/Balance';
 // import CurrentPeriod from './components/CurrentPeriod/CurrentPeriod';
-
+import Report from './components/Report/Report';
 import PrivateRoute from './routes/Private';
 import PublicRoute from './routes/Public';
 
@@ -80,6 +80,7 @@ function App() {
                   element={
                     <PrivateRoute restricted redirectTo="/login">
                       <MainPage>
+                        <Report />
                         <Balance />
                         <CountingTable />
                       </MainPage>
