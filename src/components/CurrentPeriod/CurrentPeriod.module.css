@@ -36,14 +36,17 @@ h1 {
 }
 
 .period {
-  font-size: 14px;
+  font-size: 13px;
   line-height: 1.17;
   text-align: center;
   font-weight: 700;
   letter-spacing: 0.02em;
   color: var(--titleTextColor);
   text-transform: uppercase;
-  margin: 0 15px;
+  margin: 0 5px;
+  border: none;
+  background-color: var(--backgroundColor);
+  width: 110px;
 }
 
 .btnChevron {
@@ -61,10 +64,4 @@ h1 {
   .wrapper {
     margin-top: 20px;
   }
-}
-
-.period {
-  border: none;
-  background-color: var(--backgroundColor);
-  width: 95px;
 }
