@@ -13,10 +13,10 @@ import AppBar from './components/AppBar/AppBar';
 import Spinner from './components/Spinner/Spinner';
 // import AuthForm from './components/AuthForm/AuthForm';
 // import ReportPage from './pages/ReportPage/ReportPage';
-import CountingTable from './components/CountingTable/CountingTable';
+// import CountingTable from './components/CountingTable/CountingTable';
 import { GoogleAuthPage } from './pages/GoogleAuthPage';
 import Container from './components/Container/Container';
-import GreetingPage from './pages/GreetingPage/GreetingPage';
+// import GreetingPage from './pages/GreetingPage/GreetingPage';
 // import MainPage from './pages/MainPage/MainPage';
 import Balance from './components/Balance/Balance';
 // import CurrentPeriod from './components/CurrentPeriod/CurrentPeriod';
@@ -81,7 +81,7 @@ function App() {
                     <PrivateRoute restricted redirectTo="/login">
                       <MainPage>
                         <Balance />
-                        <CountingTable />
+                        {/* <CountingTable /> */}
                       </MainPage>
                     </PrivateRoute>
                   }

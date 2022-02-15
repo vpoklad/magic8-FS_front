@@ -1,6 +1,6 @@
 .generalData {
   display: flex;
-  justify-content: space-around;
+  justify-content: center;
   align-items: center;
   font-family: Roboto;
   font-size: 14px;
@@ -25,6 +25,8 @@
   width: 1px;
   height: 70px;
   background-color: #e0e5eb;
+  margin-right: 20px;
+  margin-left: 20px;
 }
 
 @media (min-width: 768px) {
@@ -49,6 +51,8 @@
 
   .generalData__divider {
     height: 36px;
+    margin-right: 15px;
+    margin-left: 15px;
   }
 }
 
@@ -75,4 +79,49 @@
     margin-top: 30px;
     padding: 20px 30px;
   }
+}
+
+/*///////////////////////*/
+
+.container {
+  font-family: Roboto;
+  font-size: 12px;
+  line-height: 14px;
+  text-align: center;
+  font-weight: 400;
+  letter-spacing: 0.02em;
+  color: #52555fb3;
+  margin-bottom: 40px;
+}
+
+@media (min-width: 768px) {
+  .container {
+    display: flex;
+    align-items: baseline;
+    flex-direction: row-reverse;
+    margin-bottom: 58px;
+  }
+}
+
+@media (min-width: 1280px) {
+  .container {
+    margin-bottom: 9px;
+  }
+}
+
+.inputMobile {
+  width: 183px;
+  border-radius: 22px;
+  padding-right: 76px;
+}
+
+.spanMobile {
+  right: 49px;
+}
+
+.containerMobile {
+  width: 183px;
+}
+
+.containerNavigation {
 }

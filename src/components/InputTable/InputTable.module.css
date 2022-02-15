@@ -15,8 +15,15 @@
     margin-bottom: 30px;
   }
 
+  .productName {
+    width: 190px;
+  }
+
   .mainBtnTable {
     text-align: center;
+  }
+  .mainBtn {
+    margin-bottom: 25px;
   }
 }
 
@@ -27,6 +34,12 @@
     flex-direction: row;
   }
   .inputShell {
+    margin-bottom: 0px;
+  }
+  .productName {
+    width: 270px;
+  }
+  .mainBtn {
     margin-bottom: 0px;
   }
 }
@@ -47,7 +60,6 @@
   border: 2px solid var(--backgroundColor);
   border-right: none;
   outline: none;
-  width: 270px;
 }
 
 .productAmount {

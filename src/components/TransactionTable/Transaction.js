@@ -3,16 +3,16 @@ import s from './TransactionTable.module.css'
 
 const Transaction = ({ item, income, onDelete }) => {
   
-  const currValue = income ? item.amount : -item.amount;
+  const currValue = income ? item.sum : -item.sum;
 
     return (
-    <tr className={s.TableTr}>
-      <td className={s.TransactionDate}>{format(new Date(item.date), 'dd.MM.yyyy')}</td>
-      <td className={s.TransactionDescription}>{item.description}</td>
-        <td className={s.TransactionCategory}>{item.category}</td>
-        <td className={income ? ['counterAccentBtn'] : s['counterBtn']}>{`${currValue.toFixed(2)} грн.`}</td>
+    <tr className={s.tableTr}>
+      <td className={s.transactionDate}>{format(new Date(item.date), 'dd.MM.yyyy')}</td>
+      <td className={s.transactionDescription}>{item.description}</td>
+        <td className={s.transactionCategory}>{item.categoryLabel}</td>
+        <td className={income ? ['tableIncome'] : s['tableExpense']}>{`${currValue.toFixed(2)} грн.`}</td>
       <td></td>
-      <td className={s.TransactionDelete}>
+      <td className={s.transactionDelete}>
         <button
           type="button"
           className={s.deleteBtn}

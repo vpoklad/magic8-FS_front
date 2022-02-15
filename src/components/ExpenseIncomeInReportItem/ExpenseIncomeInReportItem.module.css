@@ -36,9 +36,15 @@
   min-width: 84px;
   max-width: 102px;
   list-style: none;
-  margin-left: 10px;
   margin-top: 20px;
   text-align: center;
+}
+
+@media (max-width: 767px) {
+  .listExpense_item {
+    padding-bottom: 20px;
+    border-bottom: 1px solid #e0e5eb;
+  }
 }
 
 .listExpense_item:hover,
