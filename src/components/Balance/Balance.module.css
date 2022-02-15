@@ -43,15 +43,15 @@
   .containerBalance {
     display: flex;
     align-items: center;
-    margin-right: 111px;
+    /* margin-right: 111px; */
   }
 }
-
+/* 
 @media (min-width: 1280px) {
   .containerBalance {
     margin-right: 205px;
   }
-}
+} */
 
 .text {
   font-weight: 500;

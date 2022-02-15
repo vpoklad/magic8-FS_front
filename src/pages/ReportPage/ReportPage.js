@@ -6,6 +6,7 @@ import ExpenseIncomeInReport from '../../components/ExpenseIncomeInReport/Expens
 import ChartBar from '../../components/ChartBar/ChartBar';
 import { useSelector } from 'react-redux';
 import { getReports } from '../../redux/reports/selectors';
+import CurrentPeriod from '../../components/CurrentPeriod/CurrentPeriod';
 
 export default function ReportPage() {
   const dataReportsTotal = useSelector(getReports);
@@ -13,22 +14,24 @@ export default function ReportPage() {
   const desktop = useMediaQuery('(min-width: 1280px)');
 
   return (
-    <div>
+    <>
       <div className={s.containerNavigation}>
         <GoToBack />
-        <Balance
-          showBtn={desktop ? true : false}
-          inputMobile={s.inputMobile}
-          spanMobile={s.spanMobile}
-          containerMobile={s.containerMobile}
-        />
+        <div className={s.revert}>
+          <Balance
+            showBtn={desktop ? true : false}
+            inputMobile={s.inputMobile}
+            spanMobile={s.spanMobile}
+            containerMobile={s.containerMobile}
+          />
+          <CurrentPeriod />
+        </div>
       </div>
 
       <div className={s.generalData}>
         <div className={s.generalData__item}>
           <span>Витрати:</span>
           <span className={s.item__dataExpense}>
-            -{' '}
             {dataReportsTotal ? (
               <>
                 {dataReportsTotal.totalExpInc.filter(el => el._id === false)
@@ -40,7 +43,7 @@ export default function ReportPage() {
               </>
             ) : (
               0
-            )}{' '}
+            )}
             грн.
           </span>
         </div>
@@ -56,7 +59,7 @@ export default function ReportPage() {
               </>
             ) : (
               0
-            )}{' '}
+            )}
             грн.
           </span>
         </div>
@@ -64,9 +67,9 @@ export default function ReportPage() {
       <div className={s.dataExpenseIncome}>
         <ExpenseIncomeInReport />
       </div>
-      <div className={s.dataChart}>
+      {/* <div className={s.dataChart}>
         <ChartBar />
-      </div>
-    </div>
+      </div> */}
+    </>
   );
 }

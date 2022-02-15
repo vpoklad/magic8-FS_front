@@ -17,12 +17,28 @@
   transition: all 0.2s linear;
 }
 
+@media (max-width: 767px) {
+  .link {
+    margin-bottom: 10px;
+  }
+}
+
+@media (min-width: 768px) {
+  .text {
+    margin-left: 15px;
+  }
+}
 .link {
   text-decoration: none;
-  color: var(--mainTextColor);
-  margin-left: 15px;
+  color: #52555fb3;
+  font-family: Roboto;
+
+  font-size: 12px;
+  line-height: 14px;
+
   transition: all 0.2s linear;
 }
+
 .link:hover {
   color: #ff6c0a;
 }
