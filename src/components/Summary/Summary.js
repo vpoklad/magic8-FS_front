@@ -9,13 +9,20 @@ import { getSummary } from '../../redux/summary/selectors';
 export default function Summary({ aspect }) {
   const dispatch = useDispatch();
 
+  const date = new Date();
+  const year = date.getFullYear();
+  const month = date.getMonth();
+  const params = { year: year, month: month };
+
   const summary = useSelector(getSummary);
 
   const items = aspect ? 'expense' : 'income';
 
+  const obj = { items, params };
+
   useEffect(() => {
-    dispatch(summaryThunk(items));
-  }, [items]);
+    dispatch(summaryThunk(obj));
+  }, []);
 
   return (
     <div className={s.wrapper}>
