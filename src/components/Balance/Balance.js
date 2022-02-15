@@ -3,7 +3,7 @@ import { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import useMediaQuery from '@mui/material/useMediaQuery';
 import EditOutlinedIcon from '@mui/icons-material/EditOutlined';
-
+import { toast } from 'react-toastify';
 import { addBalanceThunk, getBalanceThunk } from '../../redux/balance/thunk';
 import { getBalance } from '../../redux/balance/selectors';
 import { Notification } from '../Notification/Notification';
@@ -57,6 +57,10 @@ export default function Balance({
   };
 
   const toggleModal = () => {
+    if (isNaN(value)) {
+      setValue(balance);
+      return toast.error('Помилка! Вводити можна тільки числа!');
+    }
     setShowModal(!showModal);
   };
 
@@ -78,7 +82,6 @@ export default function Balance({
               onChange={сhangeBalance}
               readOnly={readonly}
               type="text"
-              pattern="^[ 0-9]+$"
             />
             <span className={`${s.span} ${classNameSpanMob}`}>UAN</span>
             {!balance && <Notification />}
