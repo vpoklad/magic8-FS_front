@@ -12,7 +12,7 @@ export default function GoToBack() {
         <KeyboardBackspaceOutlinedIcon className={s.goToBackIcon} />
       </Link>
       {!mobile && (
-        <Link to="/" className={s.link}>
+        <Link to="/" className={`${s.link} ${s.text}`}>
           Повернутись на головну
         </Link>
       )}

@@ -81,8 +81,6 @@
   }
 }
 
-/*///////////////////////*/
-
 .container {
   font-family: Roboto;
   font-size: 12px;
@@ -123,5 +121,42 @@
   width: 183px;
 }
 
-.containerNavigation {
+.revert {
+  display: flex;
+}
+
+@media (max-width: 767px) {
+  .revert {
+    display: flex;
+    flex-direction: column-reverse;
+  }
+}
+@media (min-width: 768px) {
+  .revert {
+    display: flex;
+    justify-content: space-between;
+
+    width: 405px;
+  }
+}
+
+@media (min-width: 768px) {
+  .revert {
+    display: flex;
+    justify-content: space-between;
+
+    width: 405px;
+  }
+}
+@media (min-width: 1280px) {
+  .revert {
+    width: 710px;
+  }
+}
+
+@media (min-width: 768px) {
+  .containerNavigation {
+    display: flex;
+    justify-content: space-between;
+  }
 }
