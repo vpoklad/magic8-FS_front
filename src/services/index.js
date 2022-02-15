@@ -1,7 +1,7 @@
 import axios from 'axios';
 
-// const BASE_USER_URL = 'https://kapusta-magic8.herokuapp.com/';
-const BASE_USER_URL = 'http://localhost:5000/';
+const BASE_USER_URL = 'https://kapusta-magic8.herokuapp.com/';
+// const BASE_USER_URL = 'http://localhost:5000/';
 
 axios.defaults.baseURL = BASE_USER_URL;
 
@@ -18,7 +18,6 @@ export const getBalance = () => {
   return axios.get(getBalanceEndpoint);
 };
 
-
 export const addTransaction = transaction => {
   return axios.post(getTransactionsEndpoint, transaction);
 };
@@ -34,4 +33,3 @@ export const delTransaction = id => {
 export const getSummary = aspect => {
   return axios.get(`/api/stats/${aspect}`);
 };
-
