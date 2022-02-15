@@ -1,17 +1,29 @@
 import s from './ReportPage.module.css';
+import useMediaQuery from '@mui/material/useMediaQuery';
 import Balance from '../../components/Balance/Balance';
 import GoToBack from '../../components/GoToBack/GoToBack';
 import ExpenseIncomeInReport from '../../components/ExpenseIncomeInReport/ExpenseIncomeInReport';
+import ChartBar from '../../components/ChartBar/ChartBar';
 import { useSelector } from 'react-redux';
 import { getReports } from '../../redux/reports/selectors';
 
 export default function ReportPage() {
   const dataReportsTotal = useSelector(getReports);
 
+  const desktop = useMediaQuery('(min-width: 1280px)');
+
   return (
     <div>
-      <GoToBack />
-      <Balance showBtn={true} showReportBtn={false} />
+      <div className={s.containerNavigation}>
+        <GoToBack />
+        <Balance
+          showBtn={desktop ? true : false}
+          inputMobile={s.inputMobile}
+          spanMobile={s.spanMobile}
+          containerMobile={s.containerMobile}
+        />
+      </div>
+
       <div className={s.generalData}>
         <div className={s.generalData__item}>
           <span>Витрати:</span>
@@ -52,7 +64,9 @@ export default function ReportPage() {
       <div className={s.dataExpenseIncome}>
         <ExpenseIncomeInReport />
       </div>
-      <div className={s.dataChart}></div>
+      <div className={s.dataChart}>
+        <ChartBar />
+      </div>
     </div>
   );
 }
