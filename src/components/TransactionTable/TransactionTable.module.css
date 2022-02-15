@@ -72,12 +72,6 @@
     width: 25%;
     text-align: center;
   }
-  .tableExpense {
-    width: 20%;
-    text-align: right;
-    color: #e7192e;
-    font-weight: 700;
-  }
 
   .tableHeadTr {
     background: #f5f6fb;
@@ -162,4 +156,17 @@
     display: flex;
     justify-content: flex-end;
   }
+}
+
+.tableExpense {
+  width: 20%;
+  text-align: right;
+  color: var(--expenseText);
+  font-weight: 700;
+}
+
+.tableIncome {
+  color: #407946;
+  width: 20%;
+  text-align: right;
 }
