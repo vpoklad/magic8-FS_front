@@ -80,7 +80,7 @@
 
 .title {
   width: 185px;
-  height: 65px;
+  height: 63px;
   margin-top: 55px;
   margin-left: 40px;
   margin-bottom: 50px;
@@ -89,7 +89,7 @@
 @media (min-width: 768px) {
   .title {
     width: 305px;
-    height: 100px;
+    height: 97px;
     margin-top: 0;
     margin-left: 120px;
   }
@@ -98,7 +98,7 @@
 @media (min-width: 1280px) {
   .title {
     width: 380px;
-    height: 140px;
+    height: 113px;
     margin-top: 0;
 
     margin-left: 120px;

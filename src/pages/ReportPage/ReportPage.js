@@ -10,7 +10,6 @@ import { getReports } from '../../redux/reports/selectors';
 export default function ReportPage() {
   const dataReportsTotal = useSelector(getReports);
 
-
   const desktop = useMediaQuery('(min-width: 1280px)');
 
   return (
@@ -69,6 +68,5 @@ export default function ReportPage() {
         <ChartBar />
       </div>
     </div>
-
   );
 }

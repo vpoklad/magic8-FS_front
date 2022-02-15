@@ -19,6 +19,7 @@ import Container from './components/Container/Container';
 // import GreetingPage from './pages/GreetingPage/GreetingPage';
 // import MainPage from './pages/MainPage/MainPage';
 import Balance from './components/Balance/Balance';
+// import CurrentPeriod from './components/CurrentPeriod/CurrentPeriod';
 
 import PrivateRoute from './routes/Private';
 import PublicRoute from './routes/Public';

@@ -1,0 +1,67 @@
+p,
+h1 {
+  margin: 0;
+}
+
+.containerCurrentPeriod {
+  font-family: Roboto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+
+  margin-bottom: 40px;
+}
+
+@media (min-width: 768px) {
+  .containerCurrentPeriod {
+    margin-bottom: 0px;
+  }
+}
+
+.selectorWrapper {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+
+.CurrentPeriodTitle {
+  font-size: 12px;
+  line-height: 14px;
+  text-align: center;
+  font-weight: 400;
+  letter-spacing: 0.02em;
+  color: rgba(82, 85, 95, 0.7);
+  margin-bottom: 5px;
+}
+
+.period {
+  font-size: 13px;
+  line-height: 1.17;
+  text-align: center;
+  font-weight: 700;
+  letter-spacing: 0.02em;
+  color: var(--titleTextColor);
+  text-transform: uppercase;
+  margin: 0 5px;
+  border: none;
+  background-color: var(--backgroundColor);
+  width: 110px;
+}
+
+.btnChevron {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0;
+  background: none;
+  border: none;
+  width: 15px;
+  height: 15px;
+}
+
+@media (min-width: 768px) {
+  .wrapper {
+    margin-top: 20px;
+  }
+}
