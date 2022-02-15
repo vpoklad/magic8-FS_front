@@ -109,6 +109,10 @@
     display: flex;
     justify-content: flex-end;
   }
+
+  .item_svg {
+    margin-left: 35px;
+  }
   .transactionDate {
     padding-left: 20px;
     text-align: left;
@@ -137,5 +141,25 @@
   }
   .table {
     width: 760px;
+  }
+
+  .tableTransDate {
+    padding-left: 21px;
+    width: 150px;
+    display: flex;
+  }
+
+  .tableTransDescr {
+    width: 234px;
+    display: flex;
+  }
+  .tableTransCategory {
+    width: 152px;
+    display: flex;
+  }
+  .tableTransAmount {
+    width: 125px;
+    display: flex;
+    justify-content: flex-end;
   }
 }

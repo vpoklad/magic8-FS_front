@@ -1,9 +1,19 @@
 import { format } from 'date-fns'
 import s from './TransactionTable.module.css'
+import sprite from '../../sprite.svg';
+import { useDispatch, useSelector } from 'react-redux'
+import { delTransactionThunk } from '../../redux/transactions/thunk';
 
-const Transaction = ({ item, income, onDelete }) => {
+const Transaction = ({ item, income }) => {
+
   
   const currValue = income ? item.sum : -item.sum;
+  const dispatch = useDispatch();
+
+  const delTransaction = (id) => {
+    dispatch(delTransactionThunk(id))
+    console.log(item)
+  }
 
     return (
     <tr className={s.tableTr}>
@@ -16,7 +26,10 @@ const Transaction = ({ item, income, onDelete }) => {
         <button
           type="button"
           className={s.deleteBtn}
-          onClick={() => onDelete(item._id)}>
+            onClick={() =>delTransaction(item.id)}>
+            <svg className={s.item_svg} width="18" height="18">
+                <use href={`${sprite}#icon-delete`}></use>
+              </svg>{' '}
         </button>
       </td>
     </tr>
