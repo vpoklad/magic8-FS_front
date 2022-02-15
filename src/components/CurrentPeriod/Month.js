@@ -1,6 +1,6 @@
 import { useMonth } from '@datepicker-react/hooks';
 
-function Month({ year, month, firstDayOfWeek }) {
+function Month({ year, month }) {
   const { monthLabel } = useMonth({
     year,
     month,
@@ -8,18 +8,7 @@ function Month({ year, month, firstDayOfWeek }) {
 
   return (
     <div>
-      <div css={{ textAlign: 'center', margin: '0 0 16px' }}>
-        <strong>{monthLabel}</strong>
-      </div>
-      <div
-        css={{
-          display: 'grid',
-          gridTemplateColumns: 'repeat(7, 1fr)',
-          justifyContent: 'center',
-          marginBottom: '10px',
-          fontSize: '10px',
-        }}
-      ></div>
+      <strong>{monthLabel}</strong>
     </div>
   );
 }
