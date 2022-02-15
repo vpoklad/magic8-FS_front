@@ -24,7 +24,7 @@ export default function ReportPage() {
                 <div className={s.generalData__item}>
                     <span>Доходи:</span>
                     <span className={s.item__dataIncome}>
-                        {dataReportsTotal ?
+                        + {dataReportsTotal ?
                             <>{dataReportsTotal.totalExpInc.filter((el) => (el._id)).length>0 ? dataReportsTotal.totalExpInc.filter((el) => (el._id))[0].total : 0}</>
                             : 0} грн.</span>
                 </div>

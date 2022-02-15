@@ -3,26 +3,41 @@ p {
 }
 
 .listExpense {
+  position: relative;
   display: flex;
   flex-wrap: wrap;
-  align-items: center;
   justify-content: center;
   padding: 0;
   margin: 0;
   margin-left: -10px;
   margin-top: -20px;
   margin-bottom: 20px;
+  width: 100%;
+}
+
+@media (max-width: 767px) {
+  .listExpense::after {
+    display: block;
+    content: '';
+    border-bottom: 1px solid #e0e5eb;
+    position: absolute;
+    width: 100%;
+    bottom: 0;
+  }
 }
 
 @media (min-width: 768px) {
   .listExpense {
-    margin-left: -20px;
     margin-bottom: 30px;
   }
 }
 
 @media (min-width: 1280px) {
   .listExpense {
-    max-width: 614px;
+    max-width: 650px;
   }
+}
+
+.info {
+  margin-bottom: 20px;
 }
