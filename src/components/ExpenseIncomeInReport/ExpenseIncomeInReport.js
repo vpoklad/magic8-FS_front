@@ -30,7 +30,7 @@ export default function ExpenseIncomeInReport() {
                     onClick={clickChange}>
                     <svg className={s.item_svg} width="4" height="10"><use href={`${sprite}#icon-chevronLeft`}></use></svg>
                 </button>
-                <p className={s.title}>{expense ? 'Витрати' : 'Дохід'}</p>
+                <p className={s.title}>{expense ? 'Витрати' : 'Доходи'}</p>
                 <button
                     className={s.btnChevron}
                     onClick={clickChange}>

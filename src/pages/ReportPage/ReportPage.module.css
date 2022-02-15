@@ -1,6 +1,6 @@
 .generalData {
   display: flex;
-  justify-content: space-around;
+  justify-content: center;
   align-items: center;
   font-family: Roboto;
   font-size: 14px;
@@ -25,6 +25,8 @@
   width: 1px;
   height: 70px;
   background-color: #e0e5eb;
+  margin-right: 20px;
+  margin-left: 20px;
 }
 
 @media (min-width: 768px) {
@@ -49,6 +51,8 @@
 
   .generalData__divider {
     height: 36px;
+    margin-right: 15px;
+    margin-left: 15px;
   }
 }
 
