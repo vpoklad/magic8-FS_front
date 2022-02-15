@@ -9,7 +9,6 @@ p {
   justify-content: center;
   padding: 0;
   margin: 0;
-  margin-left: -10px;
   margin-top: -20px;
   margin-bottom: 20px;
   width: 100%;
@@ -29,6 +28,7 @@ p {
 @media (min-width: 768px) {
   .listExpense {
     margin-bottom: 30px;
+    margin-left: -10px;
   }
 }
 
