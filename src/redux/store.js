@@ -14,9 +14,7 @@ import { configureStore, getDefaultMiddleware } from '@reduxjs/toolkit';
 import authReducer from './auth/slices';
 import balanceSlice from './balance/slice';
 import reportsSlice from './reports/slice';
-
 import transactionsSlice from './transactions/slice'
-
 import summarySlice from './summary/slice';
 
 const authPersistConfig = {
