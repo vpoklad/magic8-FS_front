@@ -8,7 +8,7 @@ axios.defaults.baseURL = BASE_USER_URL;
 const getBalanceEndpoint = '/api/users/balance';
 const addBalanceEndpoint = '/api/users/balance';
 const getTransactionsEndpoint = '/api/transactions';
-const delTransactionEndpoint = '/api/transactions/:id';
+const delTransactionEndpoint = '/api/transactions';
 
 export const addBalance = balance => {
   return axios.patch(addBalanceEndpoint, { balance });
@@ -27,7 +27,7 @@ export const getTransactions = () => {
 };
 
 export const delTransaction = id => {
-  return axios.delete(delTransactionEndpoint, id );
+  return axios.delete(`/api/transactions/${id}`);
 };
 
 export const getSummary = aspect => {
