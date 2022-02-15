@@ -27,7 +27,7 @@ export const getTransactions = () => {
 };
 
 export const delTransaction = id => {
-  return axios.delete(delTransactionEndpoint, { id });
+  return axios.delete(delTransactionEndpoint, id );
 };
 
 export const getSummary = aspect => {

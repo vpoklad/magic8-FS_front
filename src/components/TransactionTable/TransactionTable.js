@@ -8,7 +8,7 @@ import { getTransactions } from '../../redux/transactions/transactionsSelectors'
 
 const TransactionTable = ({income, onDelete}) => {
   const dispatch = useDispatch();
-
+  
   useEffect(() => {
    dispatch(getTransactionsThunk())
   }, [])
