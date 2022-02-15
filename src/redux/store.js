@@ -15,23 +15,16 @@ import authReducer from './auth/slices';
 import balanceSlice from './balance/slice';
 import reportsSlice from './reports/slice';
 
+import transactionsSlice from './transactions/slice'
+
+import summarySlice from './summary/slice';
+
 const authPersistConfig = {
   key: 'auth',
   storage,
   whitelist: ['token'],
 };
 const authPersistReducer = persistReducer(authPersistConfig, authReducer);
-
-// const balancePersistConfig = {
-//   key: 'value',
-//   storage,
-//   whitelist: ['value'],
-// };
-
-// const balancePersistReducer = persistReducer(
-//   balancePersistConfig,
-//   balanceSlice,
-// );
 
 const reportsPersistConfig = {
   key: 'data',
@@ -57,6 +50,11 @@ const store = configureStore({
     auth: authPersistReducer,
     balance: balanceSlice,
     reports: reportsPersistReducer,
+
+    transactions: transactionsSlice,
+
+    summary: summarySlice,
+
   },
   middleware,
   devTools: process.env.NODE_ENV === 'development',

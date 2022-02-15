@@ -2,6 +2,7 @@ import s from './ReportPage.module.css';
 import Balance from '../../components/Balance/Balance';
 import GoToBack from '../../components/GoToBack/GoToBack';
 import ExpenseIncomeInReport from '../../components/ExpenseIncomeInReport/ExpenseIncomeInReport';
+import ChartBar from '../../components/ChartBar/ChartBar';
 import { useSelector } from 'react-redux';
 import { getReports } from '../../redux/reports/selectors';
 
@@ -33,6 +34,7 @@ export default function ReportPage() {
                 <ExpenseIncomeInReport />
             </div>
             <div className={s.dataChart}>
+                <ChartBar/>
             </div>
             </div>
   );
