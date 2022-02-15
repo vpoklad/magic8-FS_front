@@ -10,7 +10,7 @@ import { getReportThunk } from '../../redux/reports/thunk';
 import DatepickerContext from './datepickerContext';
 
 export default function CurrentPeriod() {
-  registerLocale('uk', uk);
+  console.log(uk);
   const {
     activeMonths,
     goToPreviousMonthsByOneMonth,
