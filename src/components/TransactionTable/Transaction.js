@@ -1,7 +1,7 @@
 import { format } from 'date-fns'
 import s from './TransactionTable.module.css'
 import sprite from '../../sprite.svg';
-import { useDispatch, useSelector } from 'react-redux'
+import { useDispatch } from 'react-redux'
 import { delTransactionThunk } from '../../redux/transactions/thunk';
 
 const Transaction = ({ item, income }) => {

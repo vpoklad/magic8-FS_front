@@ -1,9 +1,5 @@
 import s from './TransactionTable.module.css'
 import Transaction from './Transaction'
-import { useDispatch, useSelector } from 'react-redux'
-import { getTransactionsThunk } from '../../redux/transactions/thunk';
-import { getTransactions } from '../../redux/transactions/transactionsSelectors';
-import { useEffect } from 'react';
 
 
 const TransactionTable = ({ income, transactions }) => {
