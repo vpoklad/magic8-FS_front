@@ -1,7 +1,7 @@
 import axios from 'axios';
 
-// const BASE_USER_URL = 'https://kapusta-magic8.herokuapp.com/';
-const BASE_USER_URL = 'http://localhost:5000/';
+const BASE_USER_URL = 'https://kapusta-magic8.herokuapp.com/';
+// const BASE_USER_URL = 'http://localhost:5000/';
 
 axios.defaults.baseURL = BASE_USER_URL;
 
@@ -12,7 +12,6 @@ const getTransactionsEndpoint = '/api/transactions';
 export const addBalance = balance => {
   return axios.patch(addBalanceEndpoint, { balance });
 };
-
 export const getBalance = () => {
   return axios.get(getBalanceEndpoint);
 };
