@@ -18,7 +18,7 @@ import { GoogleAuthPage } from './pages/GoogleAuthPage';
 import Container from './components/Container/Container';
 // import GreetingPage from './pages/GreetingPage/GreetingPage';
 // import MainPage from './pages/MainPage/MainPage';
-import Balance from './components/Balance/Balance';
+// import Balance from './components/Balance/Balance';
 // import CurrentPeriod from './components/CurrentPeriod/CurrentPeriod';
 
 import PrivateRoute from './routes/Private';
@@ -79,10 +79,7 @@ function App() {
                   path="/"
                   element={
                     <PrivateRoute restricted redirectTo="/login">
-                      <MainPage>
-                        <Balance />
-                        {/* <CountingTable /> */}
-                      </MainPage>
+                      <MainPage />
                     </PrivateRoute>
                   }
                 />

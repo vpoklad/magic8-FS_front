@@ -72,12 +72,6 @@
     width: 25%;
     text-align: center;
   }
-  .tableExpense {
-    width: 20%;
-    text-align: right;
-    color: #e7192e;
-    font-weight: 700;
-  }
 
   .tableHeadTr {
     background: #f5f6fb;
@@ -109,6 +103,10 @@
     display: flex;
     justify-content: flex-end;
   }
+
+  .item_svg {
+    margin-left: 35px;
+  }
   .transactionDate {
     padding-left: 20px;
     text-align: left;
@@ -138,4 +136,41 @@
   .table {
     width: 760px;
   }
+
+  .tableTransDate {
+    padding-left: 21px;
+    width: 150px;
+    display: flex;
+  }
+
+  .tableTransDescr {
+    width: 234px;
+    display: flex;
+  }
+  .tableTransCategory {
+    width: 152px;
+    display: flex;
+  }
+  .tableTransAmount {
+    width: 125px;
+    display: flex;
+    justify-content: flex-end;
+  }
+}
+
+.tableExpense {
+  width: 20%;
+  text-align: right;
+  color: var(--expenseText);
+  font-weight: 700;
+  font-family: Roboto;
+  font-weight: bold;
+}
+
+.tableIncome {
+  color: #407946;
+  width: 20%;
+  text-align: right;
+  font-family: Roboto;
+  font-weight: bold;
 }

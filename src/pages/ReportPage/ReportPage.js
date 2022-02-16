@@ -68,7 +68,9 @@ export default function ReportPage() {
         <ExpenseIncomeInReport />
       </div>
       <div className={s.dataChart}>
+
         <ChartBar data={dataReportsTotal}/>
+
       </div>
     </>
   );

@@ -5,12 +5,6 @@
   margin-bottom: 40px;
 } */
 
-@media (min-width: 768px) {
-  .reports {
-    margin-bottom: 0px;
-  }
-}
-
 .link {
   margin-right: 15px;
 

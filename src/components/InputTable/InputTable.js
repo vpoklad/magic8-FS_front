@@ -1,6 +1,8 @@
 import s from './InputTable.module.css'
 import React, { useState, forwardRef, useEffect} from "react";
 import DatePicker from "react-datepicker";
+import { registerLocale } from 'react-datepicker';
+import uk from 'date-fns/locale/uk';
 import { format } from 'date-fns';
 import "react-datepicker/dist/react-datepicker.css";
 import Select from 'react-select';
@@ -15,7 +17,7 @@ const InputTable = ( {options, income, onSubmit}) => {
   const [payValue, setPayValue] = useState('');
   const [category, setCategory] = useState([]);
   const dispatch = useDispatch();
-
+  registerLocale('uk', uk);
 
     const resetInput = () => {
     setProductName('');
@@ -129,7 +131,8 @@ const InputTable = ( {options, income, onSubmit}) => {
             <div className={s.inputShell}>
                 <div className={s.datepieckerWrapper}>
                     <DatePicker
-                        selected={date}
+              selected={date}
+              locale="uk"
                         onChange={date => setDate(date)}
                         dateFormat="dd.MM.yyyy"
                         todayButton="Сьогодні"

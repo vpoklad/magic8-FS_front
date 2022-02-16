@@ -1,20 +1,8 @@
 import s from './TransactionTable.module.css'
 import Transaction from './Transaction'
-import { useDispatch, useSelector } from 'react-redux'
-import { getTransactionsThunk } from '../../redux/transactions/thunk';
-import { getTransactions } from '../../redux/transactions/transactionsSelectors';import { useEffect } from 'react';
-;
 
 
-const TransactionTable = ({income, onDelete}) => {
-  const dispatch = useDispatch();
-
-  useEffect(() => {
-   dispatch(getTransactionsThunk())
-  }, [])
-  
-  const {transactions} = useSelector(getTransactions);
-  console.log(transactions)
+const TransactionTable = ({ income, transactions }) => {
 
     return(
           <div className={s.tableDesk}>
@@ -27,23 +15,20 @@ const TransactionTable = ({income, onDelete}) => {
             <th className={s.tableTransAmount}>Сума</th>
           </tr>
         </thead>
-
-          <tbody className={s.tableBody}>
-            {!transactions ? ('Чекайте') :
-            (transactions.length > 0 &&
+  <tbody className={s.tableBody}>
+            {transactions.length > 0 &&
               transactions.map(item => (
                 <Transaction
                   key={item.id}
                   item={item}
                   income={income}
-                  onDelte={onDelete}
                 />)
-              ))}
+              )}
         </tbody>
       </table>
     </div>
     )
 }
 
-export default TransactionTable
 
+export default TransactionTable;

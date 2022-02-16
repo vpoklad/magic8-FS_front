@@ -3,9 +3,9 @@ import { getSummary } from '../../services';
 
 export const summaryThunk = createAsyncThunk(
   'summary/get',
-  async (aspect, { rejectWithValue }) => {
+  async (obj, { rejectWithValue }) => {
     try {
-      const { data } = await getSummary(aspect);
+      const { data } = await getSummary(obj);
 
       return data.data;
     } catch (error) {
