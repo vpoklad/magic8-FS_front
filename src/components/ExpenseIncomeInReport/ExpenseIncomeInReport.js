@@ -8,6 +8,7 @@ import { getReports } from '../../redux/reports/selectors';
 import ChartBarExpInc from '../ChartBarExpInc/ChartBarExpInc';
 
 export default function ExpenseIncomeInReport() {
+
     const [expense, setExpense] = useState(true);
     const [income, setIncome] = useState(false);
     const dataReports = useSelector(getReports);
@@ -40,13 +41,13 @@ export default function ExpenseIncomeInReport() {
                     <button
                         className={s.btnChevron}
                         onClick={clickChange}>
-                        <svg className={s.item_svg} width="4" height="10"><use href={`${sprite}#icon-chevronLeft`}></use></svg>
+                        <svg className={s.item_svg} width="6" height="11"><use href={`${sprite}#icon-chevronLeft`}></use></svg>
                     </button>
                     <p className={s.title}>{expense ? 'Витрати' : 'Доходи'}</p>
                     <button
                         className={s.btnChevron}
                         onClick={clickChange}>
-                        <svg className={s.item_svg} width="4" height="10"><use href={`${sprite}#icon-chevronRight`}></use></svg>
+                        <svg className={s.item_svg} width="6" height="11"><use href={`${sprite}#icon-chevronRight`}></use></svg>
                     </button>
                 </div>
 
@@ -64,5 +65,5 @@ export default function ExpenseIncomeInReport() {
             }
         </div>
     )
-}
 
+}
