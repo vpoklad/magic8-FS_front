@@ -2,17 +2,26 @@ import { format } from 'date-fns'
 import s from './TransactionTable.module.css'
 import sprite from '../../sprite.svg';
 import { useDispatch } from 'react-redux'
-import { delTransactionThunk } from '../../redux/transactions/thunk';
+import { delTransactionThunk, getTransactionsThunk } from '../../redux/transactions/thunk';
+import {summaryThunk} from '../../redux/summary/thunk'
 
 export const Transaction = ({ item, income }) => {
 
-  
+  const date = new Date();
+  const year = date.getFullYear();
+  const month = date.getMonth();
+  const params = { year: year, month: month };
+
   const currValue = income ? item.sum : -item.sum;
   const dispatch = useDispatch();
+  const items = !income ? 'expense' : 'income';
+  const obj = { items, params };
 
-  const delTransaction = (id) => {
-    dispatch(delTransactionThunk(id))
-  }
+  const delTransaction = async (id) => {
+    await dispatch(delTransactionThunk(id))
+    dispatch(summaryThunk(obj))
+  };
+  
   return (
           <tr className={s.tableTr}> 
             <td className={s.transactionDate}>{format(new Date(item.date), 'dd.MM.yyyy')}</td>

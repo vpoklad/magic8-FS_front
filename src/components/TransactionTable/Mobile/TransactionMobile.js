@@ -9,7 +9,6 @@ export const TransactionMobile = ({ item }) => {
   const income = item.typeOfTransaction
   const currValue = income ? item.sum : -item.sum;
   const dispatch = useDispatch();
-  console.log(income)
   const delTransaction = (id) => {
     dispatch(delTransactionThunk(id))
   }
