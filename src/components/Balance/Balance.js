@@ -9,7 +9,6 @@ import { getBalance } from '../../redux/balance/selectors';
 import { Notification } from '../Notification/Notification';
 import Modal from '../Modal/Modal';
 import Button from '../Button/Button';
-// import Report from '../Report/Report';
 
 export default function Balance({
   showBtn = true,
@@ -75,8 +74,6 @@ export default function Balance({
   const classNameContainerMob = mobile && !showBtn ? containerMobile : null;
   return (
     <>
-      {/* <div className={s.container}> */}
-      {/* <Report /> */}
       <div className={s.containerBalance}>
         <span className={s.text}>Баланс:</span>
         <div className={s.containerInput}>
@@ -112,7 +109,7 @@ export default function Balance({
             ))}
         </div>
       </div>
-      {/* </div> */}
+
       {showModal && (
         <Modal text={'Ви впевнені?'} toggleModal={toggleModal}>
           <Button type="button" text="так" onClick={handleBalance} />
