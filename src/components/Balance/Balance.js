@@ -9,7 +9,6 @@ import { getBalance } from '../../redux/balance/selectors';
 import { Notification } from '../Notification/Notification';
 import Modal from '../Modal/Modal';
 import Button from '../Button/Button';
-// import Report from '../Report/Report';
 
 export default function Balance({
   showBtn = true,
@@ -64,14 +63,17 @@ export default function Balance({
     setShowModal(!showModal);
   };
 
+  const onClickBtnConfim = () => {
+    setReadonly(null);
+    setValue('');
+  };
+
   const classNameInputMob = mobile && !showBtn ? inputMobile : null;
   const classNameSpanMob = mobile && !showBtn ? spanMobile : null;
 
   const classNameContainerMob = mobile && !showBtn ? containerMobile : null;
   return (
     <>
-      {/* <div className={s.container}> */}
-      {/* <Report /> */}
       <div className={s.containerBalance}>
         <span className={s.text}>Баланс:</span>
         <div className={s.containerInput}>
@@ -83,14 +85,14 @@ export default function Balance({
               readOnly={readonly}
               type="text"
             />
-            <span className={`${s.span} ${classNameSpanMob}`}>UAN</span>
+            <span className={`${s.span} ${classNameSpanMob}`}>UAH</span>
             {!balance && <Notification />}
           </div>
           {readonly && showBtn && (
             <button
               className={s.editBtn}
               type="button"
-              onClick={() => setReadonly(null)}
+              onClick={onClickBtnConfim}
             >
               <EditOutlinedIcon className={s.iconEdit} />
             </button>
@@ -107,7 +109,7 @@ export default function Balance({
             ))}
         </div>
       </div>
-      {/* </div> */}
+
       {showModal && (
         <Modal text={'Ви впевнені?'} toggleModal={toggleModal}>
           <Button type="button" text="так" onClick={handleBalance} />

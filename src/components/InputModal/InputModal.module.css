@@ -1,0 +1,87 @@
+.Overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+  
+    width: 100vw;
+    height: 100vh;
+  
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  
+    background-color: #00000066;
+    /* z-index: 100; */
+  }
+  
+  .Modal {
+    width: 300px;
+     
+    padding: 20px;
+    background-color: #F5F6FB;
+    box-shadow: 10px 10px 30px #52555f66;
+    border-radius: 30px;
+
+    animation-name: modalInput;
+    animation-duration: 700ms;
+  }
+
+  @keyframes modalInput {
+    0% {
+      transform: translateY(-400px);
+    }
+  
+    50% {
+      transform: translateY(10px);
+    }
+  
+    100% {
+      transform: translateY(0);
+    }
+  }
+
+
+
+
+  .ButtonClose {
+    position: relative;
+    top: px;
+    left: 10px;
+    width: 24px;
+    height: 24px;
+    
+  
+    background: url(./back.svg);
+    background-size: contain;
+    border: none;
+  
+    /* color: var(--mainTextColor); */
+    z-index: 1000;
+  }
+  
+  .ButtonClose:hover {
+    cursor: pointer;
+    color: var(--accentColor);
+  }
+  
+  .Header {
+    margin: 12px 0 0 0;
+  
+    font-family: Roboto;
+    font-weight: bold;
+    font-style: normal;
+    font-size: 14px;
+    line-height: 16.41px;
+    text-align: center;
+    letter-spacing: 0.02em;
+  
+    color: var(--mainTextColor);
+  }
+  
+  .ModalButtons {
+    margin-top: 20px;
+    padding: 0 25px;
+    display: flex;
+    justify-content: space-evenly;
+  }
+  

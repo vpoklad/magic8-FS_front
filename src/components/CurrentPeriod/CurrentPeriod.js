@@ -30,7 +30,6 @@ export default function CurrentPeriod() {
   };
 
   const rendMonth = activeMonths[0];
-  console.log(rendMonth);
 
   const month = rendMonth.month;
   const year = rendMonth.year;
