@@ -1,11 +1,11 @@
 import s from './ExpenseIncomeInReportItem.module.css';
 import sprite from '../../sprite.svg';
-// import ChartBar from '../ChartBar/ChartBar'
 
 export default function ExpenseIncomeInReportItem({ total, id, data }) {
     const selectCategory = () => {
-    //  <ChartBar data={data}/>
+
     }
+
     return (
         <li onClick={selectCategory}
             className={s.listExpense_item}>

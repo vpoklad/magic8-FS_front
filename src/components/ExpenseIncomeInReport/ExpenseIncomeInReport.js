@@ -12,16 +12,16 @@ export default function ExpenseIncomeInReport() {
   const [income, setIncome] = useState(false);
   const dataReports = useSelector(getReports);
 
-  const clickChange = () => {
-    if (expense) {
-      setIncome(true);
-      setExpense(false);
+    const clickChange = () => {
+        if (expense) {
+            setIncome(true);
+            setExpense(false);
+        }
+        if (income) {
+            setIncome(false);
+            setExpense(true);
+        }
     }
-    if (income) {
-      setIncome(false);
-      setExpense(true);
-    }
-  };
 
   let data;
   if (expense && dataReports) {
