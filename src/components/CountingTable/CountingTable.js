@@ -115,7 +115,7 @@ const CountingTable = () => {
         </div>
       )}
 
-      {expense ? (
+      {/* {expense ? (
         <div className={s.counterContainer}>
           <InputTable options={categoryExpense} />
           <div className={s.flexContainer}>
@@ -149,7 +149,7 @@ const CountingTable = () => {
           </div>
         </div>
       )}
-      {!tablet && <TransactionMobileTable transactions={transactions} />}
+      {!tablet && <TransactionMobileTable transactions={transactions} />} */}
       {showModalIncome && !tablet && (
         <InputModal text="Дохід" closeInputModal={onClickModal}>
           <InputTable

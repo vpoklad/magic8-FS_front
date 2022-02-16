@@ -1,11 +1,11 @@
 .CartesianGrid {
-    width: 282px;
+    width: 285px;
     height: 485px;
 }
 @media (min-width: 768px) {
     .CartesianGrid {
         width: 637px;
-        height: 383px;
+        height: 385px;
 
     }
   }
