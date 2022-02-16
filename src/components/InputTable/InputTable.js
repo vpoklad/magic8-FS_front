@@ -1,8 +1,8 @@
 import s from './InputTable.module.css';
-import React, { useState, forwardRef, useEffect } from 'react';
-// import DatePicker from 'react-datepicker';
+import React, { useState } from 'react';
 import useMediaQuery from '@mui/material/useMediaQuery';
 import { format } from 'date-fns';
+import { toast } from 'react-toastify';
 import 'react-datepicker/dist/react-datepicker.css';
 import Select from 'react-select';
 import { addNewTransactionThunk } from '../../redux/transactions/thunk';
@@ -67,8 +67,33 @@ const InputTable = ({ options, income, onSubmit, onClick }) => {
   };
 
   const addTransaction = () => {
+    if (!productName) {
+      return toast.error('Ви забули про опис)', {
+        autoClose: 2000,
+        position: 'top-center',
+        closeOnClick: true,
+      });
+    }
+    if (!category.value) {
+      return toast.error('Не забудьте обрати категорію', {
+        autoClose: 2000,
+        position: 'top-center',
+        closeOnClick: true,
+      });
+    }
+    if (!payValue) {
+      return toast.error('Вкажіть, будь ласка, суму!', {
+        autoClose: 2000,
+        position: 'top-center',
+        closeOnClick: true,
+      });
+    }
     dispatch(addNewTransactionThunk(params));
-    console.log(params);
+    toast.success('Транзакція успішно додана', {
+      autoClose: 1000,
+      position: 'top-center',
+      closeOnClick: true,
+    });
   };
 
   const params = {
