@@ -24,14 +24,13 @@ export default function ExpenseIncomeInReport() {
     };
 
     let data;
-    if (expense) {
+    if (expense && dataReports) {
         data = dataReports.detailedCategoryStatistic.filter((el) => (el._id.typeOfTransaction === false));
     }
-    if (income) {
-       data = dataReports.detailedCategoryStatistic.filter((el) => (el._id.typeOfTransaction));
+    if (income && dataReports) {
+        data = dataReports.detailedCategoryStatistic.filter((el) => (el._id.typeOfTransaction));
     }
-
-    const incomeChart = dataReports.detailedDescriptionStatistic.filter((el) => (el._id.typeOfTransaction));
+    console.log(dataReports);
 
     return (
         <div className={s.containerExpenseIncome}>
@@ -55,12 +54,13 @@ export default function ExpenseIncomeInReport() {
                 }
             </div>
 
-            {dataReports &&
+            {dataReports && <>
+               { data.length>0 &&
                 <div className={s.dataExpenseIncome}>
-                    {data.length > 0 &&
-                        <>{incomeChart && <ChartBarExpInc data={incomeChart} />}</>
-                    }
+                    <ChartBarExpInc data={data} />
                 </div>
+                }
+            </>
             }
         </div>
     )

@@ -13,6 +13,7 @@ export default function IncomeInReport({data}) {
                 {income.map(({ total, _id }) => (
                     <ExpenseIncomeInReportItem key={shortid.generate()} total={total} id={_id} />))
             }</ul></>}
+
         </>
     )
 }

@@ -4,6 +4,8 @@ import shortid from 'shortid';
 
 export default function ExpenseInReport({ data }) {
     const expense = data.detailedCategoryStatistic.filter((el) => (el._id.typeOfTransaction === false));
+    const chartData = data.detailedDescriptionStatistic.filter((el) => (el._id.typeOfTransaction === false));
+    console.log('Expense data chart: ', chartData);
 
     return (
         <>{expense.length === 0
