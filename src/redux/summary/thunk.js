@@ -6,7 +6,7 @@ export const summaryThunk = createAsyncThunk(
   async (obj, { rejectWithValue }) => {
     try {
       const { data } = await getSummary(obj);
-      console.log(data);
+
       return data.data;
     } catch (error) {
       rejectWithValue(error);

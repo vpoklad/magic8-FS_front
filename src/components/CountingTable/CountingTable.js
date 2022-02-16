@@ -52,9 +52,7 @@ const CountingTable = () => {
     setExpense(false);
   };
 
-
-
- /*  const onDeleteTransactionSuccess = () => {
+  /*  const onDeleteTransactionSuccess = () => {
     toast.success('Transaction has been deleted.');
     dispatch(getBalance());
   }; */
@@ -63,70 +61,73 @@ const CountingTable = () => {
     toast.error('Something went wrong, please try again later.');
   };
 
- useEffect(() => {
-   dispatch(getTransactionsThunk())
-  }, [clickIncome])
-  
-  const { transactions } = useSelector(getTransactions)
+  useEffect(() => {
+    dispatch(getTransactionsThunk());
+  }, [expense, dispatch]);
 
+  const { transactions } = useSelector(getTransactions);
 
   const aspect = expense ? true : false;
 
   return (
     <div className={s.counterWrapper}>
-      {!tablet ? (<div className={s.mobileBtn}>
-        <button
-          className={s.mobileCounterBtn}
-        >
-          Витрати
-        </button>
-        <button
-          className={s.mobileCounterBtn}
-        >
-          Дохід
-        </button>
-      </div>) : <div className={s.tabletBtn}>
-        <button
-          className={expense ? s['counterAccentBtn'] : s['counterTabletBtn']}
-          onClick={clickExpense}
-        >
-          Витрати
-        </button>
-        <button
-          className={income ? s['counterAccentBtn'] : s['counterTabletBtn']}
-          onClick={clickIncome}
-        >
-          Дохід
-        </button>
-      </div>}
+      {!tablet ? (
+        <div className={s.mobileBtn}>
+          <button className={s.mobileCounterBtn}>Витрати</button>
+          <button className={s.mobileCounterBtn}>Дохід</button>
+        </div>
+      ) : (
+        <div className={s.tabletBtn}>
+          <button
+            className={expense ? s['counterAccentBtn'] : s['counterTabletBtn']}
+            onClick={clickExpense}
+          >
+            Витрати
+          </button>
+          <button
+            className={income ? s['counterAccentBtn'] : s['counterTabletBtn']}
+            onClick={clickIncome}
+          >
+            Дохід
+          </button>
+        </div>
+      )}
 
       {expense ? (
         <div className={s.counterContainer}>
           <InputTable options={categoryExpense} />
           <div className={s.flexContainer}>
-            {!transactions ? ('') : <TransactionTable
-              transactions={transactions.filter(point => (!point.typeOfTransaction))}
-            />}
+            {!transactions ? (
+              ''
+            ) : (
+              <TransactionTable
+                transactions={transactions.filter(
+                  point => !point.typeOfTransaction,
+                )}
+              />
+            )}
             {tablet && <Summary aspect={aspect} />}
           </div>
         </div>
       ) : (
         <div className={s.counterContainer}>
-          <InputTable
-            options={categoryIncome}
-            income={income}
-          />
+          <InputTable options={categoryIncome} income={income} />
           <div className={s.flexContainer}>
-            {!transactions ? ('') :
+            {!transactions ? (
+              ''
+            ) : (
               <TransactionTable
-                transactions={transactions.filter(point => (point.typeOfTransaction))}
+                transactions={transactions.filter(
+                  point => point.typeOfTransaction,
+                )}
                 income={income}
-              />}
+              />
+            )}
             {tablet && <Summary aspect={aspect} />}
           </div>
         </div>
       )}
-      {!tablet && <TransactionMobileTable transactions={transactions}/>}
+      {!tablet && <TransactionMobileTable transactions={transactions} />}
     </div>
   );
 };
