@@ -1,8 +1,11 @@
 .CartesianGrid {
-    width: 637px;
-    height: 383px;
-    margin-left: -15px;
-    margin-top: 15px;
-    z-index: 1000;
-    /* background-image: url(./base_line.svg); */
+    width: 282px;
+    height: 485px;
 }
+@media (min-width: 768px) {
+    .CartesianGrid {
+        width: 637px;
+        height: 383px;
+
+    }
+  }

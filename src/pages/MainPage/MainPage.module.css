@@ -87,3 +87,17 @@
     padding: 20px 227px;
   }
 }
+@media (min-width: 768px) {
+  .containerNav {
+    display: flex;
+    flex-direction: row-reverse;
+    align-items: baseline;
+    margin-bottom: 58px;
+  }
+}
+
+@media (min-width: 1280px) {
+  .containerNav {
+    margin-bottom: 9px;
+  }
+}
