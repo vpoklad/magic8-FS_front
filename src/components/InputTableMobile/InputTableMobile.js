@@ -66,7 +66,6 @@ const InputTableMobile = ({ options, income, onSubmit }) => {
 
   const addTransaction = () => {
     dispatch(addNewTransactionThunk(params));
-    console.log(params);
   };
 
   const params = {
