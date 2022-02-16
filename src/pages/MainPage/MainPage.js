@@ -1,7 +1,16 @@
 import s from './MainPage.module.css';
-// import Balance from '../../components/Balance/Balance';
-// import    from '../../components/CountingTable/CountingTable'
+import Balance from '../../components/Balance/Balance';
+import CountingTable from '../../components/CountingTable/CountingTable';
+import Report from '../../components/Report/Report';
 
-export default function MainPage({ children }) {
-  return <div>{children}</div>;
+export default function MainPage() {
+  return (
+    <div className={s.container}>
+      <div className={s.containerNav}>
+        <Report />
+        <Balance />
+      </div>
+      <CountingTable />
+    </div>
+  );
 }
