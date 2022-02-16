@@ -30,5 +30,5 @@ const TransactionTable = ({ income, transactions }) => {
     )
 }
 
-export default TransactionTable
 
+export default TransactionTable;
