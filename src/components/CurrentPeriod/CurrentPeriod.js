@@ -1,6 +1,5 @@
 import s from './CurrentPeriod.module.css';
 import sprite from '../../sprite.svg';
-import { useEffect } from 'react';
 import { useDatepicker } from '@datepicker-react/hooks';
 import { useDispatch } from 'react-redux';
 import Month from './Month';
@@ -35,10 +34,6 @@ export default function CurrentPeriod() {
 
   const month = rendMonth.month;
   const year = rendMonth.year;
-
-  useEffect(() => {
-    dispatch(getReportThunk({ month, year }));
-  }, []);
 
   const getReport = () => {
     dispatch(getReportThunk({ month, year }));
