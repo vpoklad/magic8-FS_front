@@ -3,7 +3,6 @@ import { BarChart, Bar, Cell, XAxis, YAxis, CartesianGrid,ResponsiveContainer } 
 import useMediaQuery from '@mui/material/useMediaQuery';
 import { useSelector } from 'react-redux';
 import { getReports } from '../../redux/reports/selectors';
-import { findByLabelText } from '@testing-library/dom';
 
 const ChartBar = (data) => {
 const tablet = useMediaQuery('(min-width: 768px)');
