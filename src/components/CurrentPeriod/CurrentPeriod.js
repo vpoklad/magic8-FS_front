@@ -1,5 +1,6 @@
 import s from './CurrentPeriod.module.css';
 import sprite from '../../sprite.svg';
+import { useEffect } from 'react';
 import { useDatepicker } from '@datepicker-react/hooks';
 import { useDispatch } from 'react-redux';
 import Month from './Month';
@@ -19,11 +20,9 @@ export default function CurrentPeriod() {
     switch (e.currentTarget.name) {
       case 'increment':
         goToNextMonthsByOneMonth();
-        getReport();
         break;
       case 'decrement':
         goToPreviousMonthsByOneMonth();
-        getReport();
         break;
       default:
         break;
@@ -31,13 +30,14 @@ export default function CurrentPeriod() {
   };
 
   const rendMonth = activeMonths[0];
+  console.log(rendMonth);
 
   const month = rendMonth.month;
   const year = rendMonth.year;
 
-  const getReport = () => {
+  useEffect(() => {
     dispatch(getReportThunk({ month, year }));
-  };
+  }, [dispatch, month, year]);
 
   return (
     <div className={s.containerCurrentPeriod}>

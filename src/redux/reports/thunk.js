@@ -6,6 +6,7 @@ import { createAsyncThunk } from '@reduxjs/toolkit';
 export const getReportThunk = createAsyncThunk(
   'getReport/get',
   async (params, { rejectWithValue }) => {
+    console.log(params);
     try {
       const { data } = await axios.get('api/stats/detailed', {
         params: params,
