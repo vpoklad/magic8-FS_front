@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import useMediaQuery from '@mui/material/useMediaQuery';
 import InputTable from '../InputTable/InputTable';
@@ -7,6 +7,9 @@ import TransactionTable from '../TransactionTable/TransactionTable';
 import s from './CountingTable.module.css';
 
 import Summary from '../Summary/Summary';
+import { getTransactionsThunk } from '../../redux/transactions/thunk';
+import { getTransactions } from '../../redux/transactions/transactionsSelectors';
+import TransactionMobileTable from '../TransactionTable/Mobile/TransactionTableMobile';
 
 const categoryExpense = [
   { value: 'transport', label: 'Транспорт' },
@@ -31,7 +34,6 @@ const CountingTable = () => {
   const dispatch = useDispatch();
   const [expense, setExpense] = useState(true);
   const [income, setIncome] = useState(false);
-  const transactions = 0;
 
   const tablet = useMediaQuery('(min-width: 768px)');
   const clickExpense = () => {
@@ -61,23 +63,25 @@ const CountingTable = () => {
     toast.error('Something went wrong, please try again later.');
   };
 
-
+ useEffect(() => {
+   dispatch(getTransactionsThunk())
+  }, [clickIncome])
+  
+  const { transactions } = useSelector(getTransactions)
 
 
   const aspect = expense ? true : false;
 
   return (
     <div className={s.counterWrapper}>
-      {!tablet? (<div className={s.mobileBtn}>
+      {!tablet ? (<div className={s.mobileBtn}>
         <button
           className={s.mobileCounterBtn}
-          onClick={clickExpense}
         >
           Витрати
         </button>
         <button
           className={s.mobileCounterBtn}
-          onClick={clickIncome}
         >
           Дохід
         </button>
@@ -100,9 +104,9 @@ const CountingTable = () => {
         <div className={s.counterContainer}>
           <InputTable options={categoryExpense} />
           <div className={s.flexContainer}>
-            <TransactionTable
-              transactions={transactions}
-            />
+            {!transactions ? ('') : <TransactionTable
+              transactions={transactions.filter(point => (!point.typeOfTransaction))}
+            />}
             {tablet && <Summary aspect={aspect} />}
           </div>
         </div>
@@ -113,14 +117,16 @@ const CountingTable = () => {
             income={income}
           />
           <div className={s.flexContainer}>
-            <TransactionTable
-              transactions={transactions}
-              income={income}
-            />
+            {!transactions ? ('') :
+              <TransactionTable
+                transactions={transactions.filter(point => (point.typeOfTransaction))}
+                income={income}
+              />}
             {tablet && <Summary aspect={aspect} />}
           </div>
         </div>
       )}
+      {!tablet && <TransactionMobileTable transactions={transactions}/>}
     </div>
   );
 };
