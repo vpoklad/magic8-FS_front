@@ -1,0 +1,79 @@
+.Overlay {
+    position: fixed;
+    top: -12%;
+    left: 0;
+  
+    width: 100vw;
+    height: 100vh;
+  
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  
+    /* background-color: #00000066; */
+    z-index: 100;
+  }
+  
+  /* .Modal {
+    width: 380px;
+    height: 194px;
+  
+    padding: 20px;
+    background-color: var(--basicColor);
+    box-shadow: 10px 10px 30px #52555f66;
+    border-radius: 30px;
+  } */
+
+  .Modal {
+    position: absolute;
+    z-index: -5;
+    width: 100%;
+    min-height: 290px;
+    background-image: url(./fon-mob.svg);
+    background-repeat: no-repeat;
+    background-size: 100% 100%;
+    fill: var(--backgroundColor);
+  }
+  
+  .ButtonClose {
+    position: relative;
+    top: px;
+    left: 10px;
+    width: 24px;
+    height: 24px;
+    
+  
+    background: url(./back.svg);
+    background-size: contain;
+    border: none;
+  
+    /* color: var(--mainTextColor); */
+    z-index: 1000;
+  }
+  
+  .ButtonClose:hover {
+    cursor: pointer;
+    color: var(--accentColor);
+  }
+  
+  .Header {
+    margin: 12px 0 0 0;
+  
+    font-family: Roboto;
+    font-weight: bold;
+    font-style: normal;
+    font-size: 14px;
+    line-height: 16.41px;
+    text-align: center;
+    letter-spacing: 0.02em;
+  
+    color: var(--mainTextColor);
+  }
+  
+  .ModalButtons {
+    margin-top: 20px;
+    padding: 0 25px;
+    display: flex;
+    justify-content: space-evenly;
+  }
+  

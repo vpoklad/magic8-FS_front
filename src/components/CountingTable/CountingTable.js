@@ -4,7 +4,9 @@ import useMediaQuery from '@mui/material/useMediaQuery';
 import InputTable from '../InputTable/InputTable';
 import { toast } from 'react-toastify';
 import TransactionTable from '../TransactionTable/TransactionTable';
+import InputTableMobile from '../InputTableMobile/InputTableMobile';
 import s from './CountingTable.module.css';
+import InputModal from '../InputModal/InputModal';
 
 import Summary from '../Summary/Summary';
 
@@ -31,10 +33,16 @@ const CountingTable = () => {
   const dispatch = useDispatch();
   const [expense, setExpense] = useState(true);
   const [income, setIncome] = useState(false);
+  const [showModal, setShowModal] = useState(false);
   const transactions = 0;
 
   const tablet = useMediaQuery('(min-width: 768px)');
+  const mobile = useMediaQuery('(max-width: 767px)');
+
   const clickExpense = () => {
+    if (mobile) {
+      return setShowModal(true);
+    }
     if (expense) return;
     setIncome(false);
     setExpense(true);
@@ -50,9 +58,7 @@ const CountingTable = () => {
     setExpense(false);
   };
 
-
-
- /*  const onDeleteTransactionSuccess = () => {
+  /*  const onDeleteTransactionSuccess = () => {
     toast.success('Transaction has been deleted.');
     dispatch(getBalance());
   }; */
@@ -61,67 +67,67 @@ const CountingTable = () => {
     toast.error('Something went wrong, please try again later.');
   };
 
-
-
-
   const aspect = expense ? true : false;
 
-  return (
-    <div className={s.counterWrapper}>
-      {!tablet? (<div className={s.mobileBtn}>
-        <button
-          className={s.mobileCounterBtn}
-          onClick={clickExpense}
-        >
-          Витрати
-        </button>
-        <button
-          className={s.mobileCounterBtn}
-          onClick={clickIncome}
-        >
-          Дохід
-        </button>
-      </div>) : <div className={s.tabletBtn}>
-        <button
-          className={expense ? s['counterAccentBtn'] : s['counterTabletBtn']}
-          onClick={clickExpense}
-        >
-          Витрати
-        </button>
-        <button
-          className={income ? s['counterAccentBtn'] : s['counterTabletBtn']}
-          onClick={clickIncome}
-        >
-          Дохід
-        </button>
-      </div>}
+  const onToggle = () => {
+    setShowModal(false);
+  };
 
-      {expense ? (
-        <div className={s.counterContainer}>
-          <InputTable options={categoryExpense} />
-          <div className={s.flexContainer}>
-            <TransactionTable
-              transactions={transactions}
-            />
-            {tablet && <Summary aspect={aspect} />}
+  return (
+    <>
+      <div className={s.counterWrapper}>
+        {!tablet ? (
+          <div className={s.mobileBtn}>
+            <button className={s.mobileCounterBtn} onClick={clickExpense}>
+              Витрати
+            </button>
+            <button className={s.mobileCounterBtn} onClick={clickIncome}>
+              Дохід
+            </button>
           </div>
-        </div>
-      ) : (
-        <div className={s.counterContainer}>
-          <InputTable
-            options={categoryIncome}
-            income={income}
-          />
-          <div className={s.flexContainer}>
-            <TransactionTable
-              transactions={transactions}
-              income={income}
-            />
-            {tablet && <Summary aspect={aspect} />}
+        ) : (
+          <div className={s.tabletBtn}>
+            <button
+              className={
+                expense ? s['counterAccentBtn'] : s['counterTabletBtn']
+              }
+              onClick={clickExpense}
+            >
+              Витрати
+            </button>
+            <button
+              className={income ? s['counterAccentBtn'] : s['counterTabletBtn']}
+              onClick={clickIncome}
+            >
+              Дохід
+            </button>
           </div>
-        </div>
+        )}
+
+        {expense ? (
+          <div className={s.counterContainer}>
+            <InputTable options={categoryExpense} />
+            <div className={s.flexContainer}>
+              <TransactionTable transactions={transactions} />
+              {tablet && <Summary aspect={aspect} />}
+            </div>
+          </div>
+        ) : (
+          <div className={s.counterContainer}>
+            <InputTable options={categoryIncome} income={income} />
+            <div className={s.flexContainer}>
+              <TransactionTable transactions={transactions} income={income} />
+              {tablet && <Summary aspect={aspect} />}
+            </div>
+          </div>
+        )}
+      </div>
+      {showModal && (
+        <InputModal toggleModal={onToggle}>
+          <InputTableMobile />
+        </InputModal>
       )}
-    </div>
+    </>
   );
 };
 
