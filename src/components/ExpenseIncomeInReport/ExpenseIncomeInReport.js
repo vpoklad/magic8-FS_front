@@ -5,6 +5,7 @@ import sprite from '../../sprite.svg';
 import s from './ExpenseIncomeInReport.module.css';
 import { useSelector } from 'react-redux';
 import { getReports } from '../../redux/reports/selectors';
+import ChartBarExpInc from '../ChartBarExpInc/ChartBarExpInc';
 
 export default function ExpenseIncomeInReport() {
     const [expense, setExpense] = useState(true);
@@ -22,31 +23,46 @@ export default function ExpenseIncomeInReport() {
         }
     };
 
+    let data;
+    if (expense) {
+        data = dataReports.detailedCategoryStatistic.filter((el) => (el._id.typeOfTransaction === false));
+    }
+    if (income) {
+       data = dataReports.detailedCategoryStatistic.filter((el) => (el._id.typeOfTransaction));
+    }
+
+    const incomeChart = dataReports.detailedDescriptionStatistic.filter((el) => (el._id.typeOfTransaction));
+
     return (
         <div className={s.containerExpenseIncome}>
-            <div className={s.wrapper}>
-                <button
-                    className={s.btnChevron}
-                    onClick={clickChange}>
-                    <svg className={s.item_svg} width="4" height="10"><use href={`${sprite}#icon-chevronLeft`}></use></svg>
-                </button>
-                <p className={s.title}>{expense ? 'Витрати' : 'Доходи'}</p>
-                <button
-                    className={s.btnChevron}
-                    onClick={clickChange}>
-                    <svg className={s.item_svg} width="4" height="10"><use href={`${sprite}#icon-chevronRight`}></use></svg>
-                </button>
+            <div className={s.dataExpenseIncome}>
+                <div className={s.wrapper}>
+                    <button
+                        className={s.btnChevron}
+                        onClick={clickChange}>
+                        <svg className={s.item_svg} width="4" height="10"><use href={`${sprite}#icon-chevronLeft`}></use></svg>
+                    </button>
+                    <p className={s.title}>{expense ? 'Витрати' : 'Доходи'}</p>
+                    <button
+                        className={s.btnChevron}
+                        onClick={clickChange}>
+                        <svg className={s.item_svg} width="4" height="10"><use href={`${sprite}#icon-chevronRight`}></use></svg>
+                    </button>
+                </div>
+
+                {dataReports &&
+                    <>{expense ? <ExpenseInReport data={dataReports} /> : <IncomeInReport data={dataReports} />}</>
+                }
             </div>
+
             {dataReports &&
-                <>
-                {expense ? <ExpenseInReport data={dataReports} /> : <IncomeInReport data={dataReports} />}
-            </>
+                <div className={s.dataExpenseIncome}>
+                    {data.length > 0 &&
+                        <>{incomeChart && <ChartBarExpInc data={incomeChart} />}</>
+                    }
+                </div>
             }
-            </div>
-
+        </div>
     )
-
-
-
 }
 
