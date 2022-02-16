@@ -60,6 +60,9 @@ export default function Balance({
       setValue(balance);
       return toast.error('Помилка! Вводити можна тільки числа!');
     }
+    if (value === '') {
+      return toast.error('Помилка! Поле не може бути порожнім!');
+    }
     setShowModal(!showModal);
   };
 
@@ -79,6 +82,7 @@ export default function Balance({
         <div className={s.containerInput}>
           <div className={`${s.containerRelative} ${classNameContainerMob}`}>
             <input
+              required
               className={`${s.balanceInput} ${classNameInputMob}`}
               value={value}
               onChange={сhangeBalance}
