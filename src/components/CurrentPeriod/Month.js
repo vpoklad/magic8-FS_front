@@ -1,12 +1,6 @@
 import { useMonth } from '@datepicker-react/hooks';
 
 function Month({ year, month }) {
-  // const { monthLabel } = useMonth({
-  //   year,
-  //   month,
-  // });
-  // console.log(month);
-
   const monthes = [
     'СІЧЕНЬ',
     'ЛЮТИЙ',

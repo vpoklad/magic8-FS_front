@@ -8,12 +8,8 @@ import { getReportThunk } from '../../redux/reports/thunk';
 import DatepickerContext from './datepickerContext';
 
 export default function CurrentPeriod() {
-<<<<<<< Updated upstream
-  console.log(uk);
-=======
   const dispatch = useDispatch();
 
->>>>>>> Stashed changes
   const {
     activeMonths,
     goToPreviousMonthsByOneMonth,
