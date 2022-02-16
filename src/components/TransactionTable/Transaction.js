@@ -2,7 +2,7 @@ import { format } from 'date-fns'
 import s from './TransactionTable.module.css'
 import sprite from '../../sprite.svg';
 import { useDispatch } from 'react-redux'
-import { delTransactionThunk } from '../../redux/transactions/thunk';
+import { delTransactionThunk, getTransactionsThunk } from '../../redux/transactions/thunk';
 
 export const Transaction = ({ item, income }) => {
 
@@ -12,7 +12,9 @@ export const Transaction = ({ item, income }) => {
 
   const delTransaction = (id) => {
     dispatch(delTransactionThunk(id))
-  }
+    dispatch(getTransactionsThunk())
+  };
+  
   return (
           <tr className={s.tableTr}> 
             <td className={s.transactionDate}>{format(new Date(item.date), 'dd.MM.yyyy')}</td>
