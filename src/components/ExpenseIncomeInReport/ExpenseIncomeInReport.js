@@ -30,7 +30,6 @@ export default function ExpenseIncomeInReport() {
     if (income && dataReports) {
         data = dataReports.detailedCategoryStatistic.filter((el) => (el._id.typeOfTransaction));
     }
-    console.log(dataReports);
 
     return (
         <div className={s.containerExpenseIncome}>

@@ -28,7 +28,7 @@ p {
 @media (min-width: 768px) {
   .listExpense {
     margin-bottom: 30px;
-    margin-left: -10px;
+    margin-left: -20px;
   }
 }
 
