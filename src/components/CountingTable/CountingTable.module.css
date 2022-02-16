@@ -74,7 +74,7 @@
     left: 0;
     bottom: 0;
     flex-direction: row;
-    background-color: var(--basicColor);
+    z-index: 1000;
   }
 }
 

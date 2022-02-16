@@ -103,7 +103,7 @@ const InputTable = ({ options, income, onSubmit, onClick }) => {
     sum: payValue.includes(',') ? +payValue.replace(/,/g, '.') : +payValue,
     date: format(new Date(date), 'yyyy-MM-dd'),
     year: format(new Date(date), 'yyyy'),
-    month: format(new Date(date), 'MM'),
+     month: `${date.getMonth()}`,
     day: format(new Date(date), 'dd'),
     typeOfTransaction: income ? true : false,
   };

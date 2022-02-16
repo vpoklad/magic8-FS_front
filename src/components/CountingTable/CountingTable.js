@@ -70,8 +70,8 @@ const CountingTable = () => {
     dispatch(getTransactionsThunk());
   }, []);
 
-  const { transactions } = useSelector(getTransactions);
-
+  const transactions  = useSelector(getTransactions);
+  console.log(transactions)
   const aspect = expense ? true : false;
 
   const toShowModalExpense = () => {

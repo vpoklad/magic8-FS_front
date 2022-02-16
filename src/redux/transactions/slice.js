@@ -15,7 +15,7 @@ const transactionsSlice = createSlice({
       state.isLoading = true;
     },
     [getTransactionsThunk.fulfilled]: (state, action) => {
-      state.data = action.payload.data;
+      state.data = action.payload.transactions;
       state.isLoading = false;
       state.error = null;
     },
