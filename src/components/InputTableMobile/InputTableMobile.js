@@ -1,24 +1,22 @@
-import s from './InputTable.module.css';
 import React, { useState, forwardRef, useEffect } from 'react';
-// import DatePicker from 'react-datepicker';
-import useMediaQuery from '@mui/material/useMediaQuery';
 import { format } from 'date-fns';
 import 'react-datepicker/dist/react-datepicker.css';
 import Select from 'react-select';
 import { addNewTransactionThunk } from '../../redux/transactions/thunk';
 import { useDispatch } from 'react-redux';
-import DatePickerComponent from '../DatePicker/DatePicker';
-import Button from '../Button/Button';
 
-const InputTable = ({ options, income, onSubmit, onClick }) => {
+import Modal from '../Modal/Modal';
+import GoToBack from '../GoToBack/GoToBack';
+import Button from '../Button/Button';
+import s from './InputTableMobile.module.css';
+
+const InputTableMobile = ({ options, income, onSubmit }) => {
   const initialDate = new Date();
   const [date, setDate] = useState(initialDate);
   const [productName, setProductName] = useState('');
   const [payValue, setPayValue] = useState('');
   const [category, setCategory] = useState([]);
   const dispatch = useDispatch();
-
-  const tablet = useMediaQuery('(min-width: 768px)');
 
   const resetInput = () => {
     setProductName('');
@@ -86,9 +84,6 @@ const InputTable = ({ options, income, onSubmit, onClick }) => {
   return (
     <div className={s.inputContainer}>
       <div className={s.inputShell}>
-        <div className={s.datepieckerWrapper}>
-          {tablet ? <DatePickerComponent /> : null}
-        </div>
         <form className={s.inputForm}>
           <input
             className={s.productName}
@@ -106,7 +101,6 @@ const InputTable = ({ options, income, onSubmit, onClick }) => {
             value={category}
             onChange={setCategory}
             isSearchable={false}
-            className={s.categoryName}
           />
           <label className={s.productAmountLabel}>
             <input
@@ -125,7 +119,6 @@ const InputTable = ({ options, income, onSubmit, onClick }) => {
               viewBox="0 0 20 20"
               fill="none"
               xmlns="http://www.w3.org/2000/svg"
-              className={s.svgCalc}
             >
               <path
                 d="M17.0312 0H2.96875C1.99949 0 1.21094 0.788555 1.21094 1.75781V18.2422C1.21094 19.2114 1.99949 20 2.96875 20H17.0312C18.0005 20 18.7891 19.2114 18.7891 18.2422V1.75781C18.7891 0.788555 18.0005 0 17.0312 0ZM17.6172 18.2422C17.6172 18.5653 17.3543 18.8281 17.0312 18.8281H2.96875C2.64566 18.8281 2.38281 18.5653 2.38281 18.2422V1.75781C2.38281 1.43473 2.64566 1.17188 2.96875 1.17188H17.0312C17.3543 1.17188 17.6172 1.43473 17.6172 1.75781V18.2422Z"
@@ -162,32 +155,16 @@ const InputTable = ({ options, income, onSubmit, onClick }) => {
       <div className={s.mainBtnTable}>
         <Button
           type="submit"
-          onClick={() => {
-            addTransaction();
-            resetInput();
-            onClick();
-          }}
           text="Ввести"
-        />
-        <Button type="button" onClick={resetInput} text="Очистити" />
-
-        {/* <button
-          className={s.mainBtn}
-          type="submit"
           onClick={() => {
             addTransaction();
             resetInput();
-            onClick();
           }}
-        >
-          Ввести
-        </button>
-        <button className={s.changeBtn} type="button" onClick={resetInput}>
-          Очистити
-        </button> */}
+        />
+        <Button type="button" text="Очистити" onClick={resetInput} />
       </div>
     </div>
   );
 };
 
-export default InputTable;
+export default InputTableMobile;

@@ -10,6 +10,7 @@ import Summary from '../Summary/Summary';
 import { getTransactionsThunk } from '../../redux/transactions/thunk';
 import { getTransactions } from '../../redux/transactions/transactionsSelectors';
 import TransactionMobileTable from '../TransactionTable/Mobile/TransactionTableMobile';
+import InputModal from '../InputModal/InputModal';
 
 const categoryExpense = [
   { value: 'transport', label: 'Транспорт' },
@@ -35,7 +36,11 @@ const CountingTable = () => {
   const [expense, setExpense] = useState(true);
   const [income, setIncome] = useState(false);
 
+  const [showModalExpense, setShowModalExpense] = useState(false);
+  const [showModalIncome, setShowModalIncome] = useState(false);
+
   const tablet = useMediaQuery('(min-width: 768px)');
+
   const clickExpense = () => {
     if (expense) return;
     setIncome(false);
@@ -69,12 +74,29 @@ const CountingTable = () => {
 
   const aspect = expense ? true : false;
 
+  const toShowModalExpense = () => {
+    setShowModalExpense(true);
+  };
+
+  const toShowModalIncome = () => {
+    setShowModalIncome(true);
+  };
+
+  const onClickModal = () => {
+    setShowModalExpense(false);
+    setShowModalIncome(false);
+  };
+
   return (
     <div className={s.counterWrapper}>
       {!tablet ? (
         <div className={s.mobileBtn}>
-          <button className={s.mobileCounterBtn}>Витрати</button>
-          <button className={s.mobileCounterBtn}>Дохід</button>
+          <button className={s.mobileCounterBtn} onClick={toShowModalExpense}>
+            Витрати
+          </button>
+          <button className={s.mobileCounterBtn} onClick={toShowModalIncome}>
+            Дохід
+          </button>
         </div>
       ) : (
         <div className={s.tabletBtn}>
@@ -128,6 +150,20 @@ const CountingTable = () => {
         </div>
       )}
       {!tablet && <TransactionMobileTable transactions={transactions} />}
+      {showModalIncome && !tablet && (
+        <InputModal text="Дохід" closeInputModal={onClickModal}>
+          <InputTable
+            options={categoryIncome}
+            income={income}
+            onClick={onClickModal}
+          />
+        </InputModal>
+      )}
+      {showModalExpense && !tablet && (
+        <InputModal text="Витрата" closeInputModal={onClickModal}>
+          <InputTable options={categoryExpense} onClick={onClickModal} />
+        </InputModal>
+      )}
     </div>
   );
 };

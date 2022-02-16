@@ -1,8 +1,9 @@
-import CloseIcon from '@mui/icons-material/Close';
 import { useEffect } from 'react';
-import s from './Modal.module.css';
+import InputTable from '../InputTable/InputTable';
 
-const Modal = ({ text, children, toggleModal }) => {
+import s from './InputModal.module.css';
+
+const InputModal = ({ text, children, closeInputModal }) => {
   useEffect(() => {
     window.addEventListener('keydown', handleEscape);
     return () => {
@@ -12,24 +13,19 @@ const Modal = ({ text, children, toggleModal }) => {
 
   const handleEscape = e => {
     if (e.code === 'Escape') {
-      toggleModal();
+      closeInputModal();
     }
   };
   const handleClose = e => {
     if (e.currentTarget === e.target) {
-      toggleModal();
+      closeInputModal();
     }
   };
 
   return (
     <div className={s.Overlay} onClick={handleClose}>
       <div className={s.Modal}>
-        <CloseIcon
-          className={s.ButtonClose}
-          fontSize="small"
-          type="button"
-          onClick={handleClose}
-        />
+        <button className={s.ButtonClose} onClick={handleClose}></button>
 
         <p className={s.Header}> {text} </p>
 
@@ -38,4 +34,4 @@ const Modal = ({ text, children, toggleModal }) => {
     </div>
   );
 };
-export default Modal;
+export default InputModal;
