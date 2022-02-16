@@ -22,43 +22,21 @@ export default function Summary({ aspect }) {
 
   useEffect(() => {
     dispatch(summaryThunk(obj));
-  }, []);
+  }, [items, dispatch]);
 
   return (
     <div className={s.wrapper}>
       <p className={s.title}>Зведення</p>
       <ul className={s.list}>
-        <li className={s.item}>
-          <span className={s.fieldMonth}>ноябрь</span>
-          <span className={s.fieldSumm}>2.500</span>
-        </li>
-        <li className={s.item}>
-          <span className={s.fieldMonth}>октябрь</span>
-          <span className={s.fieldSumm}>10.000</span>
-        </li>{' '}
-        <li className={s.item}>
-          <span className={s.fieldMonth}>сентябрь</span>
-          <span className={s.fieldSumm}>10.000</span>
-        </li>{' '}
-        <li className={s.item}>
-          <span className={s.fieldMonth}>Август</span>
-          <span className={s.fieldSumm}>10.000</span>
-        </li>{' '}
-        <li className={s.item}>
-          <span className={s.fieldMonth}>Июль</span>
-          <span className={s.fieldSumm}>10.000</span>
-        </li>{' '}
-        <li className={s.item}>
-          <span className={s.fieldMonth}>июнь</span>
-          <span className={s.fieldSumm}>10.000</span>
-        </li>
-        {/* {summary.length > 0 &&
+        {summary &&
           summary.map(item => (
-            <li className={s.item} key={`${item.id}`}>
+            <li className={s.item} key={`${item._id}`}>
               <span className={s.fieldMonth}>{item.month}</span>
-              <span className={s.fieldSumm}>{item.sum}</span>
+              <span className={s.fieldSumm}>
+                {item.totalExpense || item.totalIncome}
+              </span>
             </li>
-          ))} */}
+          ))}
       </ul>
     </div>
   );
