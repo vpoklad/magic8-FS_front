@@ -63,7 +63,7 @@ const CountingTable = () => {
 
   useEffect(() => {
     dispatch(getTransactionsThunk());
-  }, [expense, dispatch]);
+  }, [clickIncome]);
 
   const { transactions } = useSelector(getTransactions);
 
