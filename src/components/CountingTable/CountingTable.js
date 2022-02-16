@@ -71,7 +71,6 @@ const CountingTable = () => {
   }, []);
 
   const transactions  = useSelector(getTransactions);
-  console.log(transactions)
   const aspect = expense ? true : false;
 
   const toShowModalExpense = () => {

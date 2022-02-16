@@ -9,6 +9,8 @@ import { addNewTransactionThunk } from '../../redux/transactions/thunk';
 import { useDispatch } from 'react-redux';
 import DatePickerComponent from '../DatePicker/DatePicker';
 import Button from '../Button/Button';
+import { getBalanceThunk } from '../../redux/balance/thunk';
+import { summaryThunk } from '../../redux/summary/thunk';
 
 const InputTable = ({ options, income, onSubmit, onClick }) => {
   const initialDate = new Date();
@@ -66,6 +68,13 @@ const InputTable = ({ options, income, onSubmit, onClick }) => {
     }),
   };
 
+  const year = date.getFullYear();
+  const month = date.getMonth();
+  const params = { year: year, month: month };
+  const items = !income ? 'expense' : 'income';
+  const obj = { items, params };
+
+
   const addTransaction = () => {
     if (!productName) {
       return toast.error('Ви забули про опис)', {
@@ -88,15 +97,16 @@ const InputTable = ({ options, income, onSubmit, onClick }) => {
         closeOnClick: true,
       });
     }
-    dispatch(addNewTransactionThunk(params));
+    dispatch(addNewTransactionThunk(details));
     toast.success('Транзакція успішно додана', {
       autoClose: 1000,
       position: 'top-center',
       closeOnClick: true,
     });
+    dispatch(summaryThunk(obj))
   };
 
-  const params = {
+  const details = {
     description: productName,
     category: category.value,
     categoryLabel: category.label,
@@ -190,7 +200,7 @@ const InputTable = ({ options, income, onSubmit, onClick }) => {
           onClick={() => {
             addTransaction();
             resetInput();
-            onClick();
+            /* onClick(); */
           }}
           text="Ввести"
         />

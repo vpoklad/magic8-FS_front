@@ -27,7 +27,7 @@ const transactionsSlice = createSlice({
       state.isLoading = true;
     },
     [addNewTransactionThunk.fulfilled]: (state, action) => {
-      state.data = action.payload;
+      state.data = action.payload.transactions;
       state.isLoading = false;
       state.error = null;
     },
@@ -39,7 +39,7 @@ const transactionsSlice = createSlice({
       state.isLoading = true;
     },
     [delTransactionThunk.fulfilled]: (state, action) => {
-      state.data = action.payload;
+      state.data = action.payload.transactions;
       state.isLoading = false;
       state.error = null;
     },
