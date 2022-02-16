@@ -8,7 +8,6 @@ import { getReports } from '../../redux/reports/selectors';
 import ChartBarExpInc from '../ChartBarExpInc/ChartBarExpInc';
 
 export default function ExpenseIncomeInReport() {
-
     const [expense, setExpense] = useState(true);
     const [income, setIncome] = useState(false);
     const dataReports = useSelector(getReports);
@@ -65,5 +64,4 @@ export default function ExpenseIncomeInReport() {
             }
         </div>
     )
-
 }
