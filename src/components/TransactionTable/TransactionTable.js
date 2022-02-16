@@ -4,6 +4,7 @@ import Transaction from './Transaction'
 
 const TransactionTable = ({ income, transactions }) => {
 
+  
     return(
           <div className={s.tableDesk}>
       <table className={s.table}>
