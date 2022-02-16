@@ -20,11 +20,9 @@ export default function CurrentPeriod() {
     switch (e.currentTarget.name) {
       case 'increment':
         goToNextMonthsByOneMonth();
-        getReport();
         break;
       case 'decrement':
         goToPreviousMonthsByOneMonth();
-        getReport();
         break;
       default:
         break;
@@ -38,11 +36,7 @@ export default function CurrentPeriod() {
 
   useEffect(() => {
     dispatch(getReportThunk({ month, year }));
-  }, []);
-
-  const getReport = () => {
-    dispatch(getReportThunk({ month, year }));
-  };
+  }, [dispatch, month, year]);
 
   return (
     <div className={s.containerCurrentPeriod}>
