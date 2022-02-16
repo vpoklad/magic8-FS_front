@@ -23,37 +23,18 @@ export const register = createAsyncThunk(
   },
 );
 
-// export const register = createAsyncThunk('auth/register', async credentials => {
-//   try {
-//     const { data } = await axios.post('api/users/registration', credentials);
-//     token.set(data.token);
-//     data.data.verifyMessage =
-//       'Лист підветдження відравлено на вказану електронну адресу.';
-//     return data.data;
-//   } catch (error) {
-//     let formError = {};
-//     if (error.message.includes('409')) {
-//       formError.message =
-//         'Така електронна адреса вже була використана для створення облікового запису користувача.';
-//     } else if (error.message.includes('400')) {
-//       formError.message =
-//         'Будь ласка, введіть правильну адресу електронної пошти та пароль.';
-//     } else if (error.message.includes('500')) {
-//       formError.message = 'Помилка сервера. Спробуйте пізніше...';
-//     }
-//     return formError;
-//   }
-// });
+
 
 export const logIn = createAsyncThunk(
   'auth/logIn',
-  async (credentials, { rejectWithValue }) => {
+  async (credentials,{rejectWithValue}) => {
     try {
       const { data } = await axios.post('api/users/login', credentials);
       token.set(data.data.token);
+      
       return data.data;
-    } catch (error) {
-      rejectWithValue(error.code);
+    } catch (err) {
+      
     }
   },
 );

@@ -33,11 +33,16 @@ export default function AuthForm() {
         return;
     }
   };
-  const handlelogIn = e => {
+  const handlelogIn = async e => {
     e.preventDefault();
-    dispatch(logIn({ email, password }));
-    setEmail('');
-    setPassword('');
+    try {      
+      const res = await dispatch(logIn({ email, password })).unwrap();
+      if(!res){ return toast.error('Невірний логін/пароль')}
+      setEmail('');
+      setPassword('');
+    } catch (error) {
+      
+    }
   };
   const handleRegister = e => {
     toggleModal();
