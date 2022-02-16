@@ -4,7 +4,7 @@ import sprite from '../../sprite.svg';
 import { useDispatch } from 'react-redux'
 import { delTransactionThunk } from '../../redux/transactions/thunk';
 
-const Transaction = ({ item, income }) => {
+export const Transaction = ({ item, income }) => {
 
   
   const currValue = income ? item.sum : -item.sum;

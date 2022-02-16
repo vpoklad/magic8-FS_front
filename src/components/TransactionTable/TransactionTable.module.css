@@ -163,10 +163,14 @@
   text-align: right;
   color: var(--expenseText);
   font-weight: 700;
+  font-family: Roboto;
+  font-weight: bold;
 }
 
 .tableIncome {
   color: #407946;
   width: 20%;
   text-align: right;
+  font-family: Roboto;
+  font-weight: bold;
 }

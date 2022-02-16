@@ -83,3 +83,9 @@
     display: flex;
   }
 }
+
+@media (max-width: 767px) {
+  .counterWrapper {
+    width: 100%;
+  }
+}
