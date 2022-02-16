@@ -78,6 +78,8 @@
     border-radius: 30px;
     margin-top: 30px;
     padding: 20px 30px;
+    display: flex;
+    justify-content: center;
   }
 }
 
