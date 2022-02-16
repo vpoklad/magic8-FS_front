@@ -1,12 +1,9 @@
 import s from './IncomeInReport.module.css';
 import ExpenseIncomeInReportItem from '../ExpenseIncomeInReportItem/ExpenseIncomeInReportItem';
 import shortid from 'shortid';
-import ChartBarExpInc from '../ChartBarExpInc/ChartBarExpInc';
 
 export default function IncomeInReport({data}) {
-
     const income = data.detailedCategoryStatistic.filter((el) => (el._id.typeOfTransaction));
-    const incomeChart = data.detailedDescriptionStatistic.filter((el) => (el._id.typeOfTransaction));
 
     return (
         <>
@@ -16,10 +13,6 @@ export default function IncomeInReport({data}) {
                 {income.map(({ total, _id }) => (
                     <ExpenseIncomeInReportItem key={shortid.generate()} total={total} id={_id} />))
             }</ul></>}
-
-        {income.length >0 &&
-            <> {incomeChart && <ChartBarExpInc data={incomeChart} />}</>
-        }
         </>
     )
 }
