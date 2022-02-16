@@ -3,7 +3,8 @@ import useMediaQuery from '@mui/material/useMediaQuery';
 import Balance from '../../components/Balance/Balance';
 import GoToBack from '../../components/GoToBack/GoToBack';
 import ExpenseIncomeInReport from '../../components/ExpenseIncomeInReport/ExpenseIncomeInReport';
-import ChartBar from '../../components/ChartBar/ChartBar';
+// import ChartBar from '../../components/ChartBar/ChartBar';
+import ChartBarExpInc from '../../components/ChartBarExpInc/ChartBarExpInc';
 import { useSelector } from 'react-redux';
 import { getReports } from '../../redux/reports/selectors';
 import CurrentPeriod from '../../components/CurrentPeriod/CurrentPeriod';
@@ -64,14 +65,13 @@ export default function ReportPage() {
           </span>
         </div>
       </div>
+
       <div className={s.dataExpenseIncome}>
         <ExpenseIncomeInReport />
       </div>
-      <div className={s.dataChart}>
-
-        <ChartBar data={dataReportsTotal}/>
-
-      </div>
+      {/* <div className={s.dataChart}>
+        <ChartBarExpInc />
+      </div> */}
     </>
   );
 }

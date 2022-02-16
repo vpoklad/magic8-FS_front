@@ -1,19 +1,12 @@
-import s from './ChartBar.module.css';
-import { BarChart, Bar, Cell, XAxis, YAxis, CartesianGrid,ResponsiveContainer } from 'recharts';
+import s from './ChartBarExpInc.module.css';
+import { BarChart, Bar, Cell, XAxis, YAxis, CartesianGrid, ResponsiveContainer } from 'recharts';
 import useMediaQuery from '@mui/material/useMediaQuery';
-import { useSelector } from 'react-redux';
-import { getReports } from '../../redux/reports/selectors';
 
-const ChartBar = (data) => {
-const tablet = useMediaQuery('(min-width: 768px)');
-const dataReports= useSelector(getReports);
-const dataSubcategory = dataReports.detailedDescriptionStatistic;
+export default function ChartBarExpInc (data) {
+  const tablet = useMediaQuery('(min-width: 768px)');
 
-const expense = dataSubcategory.filter((el) => (el._id.typeOfTransaction === false));
-const income = dataSubcategory.filter((el) => (el._id.typeOfTransaction))
+  const dataSubcategory = data.data;
 
-  const result = (data ? expense : income)
-  console.log(data);
 
 const renderTopLabel = ({ payload, x, y, width, height, value }) => {
     return <text x={x + width / 2} y={y-5} fill="#52555F" textAnchor="middle" dy={-5}>{`${value} грн`}</text>
@@ -22,12 +15,11 @@ const renderRightLabel = ({ payload, x, y, width, height, value }) => {
     return <text x={(x+30) + width / 2} y={y} fill="#52555F" textAnchor="start" dy={-8}>{`${value} грн`}</text>;
 };
 
-return (
-  result.length > 0 && (
+  return (
     tablet ? (
       <div className={s.CartesianGrid}>
         <ResponsiveContainer width="100%" height="100%" >
-        <BarChart data={result}
+        <BarChart data={dataSubcategory}
                 fontSize={12}
                 margin={{top: 20}}
                 barGap={-20}
@@ -48,7 +40,7 @@ return (
                 barSize={38}
                 radius= {[10, 10, 0, 0]}
                 label={renderTopLabel}>
-            {result.map((entry, index) => (
+            {dataSubcategory.map((entry, index) => (
             <Cell fill={ (index === -1) + (index % 3)  ? '#FFDAC0': '#FF751D' } key={`cell-${index}`} />
             ))}
           </Bar>
@@ -58,7 +50,7 @@ return (
   ) : (
     // <div className={s.CartesianGrid}>
       <ResponsiveContainer  width="100%" height={485}>
-      <BarChart data={result}
+      <BarChart data={dataSubcategory}
                 layout="vertical"
                 fontSize={10}
                 maxBarSize="100%">
@@ -75,14 +67,13 @@ return (
                 radius= {[0, 10, 10, 0]}
                 label={renderRightLabel}
                 fill='#FFDAC0'>
-              {result.map((entry, index) => (
+              {dataSubcategory.map((entry, index) => (
               <Cell fill={ ((index === -1) + (index % 3))  ? '#FFDAC0': '#FF751D' } key={`cell-${index}`}/>
               ))}
           </Bar>
         </BarChart>
       </ResponsiveContainer>
       // </div>
-  ))
-)
+    ))
 }
-export default ChartBar
+
