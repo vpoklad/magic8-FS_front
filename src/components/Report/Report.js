@@ -17,7 +17,7 @@ export default function Report() {
     dispatch(getReportThunk(params));
   };
   return (
-    <div className={s.reports}>
+    <div className={s.reports} onClick={getReport}>
       <Link to="/reports" className={s.link}>
         Перейти до звітів
       </Link>
