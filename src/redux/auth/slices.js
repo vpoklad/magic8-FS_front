@@ -13,22 +13,12 @@ const authSlice = createSlice({
   initialState: {
     email: null,
     token: null,
-    avatarURL: null,
-    // isFetchingCurrentUser: false,
+    avatarURL: null,   
     formNotification: null,
     verify: null,
     errorCode: null,
     isLoading: false,
   },
-  // reducers: {
-  //   googleAuth(state, action) {
-  //     state.email = action.payload.email;
-  //     state.token = action.payload.token;
-  //     state.avatarURL = action.payload.avatarURL;
-  //     state.isLoading = false;
-  //     state.errorCode = null;
-  //   },
-  // },
 
   extraReducers: {
     [register.pending](state, action) {
@@ -50,8 +40,8 @@ const authSlice = createSlice({
     },
 
     [logIn.fulfilled](state, action) {
-      state.email = action.payload.email;
-      state.token = action.payload.token;
+      state.email = action.payload?.email;
+      state.token = action.payload?.token;
       state.isLoading = false;
       state.errorCode = null;
     },
@@ -104,28 +94,7 @@ const authSlice = createSlice({
       state.errorCode = action.payload;
       state.isLoading = false;
     },
-
-    /////// extraReducer ////
-    // [googleAuth.fulfilled](state, action) {
-    //   console.log('state from:', state);
-
-    //   state.email = action.payload.email;
-    //   state.token = action.payload.token;
-    //   state.avatarURL = action.payload.avatarURL;
-    // },
   },
-
-  /////// reducer inside createSlice /////
-
-  // googleAuth: (state, googleAuth) => {
-  //   console.log('state from:', state);
-
-  //   state.email = googleAuth.payload.email;
-  //   state.token = googleAuth.payload.token;
-  //   state.avatarURL = googleAuth.payload.avatarURL;
-  // },
 });
 
-// export  googleAuth = authSlice.actions;
 export default authSlice.reducer;
-// export const { googleAuth } = authSlice.actions;
