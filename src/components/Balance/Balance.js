@@ -64,6 +64,11 @@ export default function Balance({
     setShowModal(!showModal);
   };
 
+  const onClickBtnConfim = () => {
+    setReadonly(null);
+    setValue('');
+  };
+
   const classNameInputMob = mobile && !showBtn ? inputMobile : null;
   const classNameSpanMob = mobile && !showBtn ? spanMobile : null;
 
@@ -83,14 +88,14 @@ export default function Balance({
               readOnly={readonly}
               type="text"
             />
-            <span className={`${s.span} ${classNameSpanMob}`}>UAN</span>
+            <span className={`${s.span} ${classNameSpanMob}`}>UAH</span>
             {!balance && <Notification />}
           </div>
           {readonly && showBtn && (
             <button
               className={s.editBtn}
               type="button"
-              onClick={() => setReadonly(null)}
+              onClick={onClickBtnConfim}
             >
               <EditOutlinedIcon className={s.iconEdit} />
             </button>
