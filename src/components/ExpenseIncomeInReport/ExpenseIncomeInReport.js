@@ -42,8 +42,7 @@ export default function ExpenseIncomeInReport() {
                 {expense ? <ExpenseInReport data={dataReports} /> : <IncomeInReport data={dataReports} />}
             </>
             }
-
-        </div>
+            </div>
 
     )
 

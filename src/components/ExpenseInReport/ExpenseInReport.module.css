@@ -29,6 +29,16 @@ p {
   .listExpense {
     margin-bottom: 30px;
   }
+
+  .dataChart {
+    background-color: var(--basicColor);
+    box-shadow: 0px 10px 60px rgba(170, 178, 197, 0.2);
+    border-radius: 30px;
+    margin-top: 30px;
+    padding: 20px 30px;
+    display: flex;
+    justify-content: center;
+  }
 }
 
 @media (min-width: 1280px) {
