@@ -34,7 +34,7 @@ export default function ExpenseIncomeInReport() {
       el => el._id.typeOfTransaction,
     );
   }
-  console.log(dataReports);
+ 
 
   return (
     <div className={s.containerExpenseIncome}>

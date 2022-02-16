@@ -57,10 +57,7 @@ const CountingTable = () => {
     setExpense(false);
   };
 
-  /*  const onDeleteTransactionSuccess = () => {
-    toast.success('Transaction has been deleted.');
-    dispatch(getBalance());
-  }; */
+
 
   const onDeleteTransactionError = error => {
     toast.error('Something went wrong, please try again later.');
@@ -114,7 +111,7 @@ const CountingTable = () => {
         </div>
       )}
 
-      {/* {expense ? (
+      {expense ? (
         <div className={s.counterContainer}>
           <InputTable options={categoryExpense} />
           <div className={s.flexContainer}>
@@ -148,7 +145,7 @@ const CountingTable = () => {
           </div>
         </div>
       )}
-      {!tablet && <TransactionMobileTable transactions={transactions} />} */}
+      {!tablet && <TransactionMobileTable transactions={transactions} />}
       {showModalIncome && !tablet && (
         <InputModal text="Дохід" closeInputModal={onClickModal}>
           <InputTable
