@@ -1,5 +1,3 @@
-import { useMonth } from '@datepicker-react/hooks';
-
 function Month({ year, month }) {
   const monthes = [
     'СІЧЕНЬ',
