@@ -11,42 +11,25 @@ import {
 import useMediaQuery from '@mui/material/useMediaQuery';
 
 export default function ChartBarExpInc(data) {
-  const tablet = useMediaQuery('(min-width: 768px)');
-
-  const dataSubcategory = data.data;
+const tablet = useMediaQuery('(min-width: 768px)');
+const result = data.data
 
   const renderTopLabel = ({ payload, x, y, width, height, value }) => {
-    return (
-      <text
-        x={x + width / 2}
-        y={y - 5}
-        fill="#52555F"
-        textAnchor="middle"
-        dy={-5}
-      >{`${value} грн`}</text>
-    );
+    return <text x={x + width / 2} y={y-8} fill="#52555F" textAnchor="middle">{`${value} грн`}</text>
   };
   const renderRightLabel = ({ payload, x, y, width, height, value }) => {
-    return (
-      <text
-        x={x + 30 + width / 2}
-        y={y}
-        fill="#52555F"
-        textAnchor="start"
-        dy={-8}
-      >{`${value} грн`}</text>
-    );
+    return <text x={(x+60) + height * 2} y={y-8} fill="#52555F" textAnchor="start" >{`${value} грн`}</text>;
   };
 
   return tablet ? (
-    <div className={s.CartesianGrid}>
-      <ResponsiveContainer width="100%" height="100%">
-        <BarChart
-          data={dataSubcategory}
+    <div className={s.CartesianGrid}
+    >
+      <ResponsiveContainer width="100%" height={380}>
+        <BarChart data={result}
           fontSize={12}
-          margin={{ top: 20 }}
-          barGap={-20}
-          barCategoryGap={-20}
+          margin={{ top: 40}}
+          // barGap={0}
+          // barCategoryGap={0}
           // minPointSize={5}
         >
           <CartesianGrid
@@ -57,18 +40,23 @@ export default function ChartBarExpInc(data) {
             strokeWidth={2}
           />
           <XAxis
-            dataKey="_id.description"
+            dataKey="_id.categoryLabel"
             axisLine={false}
             tickLine={false}
             stroke="#52555F"
+            interval={0}
+            // padding={{ left: 20, right: 20 }}
+            // orientation='bottom'
+            // margin={{ bottom: 30 }}
+
           />
           <Bar
             dataKey="total"
-            barSize={38}
+            maxBarSize={38}
             radius={[10, 10, 0, 0]}
             label={renderTopLabel}
           >
-            {dataSubcategory.map((entry, index) => (
+            {result.map((entry, index) => (
               <Cell
                 fill={(index === -1) + (index % 3) ? '#FFDAC0' : '#FF751D'}
                 key={`cell-${index}`}
@@ -79,16 +67,15 @@ export default function ChartBarExpInc(data) {
       </ResponsiveContainer>
     </div>
   ) : (
-    // <div className={s.CartesianGrid}>
     <ResponsiveContainer width="100%" height={485}>
       <BarChart
-        data={dataSubcategory}
+        data={result}
         layout="vertical"
         fontSize={10}
         maxBarSize="100%"
       >
         <YAxis
-          dataKey="_id.description"
+          dataKey="_id.categoryLabel"
           axisLine={false}
           tickLine={false}
           stroke="#52555F"
@@ -104,7 +91,7 @@ export default function ChartBarExpInc(data) {
           label={renderRightLabel}
           fill="#FFDAC0"
         >
-          {dataSubcategory.map((entry, index) => (
+          {result.map((entry, index) => (
             <Cell
               fill={(index === -1) + (index % 3) ? '#FFDAC0' : '#FF751D'}
               key={`cell-${index}`}
@@ -113,6 +100,5 @@ export default function ChartBarExpInc(data) {
         </Bar>
       </BarChart>
     </ResponsiveContainer>
-    // </div>
   );
 }
