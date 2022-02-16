@@ -1,8 +1,9 @@
+import { useEffect } from 'react';
+import InputTable from '../InputTable/InputTable';
+
 import s from './InputModal.module.css';
 
-import { useEffect } from 'react';
-
-const InputModal = ({ text, children, toggleModal }) => {
+const InputModal = ({ text, children, closeInputModal }) => {
   useEffect(() => {
     window.addEventListener('keydown', handleEscape);
     return () => {
@@ -12,25 +13,21 @@ const InputModal = ({ text, children, toggleModal }) => {
 
   const handleEscape = e => {
     if (e.code === 'Escape') {
-      toggleModal();
+      closeInputModal();
     }
   };
   const handleClose = e => {
     if (e.currentTarget === e.target) {
-      toggleModal();
+      closeInputModal();
     }
   };
 
   return (
     <div className={s.Overlay} onClick={handleClose}>
       <div className={s.Modal}>
-        <button className={s.ButtonClose} onClick={handleClose}>
-          {/* <svg width="6" height="11">
-            <use href={}></use>
-          </svg> */}
-        </button>
+        <button className={s.ButtonClose} onClick={handleClose}></button>
 
-        {/* <p className={s.Header}> {text} </p> */}
+        <p className={s.Header}> {text} </p>
 
         <div className={s.ModalButtons}>{children}</div>
       </div>

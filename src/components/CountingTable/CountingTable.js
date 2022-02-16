@@ -4,14 +4,13 @@ import useMediaQuery from '@mui/material/useMediaQuery';
 import InputTable from '../InputTable/InputTable';
 import { toast } from 'react-toastify';
 import TransactionTable from '../TransactionTable/TransactionTable';
-import InputTableMobile from '../InputTableMobile/InputTableMobile';
 import s from './CountingTable.module.css';
-import InputModal from '../InputModal/InputModal';
 
 import Summary from '../Summary/Summary';
 import { getTransactionsThunk } from '../../redux/transactions/thunk';
 import { getTransactions } from '../../redux/transactions/transactionsSelectors';
 import TransactionMobileTable from '../TransactionTable/Mobile/TransactionTableMobile';
+import InputModal from '../InputModal/InputModal';
 
 const categoryExpense = [
   { value: 'transport', label: 'Транспорт' },
@@ -36,16 +35,13 @@ const CountingTable = () => {
   const dispatch = useDispatch();
   const [expense, setExpense] = useState(true);
   const [income, setIncome] = useState(false);
-  const [showModal, setShowModal] = useState(false);
-  const transactions = 0;
+
+  const [showModalExpense, setShowModalExpense] = useState(false);
+  const [showModalIncome, setShowModalIncome] = useState(false);
 
   const tablet = useMediaQuery('(min-width: 768px)');
-  const mobile = useMediaQuery('(max-width: 767px)');
 
   const clickExpense = () => {
-    if (mobile) {
-      return setShowModal(true);
-    }
     if (expense) return;
     setIncome(false);
     setExpense(true);
@@ -78,12 +74,29 @@ const CountingTable = () => {
 
   const aspect = expense ? true : false;
 
+  const toShowModalExpense = () => {
+    setShowModalExpense(true);
+  };
+
+  const toShowModalIncome = () => {
+    setShowModalIncome(true);
+  };
+
+  const onClickModal = () => {
+    setShowModalExpense(false);
+    setShowModalIncome(false);
+  };
+
   return (
     <div className={s.counterWrapper}>
       {!tablet ? (
         <div className={s.mobileBtn}>
-          <button className={s.mobileCounterBtn}>Витрати</button>
-          <button className={s.mobileCounterBtn}>Дохід</button>
+          <button className={s.mobileCounterBtn} onClick={toShowModalExpense}>
+            Витрати
+          </button>
+          <button className={s.mobileCounterBtn} onClick={toShowModalIncome}>
+            Дохід
+          </button>
         </div>
       ) : (
         <div className={s.tabletBtn}>
@@ -134,14 +147,23 @@ const CountingTable = () => {
             )}
             {tablet && <Summary aspect={aspect} />}
           </div>
-        )}
-      </div>
-      {showModal && (
-        <InputModal toggleModal={onToggle}>
-          <InputTableMobile />
-        </InputModal>
+        </div>
       )}
       {!tablet && <TransactionMobileTable transactions={transactions} />}
+      {showModalIncome && !tablet && (
+        <InputModal text="Дохід" closeInputModal={onClickModal}>
+          <InputTable
+            options={categoryIncome}
+            income={income}
+            onClick={onClickModal}
+          />
+        </InputModal>
+      )}
+      {showModalExpense && !tablet && (
+        <InputModal text="Витрата" closeInputModal={onClickModal}>
+          <InputTable options={categoryExpense} onClick={onClickModal} />
+        </InputModal>
+      )}
     </div>
   );
 };
