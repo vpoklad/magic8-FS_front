@@ -9,7 +9,7 @@ import { addNewTransactionThunk } from '../../redux/transactions/thunk';
 import { useDispatch } from 'react-redux';
 import DatePickerComponent from '../DatePicker/DatePicker';
 import Button from '../Button/Button';
-import { getBalanceThunk } from '../../redux/balance/thunk';
+
 import { summaryThunk } from '../../redux/summary/thunk';
 
 const InputTable = ({ options, income, onSubmit, onClick }) => {
@@ -74,7 +74,6 @@ const InputTable = ({ options, income, onSubmit, onClick }) => {
   const items = !income ? 'expense' : 'income';
   const obj = { items, params };
 
-
   const addTransaction = () => {
     if (!productName) {
       return toast.error('Ви забули про опис)', {
@@ -103,7 +102,7 @@ const InputTable = ({ options, income, onSubmit, onClick }) => {
       position: 'top-center',
       closeOnClick: true,
     });
-    dispatch(summaryThunk(obj))
+    dispatch(summaryThunk(obj));
   };
 
   const details = {
@@ -113,7 +112,7 @@ const InputTable = ({ options, income, onSubmit, onClick }) => {
     sum: payValue.includes(',') ? +payValue.replace(/,/g, '.') : +payValue,
     date: format(new Date(date), 'yyyy-MM-dd'),
     year: format(new Date(date), 'yyyy'),
-     month: `${date.getMonth()}`,
+    month: `${date.getMonth()}`,
     day: format(new Date(date), 'dd'),
     typeOfTransaction: income ? true : false,
   };

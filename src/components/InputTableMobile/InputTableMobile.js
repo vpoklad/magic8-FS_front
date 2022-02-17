@@ -1,12 +1,10 @@
-import React, { useState, forwardRef, useEffect } from 'react';
+import React, { useState } from 'react';
 import { format } from 'date-fns';
 import 'react-datepicker/dist/react-datepicker.css';
 import Select from 'react-select';
 import { addNewTransactionThunk } from '../../redux/transactions/thunk';
 import { useDispatch } from 'react-redux';
 
-import Modal from '../Modal/Modal';
-import GoToBack from '../GoToBack/GoToBack';
 import Button from '../Button/Button';
 import s from './InputTableMobile.module.css';
 

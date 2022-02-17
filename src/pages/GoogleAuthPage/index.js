@@ -1,11 +1,7 @@
-import { useSearchParams, useNavigate, Link } from 'react-router-dom';
-import { useDispatch, useSelector } from 'react-redux';
+import { useSearchParams, Link } from 'react-router-dom';
+import { useDispatch } from 'react-redux';
 import { useEffect } from 'react';
 import { googleAuth } from '../../redux/auth/thunks';
-// import { googleReducer } from '../../redux/auth/slices';
-import { getUser } from '../../redux/auth/selectors';
-
-// const googleAuth = googleReducer();
 
 const GoogleAuthPage = () => {
   const [searchParams] = useSearchParams();
