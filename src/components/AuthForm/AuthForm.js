@@ -35,16 +35,32 @@ export default function AuthForm() {
   };
   const handlelogIn = async e => {
     e.preventDefault();
-    try {      
+
+    try {
       const res = await dispatch(logIn({ email, password })).unwrap();
-      if(!res){ return toast.error('Невірний логін/пароль')}
+      if (!res) {
+        return toast.error('Невірний логін/пароль');
+      }
       setEmail('');
       setPassword('');
-    } catch (error) {
-      
-    }
+    } catch (error) {}
   };
+  let regex = new RegExp('[a-z0-9]+@[a-z]+.[a-z]{2,3}');
+
   const handleRegister = e => {
+    if (!regex.test(email)) {
+      return toast.error('Введіть правильний email');
+    }
+
+    if (password === '') {
+      return toast.error('Введіть password');
+    }
+    if (password.length < 6) {
+      return toast.error('Пароль повинен бути від 6 до 12 символів');
+    }
+    if (password.length > 12) {
+      return toast.error('Пароль повинен бути від 6 до 12 символів');
+    }
     toggleModal();
     e.preventDefault();
     dispatch(register({ email, password }));
