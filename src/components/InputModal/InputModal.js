@@ -1,5 +1,4 @@
 import { useEffect } from 'react';
-import InputTable from '../InputTable/InputTable';
 
 import s from './InputModal.module.css';
 

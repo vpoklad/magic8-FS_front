@@ -1,12 +1,20 @@
-import React, { useState, forwardRef, useEffect } from 'react';
+import React, { useState, forwardRef } from 'react';
+
+import PropTypes from 'prop-types';
+
 import DatePicker, { registerLocale } from 'react-datepicker';
 import uk from 'date-fns/locale/uk';
 import 'react-datepicker/dist/react-datepicker.css';
 import s from './DatePicker.module.css';
 
-const DatePickerComponent = () => {
+const DatePickerComponent = ({ getDate }) => {
   const [date, setDate] = useState(new Date());
   registerLocale('uk', uk);
+
+  const changeDate = value => {
+    setDate(value);
+    getDate(value);
+  };
 
   const CustomDate = forwardRef(({ value, onClick }, ref) => (
     <button className={s.dateBtn} onClick={onClick} ref={ref}>
@@ -57,7 +65,7 @@ const DatePickerComponent = () => {
       <DatePicker
         selected={date}
         locale="uk"
-        onChange={date => setDate(date)}
+        onChange={date => changeDate(date)}
         dateFormat="dd.MM.yyyy"
         todayButton="Сьогодні"
         customInput={<CustomDate />}
@@ -67,3 +75,7 @@ const DatePickerComponent = () => {
 };
 
 export default DatePickerComponent;
+
+DatePickerComponent.propTypes = {
+  getDate: PropTypes.func,
+};
