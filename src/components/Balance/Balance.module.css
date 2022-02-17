@@ -32,11 +32,13 @@
   font-weight: 400;
   letter-spacing: 0.02em;
   color: rgba(82, 85, 95, 0.7);
+  margin-bottom: 40px;
 }
 @media (min-width: 768px) {
   .containerBalance {
     display: flex;
     align-items: center;
+    margin-bottom: 0;
     /* margin-right: 111px; */
   }
 }

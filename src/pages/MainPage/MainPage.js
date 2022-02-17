@@ -13,7 +13,7 @@ export default function MainPage() {
       <div className={s.containerNav}>
         <Report />
         <Balance />
-        <DatePicker />
+        {mobile && <DatePicker />}
       </div>
       <CountingTable />
     </div>

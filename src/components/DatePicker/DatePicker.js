@@ -61,7 +61,7 @@ const DatePickerComponent = ({ getDate }) => {
   ));
 
   return (
-    <div className={s._}>
+    <div className={s.datePickerContainer}>
       <DatePicker
         selected={date}
         locale="uk"

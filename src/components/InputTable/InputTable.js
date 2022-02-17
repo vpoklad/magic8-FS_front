@@ -74,7 +74,6 @@ const InputTable = ({ options, income, onSubmit, onClick }) => {
   const items = !income ? 'expense' : 'income';
   const obj = { items, params };
 
-
   const getDate = value => {
     setDate(value);
   };
@@ -123,7 +122,7 @@ const InputTable = ({ options, income, onSubmit, onClick }) => {
     category: category.value,
     categoryLabel: category.label,
     sum: payValue.includes(',') ? +payValue.replace(/,/g, '.') : +payValue,
-    date: format(new Date(date), 'yyyy-MM-dd'),
+    date: format(new Date(date), 'dd.MM.yyyy'),
     year: format(new Date(date), 'yyyy'),
     month: `${date.getMonth()}`,
     day: format(new Date(date), 'dd'),

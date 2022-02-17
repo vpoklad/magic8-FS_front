@@ -71,7 +71,7 @@ const InputTableMobile = ({ options, income, onSubmit }) => {
     category: category.value,
     categoryLabel: category.label,
     sum: payValue.includes(',') ? +payValue.replace(/,/g, '.') : +payValue,
-    date: format(new Date(date), 'yyyy-MM-dd'),
+    date: format(new Date(date), 'dd.MM.yyyy'),
     year: format(new Date(date), 'yyyy'),
     month: format(new Date(date), 'MM'),
     day: format(new Date(date), 'dd'),
