@@ -5,7 +5,7 @@ export default function GreetingPage() {
   const navigate = useNavigate();
 
   const login = () => {
-    console.log('pressed');
+    
     navigate('/login', { replace: true });
   };
 

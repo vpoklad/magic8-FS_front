@@ -82,7 +82,7 @@ const CountingTable = () => {
     setShowModalExpense(false);
     setShowModalIncome(false);
   };
-  console.log(income);
+  
 
   return (
     <div>

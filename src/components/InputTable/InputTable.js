@@ -12,7 +12,7 @@ import Button from '../Button/Button';
 
 import { summaryThunk } from '../../redux/summary/thunk';
 
-const InputTable = ({ options, income, onSubmit, onClick }) => {
+const InputTable = ({ options, income, onClick }) => {
   const initialDate = new Date();
   const [date, setDate] = useState(initialDate);
   const [productName, setProductName] = useState('');
