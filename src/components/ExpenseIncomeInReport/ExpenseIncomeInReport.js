@@ -10,33 +10,49 @@ import ChartBarExpInc from '../ChartBarExpInc/ChartBarExpInc';
 export default function ExpenseIncomeInReport() {
   const [expense, setExpense] = useState(true);
   const [income, setIncome] = useState(false);
+
   const dataReports = useSelector(getReports);
 
-    const clickChange = () => {
-        if (expense) {
-            setIncome(true);
-            setExpense(false);
-        }
-        if (income) {
-            setIncome(false);
-            setExpense(true);
-        }
+  const clickChange = () => {
+    if (expense) {
+      setIncome(true);
+      setExpense(false);
     }
+    if (income) {
+      setIncome(false);
+      setExpense(true);
+    }
+  };
+  let onClick = e => {
+    const option = e.currentTarget.id;
+    const result = chartData.filter(el => el._id.category === option);
+    setResult(result);
+  };
 
   let data;
   let chartData;
+
   if (expense) {
     data = dataReports?.detailedCategoryStatistic.filter(
-      el => el._id.typeOfTransaction === false);
+      el => el._id.typeOfTransaction === false,
+    );
     chartData = dataReports?.detailedDescriptionStatistic.filter(
-      el => el._id.typeOfTransaction === false);
+      el => el._id.typeOfTransaction === false,
+    );
   }
-  if (income)  {
+  if (income) {
     data = dataReports?.detailedCategoryStatistic.filter(
-      el => el._id.typeOfTransaction);
+      el => el._id.typeOfTransaction,
+    );
     chartData = dataReports?.detailedDescriptionStatistic.filter(
-      el => el._id.typeOfTransaction);
+      el => el._id.typeOfTransaction,
+    );
   }
+
+  const intialResult = chartData.filter(
+    el => el._id.category === data[0]._id.category,
+  );
+  const [result, setResult] = useState(intialResult);
 
   return (
     <div className={s.containerExpenseIncome}>
@@ -58,9 +74,9 @@ export default function ExpenseIncomeInReport() {
         {dataReports && (
           <>
             {expense ? (
-              <ExpenseInReport data={dataReports} />
+              <ExpenseInReport data={dataReports} onClick={onClick} />
             ) : (
-              <IncomeInReport data={dataReports} />
+              <IncomeInReport data={dataReports} onClick={onClick} />
             )}
           </>
         )}
@@ -70,7 +86,7 @@ export default function ExpenseIncomeInReport() {
         <>
           {data.length > 0 && (
             <div className={s.dataExpenseIncome}>
-              <ChartBarExpInc chartData={chartData} data={data} />
+              <ChartBarExpInc chartData={result} />
             </div>
           )}
         </>
