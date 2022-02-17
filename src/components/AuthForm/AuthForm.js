@@ -125,8 +125,6 @@ export default function AuthForm() {
               name="password"
               placeholder="Пароль"
               required
-              minlength="6"
-              maxlength="12"
               className={s.authInput}
               value={password}
               onChange={handleChange}
