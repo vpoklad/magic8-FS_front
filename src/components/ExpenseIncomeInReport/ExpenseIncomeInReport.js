@@ -25,21 +25,17 @@ export default function ExpenseIncomeInReport() {
 
   let data;
   let chartData;
-  if (expense && dataReports) {
+  if (expense) {
     data = dataReports.detailedCategoryStatistic.filter(
-      el => el._id.typeOfTransaction === false,
-    );
-    chartData = dataReports?.detailedCategoryStatistic.filter(
-      el => el._id.typeOfTransaction === false,
-    );
-  }
-  if (income && dataReports) {
-    data = dataReports.detailedCategoryStatistic.filter(
-      el => el._id.typeOfTransaction,
-    );
+      el => el._id.typeOfTransaction === false);
     chartData = dataReports?.detailedDescriptionStatistic.filter(
-      el => el._id.typeOfTransaction ,
-    );
+      el => el._id.typeOfTransaction === false);
+  }
+  if (income)  {
+    data = dataReports.detailedCategoryStatistic.filter(
+      el => el._id.typeOfTransaction);
+    chartData = dataReports?.detailedDescriptionStatistic.filter(
+      el => el._id.typeOfTransaction);
   }
 
   return (
