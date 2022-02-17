@@ -74,6 +74,10 @@ const InputTable = ({ options, income, onSubmit, onClick }) => {
   const items = !income ? 'expense' : 'income';
   const obj = { items, params };
 
+  const getDate = value => {
+    setDate(value);
+  };
+
   const addTransaction = () => {
     if (!productName) {
       return toast.error('Ви забули про опис)', {
@@ -121,7 +125,7 @@ const InputTable = ({ options, income, onSubmit, onClick }) => {
     <div className={s.inputContainer}>
       <div className={s.inputShell}>
         <div className={s.datepieckerWrapper}>
-          {tablet ? <DatePickerComponent /> : null}
+          {tablet ? <DatePickerComponent getDate={getDate} /> : null}
         </div>
         <form className={s.inputForm}>
           <input
