@@ -19,7 +19,7 @@ const initialDate = new Date();
         </div>
       <ul className={s.mobileList}>
         {!transactions
-          ? 'Чекайте'
+          ? ''
           : transactions.length > 0 &&
           transactions.map(item => (
             <TransactionMobile
