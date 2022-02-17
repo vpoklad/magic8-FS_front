@@ -35,36 +35,73 @@ export default function ChartBarExpInc({ chartData }) {
     );
   };
 
-  return tablet ? (
-    <div className={s.CartesianGrid}>
-      <ResponsiveContainer width="100%" height={380}>
+  return (
+    result?.length > 0 &&
+    (tablet ? (
+      <div className={s.CartesianGrid}>
+        <ResponsiveContainer width="100%" height={380}>
+          <BarChart
+            data={result}
+            fontSize={12}
+            margin={{ top: 40 }}
+            barGap={0}
+            barCategoryGap={0}
+            minPointSize={5}
+          >
+            <CartesianGrid
+              width={635}
+              vertical={false}
+              horizontalPoints={[28, 68, 108, 148, 188, 228, 268, 308, 348]}
+              stroke="#F5F6FB"
+              strokeWidth={2}
+            />
+            <XAxis
+              dataKey="_id.description"
+              axisLine={false}
+              tickLine={false}
+              stroke="#52555F"
+              interval={0}
+            />
+            <Bar
+              dataKey="total"
+              maxBarSize={38}
+              radius={[10, 10, 0, 0]}
+              label={renderTopLabel}
+            >
+              {result.map((entry, index) => (
+                <Cell
+                  fill={(index === -1) + (index % 3) ? '#FFDAC0' : '#FF751D'}
+                  key={`cell-${index}`}
+                />
+              ))}
+            </Bar>
+          </BarChart>
+        </ResponsiveContainer>
+      </div>
+    ) : (
+      <ResponsiveContainer width="100%" height={485}>
         <BarChart
           data={result}
-          fontSize={12}
-          margin={{ top: 40 }}
-          // barGap={0}
-          // barCategoryGap={0}
-          // minPointSize={5}
+          layout="vertical"
+          fontSize={10}
+          maxBarSize="100%"
         >
-          <CartesianGrid
-            width={635}
-            vertical={false}
-            horizontalPoints={[28, 68, 108, 148, 188, 228, 268, 308, 348]}
-            stroke="#F5F6FB"
-            strokeWidth={2}
-          />
-          <XAxis
+          <YAxis
             dataKey="_id.description"
             axisLine={false}
             tickLine={false}
             stroke="#52555F"
-            interval={0}
+            type="category"
+            dx={8}
+            dy={-20}
+            textAnchor="start"
           />
           <Bar
             dataKey="total"
-            maxBarSize={38}
-            radius={[10, 10, 0, 0]}
-            label={renderTopLabel}
+            barSize={15}
+            radius={[0, 10, 10, 0]}
+            label={renderRightLabel}
+            fill="#FFDAC0"
           >
             {result.map((entry, index) => (
               <Cell
@@ -75,35 +112,6 @@ export default function ChartBarExpInc({ chartData }) {
           </Bar>
         </BarChart>
       </ResponsiveContainer>
-    </div>
-  ) : (
-    <ResponsiveContainer width="100%" height={485}>
-      <BarChart data={result} layout="vertical" fontSize={10} maxBarSize="100%">
-        <YAxis
-          dataKey="_id.description"
-          axisLine={false}
-          tickLine={false}
-          stroke="#52555F"
-          type="category"
-          dx={8}
-          dy={-20}
-          textAnchor="start"
-        />
-        <Bar
-          dataKey="total"
-          barSize={15}
-          radius={[0, 10, 10, 0]}
-          label={renderRightLabel}
-          fill="#FFDAC0"
-        >
-          {result.map((entry, index) => (
-            <Cell
-              fill={(index === -1) + (index % 3) ? '#FFDAC0' : '#FF751D'}
-              key={`cell-${index}`}
-            />
-          ))}
-        </Bar>
-      </BarChart>
-    </ResponsiveContainer>
+    ))
   );
 }

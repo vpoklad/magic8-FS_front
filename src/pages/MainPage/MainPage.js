@@ -1,5 +1,4 @@
 import s from './MainPage.module.css';
-import useMediaQuery from '@mui/material/useMediaQuery';
 import Balance from '../../components/Balance/Balance';
 import CountingTable from '../../components/CountingTable/CountingTable';
 import Report from '../../components/Report/Report';

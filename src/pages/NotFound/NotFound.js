@@ -1,5 +1,3 @@
-// import Title from '../../Title/Title';
-
 const NotFound = () => {
   return (
     <>

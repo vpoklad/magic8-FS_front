@@ -11,15 +11,8 @@ import {
 import { fetchCurrentUser } from './redux/auth/thunks';
 import AppBar from './components/AppBar/AppBar';
 import Spinner from './components/Spinner/Spinner';
-// import AuthForm from './components/AuthForm/AuthForm';
-// import ReportPage from './pages/ReportPage/ReportPage';
-// import CountingTable from './components/CountingTable/CountingTable';
 import { GoogleAuthPage } from './pages/GoogleAuthPage';
 import Container from './components/Container/Container';
-// import GreetingPage from './pages/GreetingPage/GreetingPage';
-// import MainPage from './pages/MainPage/MainPage';
-// import Balance from './components/Balance/Balance';
-// import CurrentPeriod from './components/CurrentPeriod/CurrentPeriod';
 
 import PrivateRoute from './routes/Private';
 import PublicRoute from './routes/Public';
@@ -27,9 +20,7 @@ import PublicRoute from './routes/Public';
 const AuthForm = lazy(() =>
   import('./components/AuthForm/AuthForm' /* webpackChunkName: "AuthForm" */),
 );
-// const GoogleAuthPage = lazy(() =>
-//   import('./pages/GoogleAuthPage' /* webpackChunkName: "GoogleAuthPage" */),
-// );
+
 const MainPage = lazy(() =>
   import('./pages/MainPage/MainPage' /* webpackChunkName: "MainPage" */),
 );
@@ -44,7 +35,6 @@ function App() {
   const dispatch = useDispatch();
   const isFetchingCurrentUser = useSelector(getIsFetchingCurrentUser);
   const token = useSelector(getToken);
-  const isLoading = useSelector(getisLoading);
 
   useEffect(() => {
     if (token) dispatch(fetchCurrentUser());

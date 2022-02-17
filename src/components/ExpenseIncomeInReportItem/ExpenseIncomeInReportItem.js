@@ -2,8 +2,6 @@ import s from './ExpenseIncomeInReportItem.module.css';
 import sprite from '../../sprite.svg';
 
 export default function ExpenseIncomeInReportItem({ total, id, onClick }) {
-  const selectCategory = () => {};
-
   return (
     <li onClick={onClick} className={s.listExpense_item} id={id.category}>
       <p>{total}</p>

@@ -1,11 +1,7 @@
-import { format } from 'date-fns';
 import s from './TransactionTable.module.css';
 import sprite from '../../sprite.svg';
 import { useDispatch } from 'react-redux';
-import {
-  delTransactionThunk,
-  getTransactionsThunk,
-} from '../../redux/transactions/thunk';
+import { delTransactionThunk } from '../../redux/transactions/thunk';
 import { summaryThunk } from '../../redux/summary/thunk';
 
 export const Transaction = ({ item, income }) => {

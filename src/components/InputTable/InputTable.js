@@ -12,7 +12,7 @@ import Button from '../Button/Button';
 
 import { summaryThunk } from '../../redux/summary/thunk';
 
-const InputTable = ({ options, income, onSubmit, onClick }) => {
+const InputTable = ({ options, income, onClick }) => {
   const initialDate = new Date();
   const [date, setDate] = useState(initialDate);
   const [productName, setProductName] = useState('');
@@ -79,11 +79,6 @@ const InputTable = ({ options, income, onSubmit, onClick }) => {
   };
 
   useEffect(() => {
-    // const year = date.getFullYear();
-    // const month = date.getMonth();
-    // const params = { year: year, month: month };
-    // const items = !income ? 'expense' : 'income';
-    // const obj = { items, params };
     dispatch(summaryThunk(obj));
   }, [date]);
 
@@ -213,26 +208,10 @@ const InputTable = ({ options, income, onSubmit, onClick }) => {
           type="submit"
           onClick={() => {
             addTransaction();
-            onClick();
           }}
           text="Ввести"
         />
         <Button type="button" onClick={resetInput} text="Очистити" />
-
-        {/* <button
-          className={s.mainBtn}
-          type="submit"
-          onClick={() => {
-            addTransaction();
-            resetInput();
-            onClick();
-          }}
-        >
-          Ввести
-        </button>
-        <button className={s.changeBtn} type="button" onClick={resetInput}>
-          Очистити
-        </button> */}
       </div>
     </div>
   );

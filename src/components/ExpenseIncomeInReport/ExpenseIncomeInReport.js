@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import ExpenseInReport from '../ExpenseInReport/ExpenseInReport';
 import IncomeInReport from '../IncomeInReport/IncomeInReport';
 import sprite from '../../sprite.svg';
@@ -10,7 +10,7 @@ import ChartBarExpInc from '../ChartBarExpInc/ChartBarExpInc';
 export default function ExpenseIncomeInReport() {
   const [expense, setExpense] = useState(true);
   const [income, setIncome] = useState(false);
-
+  const [result, setResult] = useState([]);
   const dataReports = useSelector(getReports);
 
   const clickChange = () => {
@@ -49,10 +49,12 @@ export default function ExpenseIncomeInReport() {
     );
   }
 
-  const intialResult = chartData.filter(
-    el => el._id.category === data[0]._id.category,
-  );
-  const [result, setResult] = useState(intialResult);
+  useEffect(() => {
+    const intialResult = chartData?.filter(
+      el => el._id.category === data[0]._id.category,
+    );
+    setResult(intialResult);
+  }, [dataReports, expense]);
 
   return (
     <div className={s.containerExpenseIncome}>

@@ -8,7 +8,7 @@ import { useDispatch } from 'react-redux';
 import Button from '../Button/Button';
 import s from './InputTableMobile.module.css';
 
-const InputTableMobile = ({ options, income, onSubmit }) => {
+const InputTableMobile = ({ options, income }) => {
   const initialDate = new Date();
   const [date, setDate] = useState(initialDate);
   const [productName, setProductName] = useState('');
@@ -73,7 +73,7 @@ const InputTableMobile = ({ options, income, onSubmit }) => {
     sum: payValue.includes(',') ? +payValue.replace(/,/g, '.') : +payValue,
     date: format(new Date(date), 'dd.MM.yyyy'),
     year: format(new Date(date), 'yyyy'),
-    month: format(new Date(date), 'MM'),
+    month: `${date.getMonth()}`,
     day: format(new Date(date), 'dd'),
     typeOfTransaction: income ? true : false,
   };

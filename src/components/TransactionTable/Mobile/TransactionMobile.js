@@ -1,4 +1,3 @@
-import { format } from 'date-fns';
 import s from './TransactionMobileTable.module.css';
 import sprite from '../../../sprite.svg';
 import { useDispatch } from 'react-redux';
@@ -13,7 +12,6 @@ export const TransactionMobile = ({ item }) => {
   };
   return (
     <li className={s.mobileItem}>
-      {/* <p className={s.mobileDate}>{format(new Date(item.date), 'dd.MM.yyyy')}</p> */}
       <p className={s.mobileDate}>{item.date}</p>
       <p className={s.mobileDescription}>{item.description}</p>
       <p className={s.mobileCategory}>{item.categoryLabel}</p>
