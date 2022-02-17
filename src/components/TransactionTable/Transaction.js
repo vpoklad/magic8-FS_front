@@ -26,9 +26,6 @@ export const Transaction = ({ item, income }) => {
 
   return (
     <tr className={s.tableTr}>
-      {/* <td className={s.transactionDate}>
-        {format(new Date(item.date), 'dd.MM.yyyy')}
-      </td> */}
       <td className={s.transactionDate}>{item.date}</td>
       <td className={s.transactionDescription}>{item.description}</td>
       <td className={s.transactionCategory}>{item.categoryLabel}</td>
