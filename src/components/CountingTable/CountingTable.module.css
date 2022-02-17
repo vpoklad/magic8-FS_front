@@ -76,10 +76,16 @@
     flex-direction: row;
     z-index: 1000;
   }
+
+  .flexContainer {
+    margin-top: 30px;
+    display: flex;
+  }
 }
 
 @media (min-width: 1280px) {
   .flexContainer {
+    margin-top: 0px;
     display: flex;
   }
 }
