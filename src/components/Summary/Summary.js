@@ -23,7 +23,6 @@ export default function Summary({ aspect }) {
   useEffect(() => {
     dispatch(summaryThunk(obj));
   }, [items, dispatch]);
-  console.log(summary);
   return (
     <div className={s.wrapper}>
       <p className={s.title}>Зведення</p>

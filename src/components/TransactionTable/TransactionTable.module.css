@@ -182,5 +182,9 @@
   font-size: 14px;
   line-height: 14px;
   letter-spacing: 0.02em;
-  text-align: center;
+}
+
+.noTrans {
+  display: flex;
+  justify-content: space-around;
 }

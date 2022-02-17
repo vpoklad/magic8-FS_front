@@ -49,18 +49,10 @@ const CountingTable = () => {
     setExpense(true);
   };
 
-  const onError = error => {
-    toast.error('Something went wrong, please try again later.');
-  };
-
   const clickIncome = () => {
     if (income) return;
     setIncome(true);
     setExpense(false);
-  };
-
-  const onDeleteTransactionError = error => {
-    toast.error('Something went wrong, please try again later.');
   };
 
   useEffect(() => {
@@ -82,7 +74,6 @@ const CountingTable = () => {
     setShowModalExpense(false);
     setShowModalIncome(false);
   };
-  console.log(income);
 
   return (
     <div>
