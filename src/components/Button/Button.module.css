@@ -9,6 +9,7 @@
   text-align: center;
   letter-spacing: 0.02em;
   text-transform: uppercase;
+  margin-right: 10px;
 
   background: var(--basicColor);
   border: 1px solid var(--backgroundColor);
