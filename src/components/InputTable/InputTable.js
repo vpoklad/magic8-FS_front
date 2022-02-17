@@ -9,7 +9,6 @@ import { addNewTransactionThunk } from '../../redux/transactions/thunk';
 import { useDispatch } from 'react-redux';
 import DatePickerComponent from '../DatePicker/DatePicker';
 import Button from '../Button/Button';
-import { getBalanceThunk } from '../../redux/balance/thunk';
 import { summaryThunk } from '../../redux/summary/thunk';
 
 const InputTable = ({ options, income, onSubmit, onClick }) => {
@@ -108,7 +107,6 @@ const InputTable = ({ options, income, onSubmit, onClick }) => {
     });
     dispatch(summaryThunk(obj));
   };
-  console.log(date);
   const details = {
     description: productName,
     category: category.value,

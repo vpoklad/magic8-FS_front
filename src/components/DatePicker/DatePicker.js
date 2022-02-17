@@ -1,4 +1,4 @@
-import React, { useState, forwardRef, useEffect } from 'react';
+import React, { useState, forwardRef } from 'react';
 import PropTypes from 'prop-types';
 
 import DatePicker, { registerLocale } from 'react-datepicker';
