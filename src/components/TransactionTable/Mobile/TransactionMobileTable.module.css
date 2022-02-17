@@ -2,7 +2,9 @@
   display: block;
   list-style: none;
   padding: 0;
-  margin: 65px 0 0;
+  margin: 0;
+  font-size: 12px;
+  color: var(--mainTextColor);
 }
 
 .mobileItem {

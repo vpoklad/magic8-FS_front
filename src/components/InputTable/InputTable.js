@@ -1,5 +1,5 @@
 import s from './InputTable.module.css';
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import useMediaQuery from '@mui/material/useMediaQuery';
 import { format } from 'date-fns';
 import { toast } from 'react-toastify';
@@ -76,6 +76,15 @@ const InputTable = ({ options, income, onSubmit, onClick }) => {
   const getDate = value => {
     setDate(value);
   };
+
+  useEffect(() => {
+    // const year = date.getFullYear();
+    // const month = date.getMonth();
+    // const params = { year: year, month: month };
+    // const items = !income ? 'expense' : 'income';
+    // const obj = { items, params };
+    dispatch(summaryThunk(obj));
+  }, [date]);
 
   const addTransaction = () => {
     if (!productName) {
