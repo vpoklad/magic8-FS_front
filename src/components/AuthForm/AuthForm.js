@@ -110,7 +110,6 @@ export default function AuthForm() {
             <input
               type="email"
               name="email"
-              // pattern={regex}
               placeholder="your@email.com"
               required
               className={s.authInput}
