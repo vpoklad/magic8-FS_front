@@ -4,6 +4,9 @@ import Transaction from './Transaction'
 
 const TransactionTable = ({ income, transactions }) => {
 
+
+
+  const empty = transactions === null || transactions.length === 0;
     return(
           <div className={s.tableDesk}>
       <table className={s.table}>
@@ -16,7 +19,7 @@ const TransactionTable = ({ income, transactions }) => {
           </tr>
         </thead>
   <tbody className={s.tableBody}>
-            {transactions.length > 0 &&
+            {empty? (<p className={s.noTransactions}>Дані про транзакцакції відсутні</p>) :
               transactions.map(item => (
                 <Transaction
                   key={item.id}
