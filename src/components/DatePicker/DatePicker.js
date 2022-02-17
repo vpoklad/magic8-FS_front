@@ -1,4 +1,4 @@
-import React, { useState, forwardRef, useEffect } from 'react';
+import React, { useState, forwardRef } from 'react';
 import DatePicker, { registerLocale } from 'react-datepicker';
 import uk from 'date-fns/locale/uk';
 import 'react-datepicker/dist/react-datepicker.css';
