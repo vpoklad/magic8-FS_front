@@ -9,6 +9,7 @@ import { addNewTransactionThunk } from '../../redux/transactions/thunk';
 import { useDispatch } from 'react-redux';
 import DatePickerComponent from '../DatePicker/DatePicker';
 import Button from '../Button/Button';
+
 import { summaryThunk } from '../../redux/summary/thunk';
 
 const InputTable = ({ options, income, onSubmit, onClick }) => {
@@ -72,6 +73,7 @@ const InputTable = ({ options, income, onSubmit, onClick }) => {
   const params = { year: year, month: month };
   const items = !income ? 'expense' : 'income';
   const obj = { items, params };
+
 
   const getDate = value => {
     setDate(value);

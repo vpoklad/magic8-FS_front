@@ -11,23 +11,37 @@ import {
 import useMediaQuery from '@mui/material/useMediaQuery';
 
 export default function ChartBarExpInc(data) {
-const tablet = useMediaQuery('(min-width: 768px)');
-const result = data.data
+  const tablet = useMediaQuery('(min-width: 768px)');
+  const result = data.data;
 
   const renderTopLabel = ({ payload, x, y, width, height, value }) => {
-    return <text x={x + width / 2} y={y-8} fill="#52555F" textAnchor="middle">{`${value} грн`}</text>
+    return (
+      <text
+        x={x + width / 2}
+        y={y - 8}
+        fill="#52555F"
+        textAnchor="middle"
+      >{`${value} грн`}</text>
+    );
   };
   const renderRightLabel = ({ payload, x, y, width, height, value }) => {
-    return <text x={(x+60) + height * 2} y={y-8} fill="#52555F" textAnchor="start" >{`${value} грн`}</text>;
+    return (
+      <text
+        x={x + 60 + height * 2}
+        y={y - 8}
+        fill="#52555F"
+        textAnchor="start"
+      >{`${value} грн`}</text>
+    );
   };
 
   return tablet ? (
-    <div className={s.CartesianGrid}
-    >
+    <div className={s.CartesianGrid}>
       <ResponsiveContainer width="100%" height={380}>
-        <BarChart data={result}
+        <BarChart
+          data={result}
           fontSize={12}
-          margin={{ top: 40}}
+          margin={{ top: 40 }}
           // barGap={0}
           // barCategoryGap={0}
           // minPointSize={5}
@@ -45,10 +59,6 @@ const result = data.data
             tickLine={false}
             stroke="#52555F"
             interval={0}
-            // padding={{ left: 20, right: 20 }}
-            // orientation='bottom'
-            // margin={{ bottom: 30 }}
-
           />
           <Bar
             dataKey="total"
@@ -68,12 +78,7 @@ const result = data.data
     </div>
   ) : (
     <ResponsiveContainer width="100%" height={485}>
-      <BarChart
-        data={result}
-        layout="vertical"
-        fontSize={10}
-        maxBarSize="100%"
-      >
+      <BarChart data={result} layout="vertical" fontSize={10} maxBarSize="100%">
         <YAxis
           dataKey="_id.categoryLabel"
           axisLine={false}
