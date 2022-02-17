@@ -109,13 +109,16 @@ const InputTable = ({ options, income, onSubmit, onClick }) => {
         closeOnClick: true,
       });
     }
+
     dispatch(addNewTransactionThunk(details));
+    dispatch(summaryThunk(obj));
+
     toast.success('Транзакція успішно додана', {
       autoClose: 1000,
       position: 'top-center',
       closeOnClick: true,
     });
-    dispatch(summaryThunk(obj));
+    resetInput();
   };
   const details = {
     description: productName,
@@ -210,7 +213,7 @@ const InputTable = ({ options, income, onSubmit, onClick }) => {
           type="submit"
           onClick={() => {
             addTransaction();
-            resetInput();
+
             /* onClick(); */
           }}
           text="Ввести"

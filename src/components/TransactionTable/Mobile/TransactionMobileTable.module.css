@@ -77,3 +77,8 @@
   width: 18px;
   height: 18px;
 }
+
+.datepieckerWrapper {
+  text-align: center;
+  margin-top: 40px;
+}

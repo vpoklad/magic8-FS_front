@@ -40,6 +40,8 @@ const CountingTable = () => {
   const [showModalIncome, setShowModalIncome] = useState(false);
 
   const tablet = useMediaQuery('(min-width: 768px)');
+  const desktop = useMediaQuery('(min-width: 1280px)');
+  const mobile = useMediaQuery('(max-width:767px)');
 
   const clickExpense = () => {
     if (expense) return;
@@ -57,8 +59,6 @@ const CountingTable = () => {
     setExpense(false);
   };
 
-
-
   const onDeleteTransactionError = error => {
     toast.error('Something went wrong, please try again later.');
   };
@@ -67,7 +67,7 @@ const CountingTable = () => {
     dispatch(getTransactionsThunk());
   }, []);
 
-  const transactions  = useSelector(getTransactions);
+  const transactions = useSelector(getTransactions);
   const aspect = expense ? true : false;
 
   const toShowModalExpense = () => {
@@ -84,81 +84,90 @@ const CountingTable = () => {
   };
 
   return (
-    <div className={s.counterWrapper}>
-      {!tablet ? (
-        <div className={s.mobileBtn}>
-          <button className={s.mobileCounterBtn} onClick={toShowModalExpense}>
-            Витрати
-          </button>
-          <button className={s.mobileCounterBtn} onClick={toShowModalIncome}>
-            Дохід
-          </button>
-        </div>
-      ) : (
-        <div className={s.tabletBtn}>
-          <button
-            className={expense ? s['counterAccentBtn'] : s['counterTabletBtn']}
-            onClick={clickExpense}
-          >
-            Витрати
-          </button>
-          <button
-            className={income ? s['counterAccentBtn'] : s['counterTabletBtn']}
-            onClick={clickIncome}
-          >
-            Дохід
-          </button>
-        </div>
-      )}
+    <div>
+      <div className={s.counterWrapper}>
+        {!tablet ? (
+          <div className={s.mobileBtn}>
+            <button className={s.mobileCounterBtn} onClick={toShowModalExpense}>
+              Витрати
+            </button>
+            <button className={s.mobileCounterBtn} onClick={toShowModalIncome}>
+              Дохід
+            </button>
+          </div>
+        ) : (
+          <div className={s.tabletBtn}>
+            <button
+              className={
+                expense ? s['counterAccentBtn'] : s['counterTabletBtn']
+              }
+              onClick={clickExpense}
+            >
+              Витрати
+            </button>
+            <button
+              className={income ? s['counterAccentBtn'] : s['counterTabletBtn']}
+              onClick={clickIncome}
+            >
+              Дохід
+            </button>
+          </div>
+        )}
 
-      {expense ? (
-        <div className={s.counterContainer}>
-          <InputTable options={categoryExpense} />
-          <div className={s.flexContainer}>
-            {!transactions ? (
-              ''
-            ) : (
-              <TransactionTable
-                transactions={transactions.filter(
-                  point => !point.typeOfTransaction,
-                )}
-              />
-            )}
-            {tablet && <Summary aspect={aspect} />}
+        {expense ? (
+          <div className={s.counterContainer}>
+            <InputTable options={categoryExpense} />
+            <div className={s.flexContainer}>
+              {!transactions ? (
+                ''
+              ) : (
+                <TransactionTable
+                  transactions={transactions.filter(
+                    point => !point.typeOfTransaction,
+                  )}
+                />
+              )}
+              {desktop && <Summary aspect={aspect} />}
+            </div>
           </div>
-        </div>
-      ) : (
-        <div className={s.counterContainer}>
-          <InputTable options={categoryIncome} income={income} />
-          <div className={s.flexContainer}>
-            {!transactions ? (
-              ''
-            ) : (
-              <TransactionTable
-                transactions={transactions.filter(
-                  point => point.typeOfTransaction,
-                )}
-                income={income}
-              />
-            )}
-            {tablet && <Summary aspect={aspect} />}
+        ) : (
+          <div className={s.counterContainer}>
+            <InputTable options={categoryIncome} income={income} />
+            <div className={s.flexContainer}>
+              {!transactions ? (
+                ''
+              ) : (
+                <TransactionTable
+                  transactions={transactions.filter(
+                    point => point.typeOfTransaction,
+                  )}
+                  income={income}
+                />
+              )}
+              {desktop && <Summary aspect={aspect} />}
+            </div>
           </div>
+        )}
+        {!tablet && <TransactionMobileTable transactions={transactions} />}
+        {showModalIncome && !tablet && (
+          <InputModal text="Дохід" closeInputModal={onClickModal}>
+            <InputTable
+              options={categoryIncome}
+              income={income}
+              onClick={onClickModal}
+            />
+          </InputModal>
+        )}
+        {showModalExpense && !tablet && (
+          <InputModal text="Витрата" closeInputModal={onClickModal}>
+            <InputTable options={categoryExpense} onClick={onClickModal} />
+          </InputModal>
+        )}
+      </div>
+      {!desktop && !mobile && (
+        <div>
+          <Summary aspect={aspect} />
         </div>
-      )}
-      {!tablet && <TransactionMobileTable transactions={transactions} />}
-      {showModalIncome && !tablet && (
-        <InputModal text="Дохід" closeInputModal={onClickModal}>
-          <InputTable
-            options={categoryIncome}
-            income={income}
-            onClick={onClickModal}
-          />
-        </InputModal>
-      )}
-      {showModalExpense && !tablet && (
-        <InputModal text="Витрата" closeInputModal={onClickModal}>
-          <InputTable options={categoryExpense} onClick={onClickModal} />
-        </InputModal>
       )}
     </div>
   );
