@@ -74,7 +74,6 @@ const InputTable = ({ options, income, onSubmit, onClick }) => {
   const items = !income ? 'expense' : 'income';
   const obj = { items, params };
 
-
   const addTransaction = () => {
     if (!productName) {
       return toast.error('Ви забули про опис)', {
@@ -103,9 +102,9 @@ const InputTable = ({ options, income, onSubmit, onClick }) => {
       position: 'top-center',
       closeOnClick: true,
     });
-    dispatch(summaryThunk(obj))
+    dispatch(summaryThunk(obj));
   };
-
+  console.log(date);
   const details = {
     description: productName,
     category: category.value,
@@ -113,7 +112,7 @@ const InputTable = ({ options, income, onSubmit, onClick }) => {
     sum: payValue.includes(',') ? +payValue.replace(/,/g, '.') : +payValue,
     date: format(new Date(date), 'yyyy-MM-dd'),
     year: format(new Date(date), 'yyyy'),
-     month: `${date.getMonth()}`,
+    month: `${date.getMonth()}`,
     day: format(new Date(date), 'dd'),
     typeOfTransaction: income ? true : false,
   };
