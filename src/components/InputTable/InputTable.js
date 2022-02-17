@@ -213,8 +213,7 @@ const InputTable = ({ options, income, onSubmit, onClick }) => {
           type="submit"
           onClick={() => {
             addTransaction();
-
-            /* onClick(); */
+            onClick();
           }}
           text="Ввести"
         />

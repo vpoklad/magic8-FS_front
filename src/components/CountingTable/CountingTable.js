@@ -82,16 +82,29 @@ const CountingTable = () => {
     setShowModalExpense(false);
     setShowModalIncome(false);
   };
+  console.log(income);
 
   return (
     <div>
       <div className={s.counterWrapper}>
         {!tablet ? (
           <div className={s.mobileBtn}>
-            <button className={s.mobileCounterBtn} onClick={toShowModalExpense}>
+            <button
+              className={s.mobileCounterBtn}
+              onClick={() => {
+                toShowModalExpense();
+                clickExpense();
+              }}
+            >
               Витрати
             </button>
-            <button className={s.mobileCounterBtn} onClick={toShowModalIncome}>
+            <button
+              className={s.mobileCounterBtn}
+              onClick={() => {
+                toShowModalIncome();
+                clickIncome();
+              }}
+            >
               Дохід
             </button>
           </div>
