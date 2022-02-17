@@ -19,16 +19,18 @@ export default function Summary({ aspect }) {
   const items = aspect ? 'expense' : 'income';
 
   const obj = { items, params };
-
+  const sum = summary === null || summary.length === 0;
   useEffect(() => {
     dispatch(summaryThunk(obj));
   }, [items, dispatch]);
-
+  console.log(summary);
   return (
     <div className={s.wrapper}>
       <p className={s.title}>Зведення</p>
       <ul className={s.list}>
-        {summary &&
+        {sum ? (
+          <p className={s.noContent}>Даних для зведення немає</p>
+        ) : (
           summary.map(item => (
             <li className={s.item} key={`${item._id}`}>
               <span className={s.fieldMonth}>{item.month}</span>
@@ -36,7 +38,8 @@ export default function Summary({ aspect }) {
                 {item.totalExpense || item.totalIncome}
               </span>
             </li>
-          ))}
+          ))
+        )}
       </ul>
     </div>
   );
