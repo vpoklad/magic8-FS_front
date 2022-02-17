@@ -10,9 +10,9 @@ import {
 } from 'recharts';
 import useMediaQuery from '@mui/material/useMediaQuery';
 
-export default function ChartBarExpInc(data) {
-const tablet = useMediaQuery('(min-width: 768px)');
-const result = data.data
+export default function ChartBarExpInc({data, chartData}) {
+  const tablet = useMediaQuery('(min-width: 768px)');
+  const result = chartData.filter((el) => el._id.category=== data[0]._id.category );
 
   const renderTopLabel = ({ payload, x, y, width, height, value }) => {
     return <text x={x + width / 2} y={y-8} fill="#52555F" textAnchor="middle">{`${value} грн`}</text>
@@ -40,7 +40,7 @@ const result = data.data
             strokeWidth={2}
           />
           <XAxis
-            dataKey="_id.categoryLabel"
+            dataKey="_id.description"
             axisLine={false}
             tickLine={false}
             stroke="#52555F"
@@ -75,7 +75,7 @@ const result = data.data
         maxBarSize="100%"
       >
         <YAxis
-          dataKey="_id.categoryLabel"
+          dataKey="_id.description"
           axisLine={false}
           tickLine={false}
           stroke="#52555F"

@@ -24,8 +24,12 @@ export default function ExpenseIncomeInReport() {
     }
 
   let data;
+  let chartData;
   if (expense && dataReports) {
     data = dataReports.detailedCategoryStatistic.filter(
+      el => el._id.typeOfTransaction === false,
+    );
+    chartData = dataReports?.detailedCategoryStatistic.filter(
       el => el._id.typeOfTransaction === false,
     );
   }
@@ -33,8 +37,10 @@ export default function ExpenseIncomeInReport() {
     data = dataReports.detailedCategoryStatistic.filter(
       el => el._id.typeOfTransaction,
     );
+    chartData = dataReports?.detailedDescriptionStatistic.filter(
+      el => el._id.typeOfTransaction ,
+    );
   }
- 
 
   return (
     <div className={s.containerExpenseIncome}>
@@ -68,7 +74,7 @@ export default function ExpenseIncomeInReport() {
         <>
           {data.length > 0 && (
             <div className={s.dataExpenseIncome}>
-              <ChartBarExpInc data={data} />
+              <ChartBarExpInc chartData={chartData} data={data} />
             </div>
           )}
         </>
