@@ -5,6 +5,7 @@ import {
   Cell,
   XAxis,
   YAxis,
+  Tooltip,
   CartesianGrid,
   ResponsiveContainer,
 } from 'recharts';
@@ -13,6 +14,11 @@ import useMediaQuery from '@mui/material/useMediaQuery';
 export default function ChartBarExpInc({ chartData }) {
   const tablet = useMediaQuery('(min-width: 768px)');
   const result = chartData;
+  const resultForMobile = chartData.map(el => ({
+    total: el.total,
+    _id: el._id.description,
+  }));
+  const len = result.length;
 
   const renderTopLabel = ({ payload, x, y, width, height, value }) => {
     return (
@@ -34,7 +40,7 @@ export default function ChartBarExpInc({ chartData }) {
       >{`${value} грн`}</text>
     );
   };
-
+  console.log('result :>> ', result);
   return (
     result?.length > 0 &&
     (tablet ? (
@@ -79,29 +85,57 @@ export default function ChartBarExpInc({ chartData }) {
         </ResponsiveContainer>
       </div>
     ) : (
-      <ResponsiveContainer width="100%" height={485}>
+      <ResponsiveContainer min-width={320} height={50 * len}>
+        {/* // <ResponsiveContainer width="100%" height="100%"> */}
         <BarChart
           data={result}
           layout="vertical"
           fontSize={10}
           maxBarSize="100%"
+          // barGap={20}
+          // barCategoryGap={10}
+          // minPointSize={5}
+          margin={{
+            top: 5,
+            right: 3,
+            left: 2,
+            bottom: 5,
+          }}
         >
+          <XAxis
+            axisLine={false}
+            tickLine={false}
+            // tick={false}
+            scale="linear"
+            // reversed={true}
+          />
+
           <YAxis
             dataKey="_id.description"
             axisLine={false}
             tickLine={false}
             stroke="#52555F"
+            // interval={0}
             type="category"
             dx={8}
             dy={-20}
             textAnchor="start"
+            // scale="linear"
+            // reversed={true}
+            // interval="preserveStart"
           />
+          <Tooltip />
           <Bar
             dataKey="total"
+            data={result}
             barSize={15}
             radius={[0, 10, 10, 0]}
             label={renderRightLabel}
             fill="#FFDAC0"
+            interval={0}
+            minPointSize={result[len - 1].total}
+            // minPointSize={result[0].total}
+            // minPointSize={result[0].total}
           >
             {result.map((entry, index) => (
               <Cell
