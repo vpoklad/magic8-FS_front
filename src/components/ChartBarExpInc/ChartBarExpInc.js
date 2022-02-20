@@ -13,6 +13,8 @@ import useMediaQuery from '@mui/material/useMediaQuery';
 export default function ChartBarExpInc({ chartData }) {
   const tablet = useMediaQuery('(min-width: 768px)');
   const result = chartData;
+  const len = result.length;
+  const heightMobile = 50 * len + 40;
 
   const renderTopLabel = ({ payload, x, y, width, height, value }) => {
     return (
@@ -24,10 +26,11 @@ export default function ChartBarExpInc({ chartData }) {
       >{`${value} грн`}</text>
     );
   };
+
   const renderRightLabel = ({ payload, x, y, width, height, value }) => {
     return (
       <text
-        x={x + 60 + height * 2}
+        x={Math.max(x - 45 + width, x + 60)}
         y={y - 8}
         fill="#52555F"
         textAnchor="start"
@@ -79,29 +82,38 @@ export default function ChartBarExpInc({ chartData }) {
         </ResponsiveContainer>
       </div>
     ) : (
-      <ResponsiveContainer width="100%" height={485}>
+      <ResponsiveContainer width="100%" height={heightMobile}>
         <BarChart
           data={result}
           layout="vertical"
           fontSize={10}
           maxBarSize="100%"
         >
+          <XAxis
+            axisLine={false}
+            tickLine={false}
+            tick={false}
+            scale="auto"
+            type="number"
+          />
+
           <YAxis
             dataKey="_id.description"
             axisLine={false}
             tickLine={false}
-            stroke="#52555F"
             type="category"
             dx={8}
             dy={-20}
             textAnchor="start"
           />
+
           <Bar
             dataKey="total"
             barSize={15}
             radius={[0, 10, 10, 0]}
             label={renderRightLabel}
             fill="#FFDAC0"
+            minPointSize={10}
           >
             {result.map((entry, index) => (
               <Cell
