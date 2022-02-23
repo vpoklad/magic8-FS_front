@@ -13,7 +13,7 @@ import useMediaQuery from '@mui/material/useMediaQuery';
 export default function ChartBarExpInc({ chartData }) {
   const tablet = useMediaQuery('(min-width: 768px)');
   const result = chartData;
-  const len = result.length;
+  const len = result?.length;
   const heightMobile = 50 * len + 40;
 
   const renderTopLabel = ({ payload, x, y, width, height, value }) => {

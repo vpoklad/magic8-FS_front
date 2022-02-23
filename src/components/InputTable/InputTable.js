@@ -79,30 +79,30 @@ const InputTable = ({ options, income, onClick }) => {
     setDate(value);
   };
 
-  useLayoutEffect(() => {
-    if (!transErr) {
-      toast.success('Транзакція успішно додана', {
-        autoClose: 1000,
-        position: 'top-center',
-        closeOnClick: true,
-      });
-    } else {
-      toast.error(
-        'Транзакція не додана. Сума транзакції перевищує суму балансу!',
-        {
-          autoClose: 1000,
-          position: 'top-center',
-          closeOnClick: true,
-        },
-      );
-    }
-  }, [transErr]);
+  // useLayoutEffect(() => {
+  //   if (!transErr) {
+  //     toast.success('Транзакція успішно додана', {
+  //       autoClose: 1000,
+  //       position: 'top-center',
+  //       closeOnClick: true,
+  //     });
+  //   } else {
+  //     toast.error(
+  //       'Транзакція не додана. Сума транзакції перевищує суму балансу!',
+  //       {
+  //         autoClose: 1000,
+  //         position: 'top-center',
+  //         closeOnClick: true,
+  //       },
+  //     );
+  //   }
+  // }, [transErr]);
 
   useEffect(() => {
     dispatch(summaryThunk(obj));
   }, [date]);
 
-  const addTransaction = () => {
+  const addTransaction = async () => {
     if (!productName) {
       return toast.error('Ви забули про опис)', {
         autoClose: 2000,
@@ -124,9 +124,23 @@ const InputTable = ({ options, income, onClick }) => {
         closeOnClick: true,
       });
     }
-
-    dispatch(addNewTransactionThunk(details));
-
+    try {
+      const result = await dispatch(addNewTransactionThunk(details)).unwrap();
+      // console.log(result);
+      if (result) {
+        return toast.success('Транзакція успішно додана', {
+          autoClose: 1000,
+          position: 'top-center',
+          closeOnClick: true,
+        });
+      }
+    } catch (error) {
+      toast.error('Увага! Сума транзакції перевищує суму балансу!', {
+        autoClose: 1000,
+        position: 'top-center',
+        closeOnClick: true,
+      });
+    }
     dispatch(summaryThunk(obj));
     resetInput();
 

@@ -8,6 +8,7 @@ import {
   PURGE,
   REGISTER,
 } from 'redux-persist';
+
 import storage from 'redux-persist/lib/storage';
 import { configureStore, getDefaultMiddleware } from '@reduxjs/toolkit';
 
@@ -24,13 +25,13 @@ const authPersistConfig = {
 };
 const authPersistReducer = persistReducer(authPersistConfig, authReducer);
 
-const middleware = [
-  ...getDefaultMiddleware({
-    serializableCheck: {
-      ignoredActions: [FLUSH, REHYDRATE, PAUSE, PERSIST, PURGE, REGISTER],
-    },
-  }),
-];
+// const middleware = [
+//   ...getDefaultMiddleware({
+//     serializableCheck: {
+//       ignoredActions: [FLUSH, REHYDRATE, PAUSE, PERSIST, PURGE, REGISTER],
+//     },
+//   }),
+// ];
 
 const store = configureStore({
   reducer: {
@@ -42,7 +43,9 @@ const store = configureStore({
 
     summary: summarySlice,
   },
-  middleware,
+  middleware: getDefaultMiddleware({
+    serializableCheck: false,
+  }),
   devTools: process.env.NODE_ENV === 'development',
 });
 

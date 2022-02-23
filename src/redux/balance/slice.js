@@ -56,7 +56,7 @@ const balanceSlice = createSlice({
       state.isLoading = true;
     },
     [addNewTransactionThunk.fulfilled]: (state, action) => {
-      console.log('b', action);
+      // console.log('b', action);
 
       state.value = action.payload.balance;
       state.isLoading = false;
@@ -64,7 +64,7 @@ const balanceSlice = createSlice({
     },
     [addNewTransactionThunk.rejected]: (state, action) => {
       state.isLoading = false;
-      console.log('b-err', action);
+      // console.log('b-err', action);
       state.error = action.payload.response.data;
     },
   },
