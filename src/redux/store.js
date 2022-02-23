@@ -11,7 +11,7 @@ import {
 import storage from 'redux-persist/lib/storage';
 import { configureStore, getDefaultMiddleware } from '@reduxjs/toolkit';
 
-import authReducer from './auth/slices';
+import authReducer, { authSlice } from './auth/slices';
 import balanceSlice from './balance/slice';
 import reportsSlice from './reports/slice';
 import transactionsSlice from './transactions/slice';
@@ -30,6 +30,7 @@ const middleware = [
       ignoredActions: [FLUSH, REHYDRATE, PAUSE, PERSIST, PURGE, REGISTER],
     },
   }),
+  // authSlice.middleware,
 ];
 
 const store = configureStore({

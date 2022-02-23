@@ -5,8 +5,9 @@ import { Routes, Route } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import {
   getToken,
+  // isUserLogIn,
   getIsFetchingCurrentUser,
-  getisLoading,
+  // getisLoading,
 } from './redux/auth/selectors';
 import { fetchCurrentUser } from './redux/auth/thunks';
 import AppBar from './components/AppBar/AppBar';
@@ -34,7 +35,9 @@ const NotFound = lazy(() =>
 function App() {
   const dispatch = useDispatch();
   const isFetchingCurrentUser = useSelector(getIsFetchingCurrentUser);
+  // console.log(!isFetchingCurrentUser);
   const token = useSelector(getToken);
+  console.log(token);
 
   useEffect(() => {
     if (token) dispatch(fetchCurrentUser());

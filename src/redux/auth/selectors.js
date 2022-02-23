@@ -2,7 +2,7 @@ export const getUser = state => state.auth.email;
 export const getUserAvatar = state => state.auth.avatarURL;
 export const getToken = state => state.auth.token;
 export const getIsFetchingCurrentUser = state =>
-  state.auth.isFetchingCurrentUser;
+  state?.auth?.isFetchingCurrentUser ?? false;
 export const getVerify = state => state.auth.verify;
 export const getisLoading = state => state.auth.isLoading;
 export const getFormError = state => state.auth.formError;
