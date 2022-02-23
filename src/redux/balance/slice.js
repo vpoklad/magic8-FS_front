@@ -1,6 +1,9 @@
 import { createSlice } from '@reduxjs/toolkit';
 import { addBalanceThunk, getBalanceThunk } from './thunk';
-import { delTransactionThunk, addNewTransactionThunk } from '../transactions/thunk';
+import {
+  delTransactionThunk,
+  addNewTransactionThunk,
+} from '../transactions/thunk';
 
 const initialStateBalance = {
   value: null,
@@ -48,17 +51,21 @@ const balanceSlice = createSlice({
       state.isLoading = false;
       state.error = action.payload;
     },
+
     [addNewTransactionThunk.pending]: (state, _) => {
       state.isLoading = true;
     },
     [addNewTransactionThunk.fulfilled]: (state, action) => {
+      console.log('b', action);
+
       state.value = action.payload.balance;
       state.isLoading = false;
       state.error = null;
     },
     [addNewTransactionThunk.rejected]: (state, action) => {
       state.isLoading = false;
-      state.error = action.payload;
+      console.log('b-err', action);
+      state.error = action.payload.response.data;
     },
   },
 });

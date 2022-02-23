@@ -1,5 +1,9 @@
-import { createSlice } from "@reduxjs/toolkit";
-import { getTransactionsThunk, addNewTransactionThunk , delTransactionThunk} from "./thunk";
+import { createSlice } from '@reduxjs/toolkit';
+import {
+  getTransactionsThunk,
+  addNewTransactionThunk,
+  delTransactionThunk,
+} from './thunk';
 
 const initialStateTransactions = {
   data: [],
@@ -33,7 +37,7 @@ const transactionsSlice = createSlice({
     },
     [addNewTransactionThunk.rejected]: (state, action) => {
       state.isLoading = false;
-      state.error = action.payload;
+      state.error = action.payload.response.data;
     },
     [delTransactionThunk.pending]: (state, _) => {
       state.isLoading = true;
