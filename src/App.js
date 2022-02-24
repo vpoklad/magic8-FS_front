@@ -35,9 +35,7 @@ const NotFound = lazy(() =>
 function App() {
   const dispatch = useDispatch();
   const isFetchingCurrentUser = useSelector(getIsFetchingCurrentUser);
-  // console.log(!isFetchingCurrentUser);
   const token = useSelector(getToken);
-  console.log(token);
 
   useEffect(() => {
     if (token) dispatch(fetchCurrentUser());
