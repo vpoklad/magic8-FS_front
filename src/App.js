@@ -5,8 +5,9 @@ import { Routes, Route } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import {
   getToken,
+  // isUserLogIn,
   getIsFetchingCurrentUser,
-  getisLoading,
+  // getisLoading,
 } from './redux/auth/selectors';
 import { fetchCurrentUser } from './redux/auth/thunks';
 import AppBar from './components/AppBar/AppBar';

@@ -8,12 +8,12 @@ import {
   googleAuth,
 } from './thunks';
 
-const authSlice = createSlice({
+export const authSlice = createSlice({
   name: 'auth',
   initialState: {
     email: null,
     token: null,
-    avatarURL: null,   
+    avatarURL: null,
     formNotification: null,
     verify: null,
     errorCode: null,
@@ -77,7 +77,8 @@ const authSlice = createSlice({
     },
     [fetchCurrentUser.rejected](state, action) {
       state.isLoading = false;
-      state.errorCode = action.payload;
+      state.errorCode = action.payload.response.data.code;
+      state.token = null;
     },
     [googleAuth.pending](state, action) {
       state.isLoading = true;

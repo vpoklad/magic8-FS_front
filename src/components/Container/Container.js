@@ -1,7 +1,7 @@
 import s from './Container.module.css';
 import useMediaQuery from '@mui/material/useMediaQuery';
 import { useSelector } from 'react-redux';
-import { getUser } from '../../redux/auth/selectors';
+import { isUserLogIn } from '../../redux/auth/selectors';
 
 import kapustaImg from './kapusta.svg';
 import kapustaImg2 from './kapusta-2.svg';
@@ -14,7 +14,8 @@ export default function Container({ children }) {
   const mobile = useMediaQuery('(max-width: 767px)');
   const tablet = useMediaQuery('(min-width: 768px)');
   const desktop = useMediaQuery('(min-width: 1280px)');
-  const isLoggedIn = useSelector(getUser);
+  const isLoggedIn = useSelector(isUserLogIn);
+  // console.log(isLoggedIn);
 
   return (
     <>
