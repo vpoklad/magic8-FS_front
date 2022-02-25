@@ -1,14 +1,15 @@
 import s from './InputTable.module.css';
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useLayoutEffect } from 'react';
 import useMediaQuery from '@mui/material/useMediaQuery';
 import { format } from 'date-fns';
 import { toast } from 'react-toastify';
 import 'react-datepicker/dist/react-datepicker.css';
 import Select from 'react-select';
 import { addNewTransactionThunk } from '../../redux/transactions/thunk';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import DatePickerComponent from '../DatePicker/DatePicker';
 import Button from '../Button/Button';
+import { getTransErr } from '../../redux/transactions/transactionsSelectors';
 
 import { summaryThunk } from '../../redux/summary/thunk';
 
@@ -21,7 +22,7 @@ const InputTable = ({ options, income, onClick }) => {
   const dispatch = useDispatch();
 
   const tablet = useMediaQuery('(min-width: 768px)');
-
+  const transErr = useSelector(getTransErr);
   const resetInput = () => {
     setProductName('');
     setPayValue('');
@@ -78,11 +79,30 @@ const InputTable = ({ options, income, onClick }) => {
     setDate(value);
   };
 
+  // useLayoutEffect(() => {
+  //   if (!transErr) {
+  //     toast.success('Транзакція успішно додана', {
+  //       autoClose: 1000,
+  //       position: 'top-center',
+  //       closeOnClick: true,
+  //     });
+  //   } else {
+  //     toast.error(
+  //       'Транзакція не додана. Сума транзакції перевищує суму балансу!',
+  //       {
+  //         autoClose: 1000,
+  //         position: 'top-center',
+  //         closeOnClick: true,
+  //       },
+  //     );
+  //   }
+  // }, [transErr]);
+
   useEffect(() => {
     dispatch(summaryThunk(obj));
   }, [date]);
 
-  const addTransaction = () => {
+  const addTransaction = async () => {
     if (!productName) {
       return toast.error('Ви забули про опис)', {
         autoClose: 2000,
@@ -104,17 +124,63 @@ const InputTable = ({ options, income, onClick }) => {
         closeOnClick: true,
       });
     }
-
-    dispatch(addNewTransactionThunk(details));
+    try {
+      const result = await dispatch(addNewTransactionThunk(details)).unwrap();
+      // console.log(result);
+      if (result) {
+        return toast.success('Транзакція успішно додана', {
+          autoClose: 1000,
+          position: 'top-center',
+          closeOnClick: true,
+        });
+      }
+    } catch (error) {
+      toast.error('Увага! Сума транзакції перевищує суму балансу!', {
+        autoClose: 1000,
+        position: 'top-center',
+        closeOnClick: true,
+      });
+    }
     dispatch(summaryThunk(obj));
-
-    toast.success('Транзакція успішно додана', {
-      autoClose: 1000,
-      position: 'top-center',
-      closeOnClick: true,
-    });
     resetInput();
+
+    // console.log(result.then(res => res));
+    // try {
+    //   if (!transErr)
+    //     toast.success('Транзакція успішно додана', {
+    //       autoClose: 1000,
+    //       position: 'top-center',
+    //       closeOnClick: true,
+    //     });
+    // } catch {
+    //   console.log('catch');
+    //   toast.error(
+    //     'Транзакція не додана. Сума транзакції перевищує суму балансу!',
+    //     {
+    //       autoClose: 1000,
+    //       position: 'top-center',
+    //       closeOnClick: true,
+    //     },
+    //   );
+    // }
+    // if (payload?.response?.status === 400) {
+    //   return toast.error(
+    //     'Транзакція не додана. Сума транзакції перевищує суму балансу!',
+    //     {
+    //       autoClose: 1000,
+    //       position: 'top-center',
+    //       closeOnClick: true,
+    //     },
+    //   );
+    // }
+
+    // toast.success('Транзакція успішно додана', {
+    //   autoClose: 1000,
+    //   position: 'top-center',
+    //   closeOnClick: true,
+    // });
   };
+
   const details = {
     description: productName,
     category: category.value,
