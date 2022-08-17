@@ -41,8 +41,8 @@ export default function AuthForm() {
       if (!res) {
         return toast.error('Невірний логін/пароль');
       }
-      setEmail('');
-      setPassword('');
+      // setEmail('');
+      // setPassword('');
     } catch (error) {}
   };
   let regex = new RegExp('[a-z0-9]+@[a-z]+.[a-z]{2,3}');

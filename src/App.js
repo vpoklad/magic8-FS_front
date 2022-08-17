@@ -5,7 +5,7 @@ import { Routes, Route } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import {
   getToken,
-  // isUserLogIn,
+  isUserLogIn,
   getIsFetchingCurrentUser,
   // getisLoading,
 } from './redux/auth/selectors';
@@ -36,10 +36,11 @@ function App() {
   const dispatch = useDispatch();
   const isFetchingCurrentUser = useSelector(getIsFetchingCurrentUser);
   const token = useSelector(getToken);
+  const isLogIn = useSelector(isUserLogIn);
 
   useEffect(() => {
-    if (token) dispatch(fetchCurrentUser());
-  }, []);
+    if (token & !isLogIn) dispatch(fetchCurrentUser());
+  }, [dispatch, isLogIn, token]);
 
   return (
     !isFetchingCurrentUser && (
