@@ -3,12 +3,7 @@ import { useEffect, lazy, Suspense } from 'react';
 import { Routes, Route } from 'react-router-dom';
 
 import { useDispatch, useSelector } from 'react-redux';
-import {
-  getToken,
-  isUserLogIn,
-  getIsFetchingCurrentUser,
-  // getisLoading,
-} from './redux/auth/selectors';
+import { getToken, getIsFetchingCurrentUser } from './redux/auth/selectors';
 import { fetchCurrentUser } from './redux/auth/thunks';
 import AppBar from './components/AppBar/AppBar';
 import Spinner from './components/Spinner/Spinner';
@@ -36,11 +31,10 @@ function App() {
   const dispatch = useDispatch();
   const isFetchingCurrentUser = useSelector(getIsFetchingCurrentUser);
   const token = useSelector(getToken);
-  const isLogIn = useSelector(isUserLogIn);
 
   useEffect(() => {
-    if (token & !isLogIn) dispatch(fetchCurrentUser());
-  }, [dispatch, isLogIn, token]);
+    if (token) dispatch(fetchCurrentUser());
+  }, [dispatch, token]);
 
   return (
     !isFetchingCurrentUser && (

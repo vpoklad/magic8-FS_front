@@ -13,10 +13,12 @@ import sBtn from '../Button/Button.module.css';
 
 import s from './authform.module.css';
 import logo from './google.svg';
+import sprite from '../../../src/sprite.svg';
 
 export default function AuthForm() {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+  const [inputType, setInputType] = useState('password');
   const dispatch = useDispatch();
   const formError = useSelector(getFormError);
   const verifyMessage = useSelector(getVerifyMessage);
@@ -32,6 +34,16 @@ export default function AuthForm() {
       default:
         return;
     }
+  };
+  let spriteIcon =
+    inputType === 'password'
+      ? `${sprite}#icon-eye`
+      : `${sprite}#icon-eye-blocked`;
+
+  const toggleInputType = () => {
+    let type = inputType === 'password' ? 'text' : 'password';
+
+    setInputType(type);
   };
   const handlelogIn = async e => {
     e.preventDefault();
@@ -120,8 +132,16 @@ export default function AuthForm() {
 
           <label className={s.authLabel}>
             Пароль:
+            <svg
+              width="16"
+              height="16"
+              className={s.icon}
+              onClick={toggleInputType}
+            >
+              <use href={spriteIcon} />
+            </svg>
             <input
-              type="password"
+              type={inputType}
               name="password"
               placeholder="Пароль"
               required
