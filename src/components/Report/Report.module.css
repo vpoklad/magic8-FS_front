@@ -1,0 +1,48 @@
+.reports {
+  font-family: Roboto;
+  font-size: 12px;
+  line-height: 14px;
+  text-align: center;
+  font-weight: 400;
+  letter-spacing: 0.02em;
+  color: rgba(82, 85, 95, 0.7);
+  display: flex;
+  justify-content: center;
+  align-items: flex-end;
+}
+
+@media (max-width: 767px) {
+  .reports {
+    margin-bottom: 40px;
+  }
+}
+
+@media (min-width: 768px) {
+  .reports {
+    margin-left: 111px;
+  }
+}
+@media (min-width: 1280px) {
+  .reports {
+    margin-left: 205px;
+  }
+}
+.link {
+  margin-right: 15px;
+
+  text-decoration: none;
+  color: inherit;
+}
+
+.reports:hover .link {
+  color: #ff751d;
+}
+
+.reports:hover .icon {
+  fill: #ff751d;
+  cursor: pointer;
+}
+
+.icon {
+  fill: rgba(82, 85, 95, 0.7);
+}

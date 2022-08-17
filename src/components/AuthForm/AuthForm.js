@@ -1,19 +1,29 @@
 import { React, useState } from 'react';
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch, useSelector } from 'react-redux';
 import { register, logIn } from '../../redux/auth/thunks';
-import { getFormError, getVerify } from '../../redux/auth/selectors';
-import { NavLink } from 'react-router-dom';
+import { getFormError, getVerifyMessage } from '../../redux/auth/selectors';
+import { useToggle } from '../../hooks/useToggle';
+
+import axios from 'axios';
+import { toast } from 'react-toastify';
+
+import Modal from '../Modal/Modal';
 import Button from '../Button/Button';
 import sBtn from '../Button/Button.module.css';
+
 import s from './authform.module.css';
 import logo from './google.svg';
+import sprite from '../../../src/sprite.svg';
 
 export default function AuthForm() {
-  const [email, setEmail] = useState(' ');
-  const [password, setPassword] = useState(' ');
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
+  const [inputType, setInputType] = useState('password');
   const dispatch = useDispatch();
   const formError = useSelector(getFormError);
-  const verifyEmailSend = useSelector(getVerify);
+  const verifyMessage = useSelector(getVerifyMessage);
+
+  const [showModal, setShowModal] = useToggle(false);
 
   const handleChange = ({ target: { name, value } }) => {
     switch (name) {
@@ -25,17 +35,62 @@ export default function AuthForm() {
         return;
     }
   };
-  const handlelogIn = e => {
-    e.preventDefault();
-    dispatch(logIn({ email, password }));
-    setEmail('');
-    setPassword('');
+  let spriteIcon =
+    inputType === 'password'
+      ? `${sprite}#icon-eye`
+      : `${sprite}#icon-eye-blocked`;
+
+  const toggleInputType = () => {
+    let type = inputType === 'password' ? 'text' : 'password';
+
+    setInputType(type);
   };
+  const handlelogIn = async e => {
+    e.preventDefault();
+
+    try {
+      const res = await dispatch(logIn({ email, password })).unwrap();
+      if (!res) {
+        return toast.error('Невірний логін/пароль');
+      }
+      // setEmail('');
+      // setPassword('');
+    } catch (error) {}
+  };
+  let regex = new RegExp('[a-z0-9]+@[a-z]+.[a-z]{2,3}');
+
   const handleRegister = e => {
+    if (!regex.test(email)) {
+      return toast.error('Введіть правильний email');
+    }
+
+    if (password === '') {
+      return toast.error('Введіть password');
+    }
+    if (password.length < 6) {
+      return toast.error('Пароль повинен бути від 6 до 12 символів');
+    }
+    if (password.length > 12) {
+      return toast.error('Пароль повинен бути від 6 до 12 символів');
+    }
+    toggleModal();
     e.preventDefault();
     dispatch(register({ email, password }));
-    setEmail('');
-    setPassword('');
+  };
+  const handleResendEmail = async e => {
+    const response = await axios.post(
+      'https://kapusta-magic8.herokuapp.com/api/users/verify',
+      { email: email },
+    );
+
+    if (response.data.code === 503) {
+      toast.error('Помилка! Листа не вдалося відправити!');
+    }
+    toast.success(`Лист надіслано на пошту ${email}`);
+  };
+
+  const toggleModal = () => {
+    setShowModal(!showModal);
   };
 
   return (
@@ -46,12 +101,15 @@ export default function AuthForm() {
         </p>
 
         <div>
-          <NavLink to="/" exact="true" className={s.googleLink}>
-            <button className={s.googleBtn}>
+          <a
+            href="https://kapusta-magic8.herokuapp.com/api/users/google"
+            className={s.googleLink}
+          >
+            <div className={s.googleBtn}>
               <img src={logo} alt="google" className={s.googleIcon} />
               Google
-            </button>
-          </NavLink>
+            </div>
+          </a>
         </div>
 
         <p className={s.authformInfo}>
@@ -74,8 +132,16 @@ export default function AuthForm() {
 
           <label className={s.authLabel}>
             Пароль:
+            <svg
+              width="16"
+              height="16"
+              className={s.icon}
+              onClick={toggleInputType}
+            >
+              <use href={spriteIcon} />
+            </svg>
             <input
-              type="password"
+              type={inputType}
               name="password"
               placeholder="Пароль"
               required
@@ -85,8 +151,25 @@ export default function AuthForm() {
             />
           </label>
 
-          {formError && <div className={[s.authForm__message, s.authForm__message_danger].join(' ')}>{formError.message}</div>}
-          {verifyEmailSend && <div className={[s.authForm__message, s.authForm__message_success].join(' ')}>Лист підветдження відравлено на вказану електронну адресу.</div>}
+          {formError && (
+            <div
+              className={[s.authForm__message, s.authForm__message_danger].join(
+                ' ',
+              )}
+            >
+              {formError.message}
+            </div>
+          )}
+          {verifyMessage && (
+            <div
+              className={[
+                s.authForm__message,
+                s.authForm__message_success,
+              ].join(' ')}
+            >
+              {verifyMessage}
+            </div>
+          )}
 
           <div className={s.btns}>
             <Button
@@ -94,32 +177,33 @@ export default function AuthForm() {
               title="Ввійти"
               className={sBtn.Button}
               text="ВВІЙТИ"
-            >
-              {/* ВВІЙТИ */}
-            </Button>
+            ></Button>
             <Button
               type="button"
               onClick={handleRegister}
               title="Реєстрація"
               className={sBtn.Button}
               text="РЕЄСТРАЦІЯ"
-            ></Button>
-
-            {/* <button
-              type="submit"
-              title="Ввійти"
-              className={(s.authBtn, s.activeBtn)}
             >
-              ВВІЙТИ
-            </button> */}
-            {/* <button
-              type="button"
-              onClick={handleRegister}
-              title="Реєстрація"
-              className={s.authBtn}
-            >
-              РЕЄСТРАЦІЯ
-            </button> */}
+              {' '}
+            </Button>
+            {showModal && (
+              <Modal
+                toggleModal={toggleModal}
+                text="На вашу електронну скриньку надісланий лист. Для підтвердження реєстрації натисніть посилання в листі."
+              >
+                <p className={s.authformInfo_header}>
+                  якщо лист не отриманий, натисніть
+                  <button
+                    className={s.info}
+                    type="button"
+                    onClick={handleResendEmail}
+                  >
+                    надіслати ще раз
+                  </button>
+                </p>
+              </Modal>
+            )}
           </div>
         </form>
       </div>

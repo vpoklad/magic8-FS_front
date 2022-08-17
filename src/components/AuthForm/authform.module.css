@@ -5,25 +5,17 @@
   padding-bottom: 53px;
   margin-left: auto;
   margin-right: auto;
-  margin-top: 50px;
 
   box-shadow: 5px 10px 20px rgba(170, 178, 197, 0.4);
   border-radius: 30px;
 
-  background-color: #fff;
+  background-color: var(--basicColor);
 }
 
 @media (min-width: 768px) {
   .authformContainter {
     width: 436px;
     padding-top: 50px;
-  }
-}
-
-@media (min-width: 1280px) {
-  .authformContainter {
-    margin-right: 110px;
-    margin-top: 117px;
   }
 }
 
@@ -38,6 +30,7 @@
   margin-left: auto;
   margin-right: auto;
   margin-bottom: 24px;
+  margin-top: 0;
   text-align: center;
 
   font-family: Roboto;
@@ -48,13 +41,14 @@
   text-align: center;
   letter-spacing: 0.04em;
 
-  color: #52555f;
+  color: var(--mainTextColor);
 }
 
 @media (min-width: 768px) {
   .authformInfo_header {
     font-size: 12px;
     line-height: 1.2;
+    margin-bottom: 20px;
   }
 }
 
@@ -64,14 +58,15 @@
   width: 122px;
   margin-left: auto;
   margin-right: auto;
+  margin-bottom: 30px;
   padding: 10px 20px;
 
   font-size: 14px;
   line-height: 1.2;
   font-weight: 500;
 
-  color: #000000;
-  background: #f6f7fb;
+  color: var(--titleTextColor);
+  background: var(--backgroundColor);
   border: none;
   border-radius: 26px;
 
@@ -88,7 +83,7 @@
 }
 
 .googleBtn:active {
-  background-color: #e76615;
+  background-color: var(--accentColor);
   box-shadow: 0 3px #d37134;
   transform: translateY(1px);
 }
@@ -97,8 +92,8 @@
   background: url('./google.svg');
   background-size: contain;
   display: inline-block;
-  height: 18px;
-  width: 18px;
+  height: 20px;
+  width: 20px;
 }
 
 .authform {
@@ -111,7 +106,7 @@
   width: 100%;
   margin-left: auto;
   margin-right: auto;
-  margin-top: 30px;
+  margin-top: 0;
   margin-bottom: 24px;
 
   font-family: Roboto;
@@ -121,68 +116,92 @@
   line-height: 12px;
   letter-spacing: 0.04em;
 
-  color: #52555f;
+  color: var(--mainTextColor);
 }
 
 @media (min-width: 768px) {
   .authformInfo {
     font-size: 12px;
     line-height: 1.2;
+    margin-bottom: 20px;
   }
 }
 
 .authLabel {
+  position: relative;
   margin-left: auto;
   margin-right: auto;
   display: flex;
   flex-direction: column;
-  margin-top: 30px;
-  color: #000000;
+
+  color: var(--titleTextColor);
 
   font-family: Roboto;
-
+  margin-bottom: 30px;
   font-weight: bold;
-  font-size: 10px;
+  font-size: 11px;
   line-height: 1.1;
 }
 
 @media (min-width: 768px) {
   .authLabel {
-    font-size: 12px;
+    font-size: 13px;
     line-height: 1.2;
   }
+}
+.icon {
+  position: absolute;
+  right: 17px;
+  bottom: 17px;
+  fill: currentColor;
+  cursor: pointer;
+}
+
+.icon:hover {
+  fill: #d37134;
 }
 
 .authInput {
   margin-top: 12px;
-  padding: 20px 17px;
-  background: #f6f7fb;
+  padding: 17px 17px;
+  background: var(--backgroundColor);
 
-  font-size: 14px;
+  font-size: 15px;
   line-height: 1.2;
   border: none;
   border-radius: 30px;
+}
+.authInput:focus,
+.authInput:active {
+  outline-color: #d37134;
+}
+
+@media (min-width: 768px) {
+  .authInput {
+    margin-top: 10px;
+  }
 }
 
 .btns {
   display: flex;
   justify-content: space-between;
   width: 100%;
-  margin-top: 40px;
+  /* margin-top: 10px; */
   margin-left: auto;
   margin-right: auto;
+  padding-top: 10px;
 }
 
 .authBtn {
   display: inline-block;
   width: 125px;
   height: 44px;
-  margin: 0;
+  margin: 10 0 0 0;
 
   font-weight: 700;
   font-size: 12px;
 
-  background: #f5f6fb;
+  background: var(--backgroundColor);
 
   border: none;
   border-radius: 16px;
@@ -197,8 +216,8 @@
   font-weight: 700;
   font-size: 12px;
 
-  color: #ffffff;
-  background-color: #ff751d;
+  color: var(--basicColor);
+  background-color: var(--accentColor);
 
   border: none;
   border-radius: 16px;
@@ -210,9 +229,20 @@
 }
 
 .authForm__message_success {
-  color: green;
+  color: var(--incomeText);
 }
 
 .authForm__message_danger {
-  color: red;
+  color: var(--expenseText);
+}
+
+.info {
+  margin-top: 0;
+  border: none;
+  background: none;
+  text-decoration: underline;
+  color: var(--mainTextColor);
+}
+.info:hover {
+  cursor: pointer;
 }

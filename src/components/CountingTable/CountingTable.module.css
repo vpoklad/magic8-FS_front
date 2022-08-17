@@ -1,0 +1,97 @@
+.mobileCounterBtn {
+  display: inline-block;
+  visibility: visible;
+  opacity: 1;
+  height: 50px;
+  width: 50vw;
+  margin: 1px;
+  font-weight: 700;
+  font-size: 12px;
+  line-height: 14px;
+  letter-spacing: 0.02em;
+  text-transform: uppercase;
+  background-color: #f1f1f1;
+  border: none;
+  color: var(--titleTextColor);
+  transition: color 0.1s linear;
+}
+
+.counterBtn:hover {
+  color: var(--accentColor);
+}
+
+.counterTabletBtn {
+  margin: 0;
+  height: 40px;
+  width: 140px;
+  font-weight: 700;
+  font-size: 12px;
+  line-height: 14px;
+  letter-spacing: 0.02em;
+  transition: color 0.1s linear;
+  border-radius: 20px 20px 0 0;
+  border: none;
+  cursor: pointer;
+}
+.counterAccentBtn {
+  color: var(--accentColor);
+  background-color: #fefefe;
+  margin: 0;
+  height: 40px;
+  width: 140px;
+  font-weight: 700;
+  font-size: 12px;
+  line-height: 14px;
+  letter-spacing: 0.02em;
+  transition: color 0.1s linear;
+  border-radius: 20px 20px 0 0;
+  border: none;
+  cursor: pointer;
+}
+
+.counterContainer {
+  margin-right: 0px;
+  padding: 30px 20px;
+  max-width: 1060px;
+  background-color: var(--basicColor);
+  box-shadow: 0 10px 60px rgb(170 178 197 / 20%);
+  border-radius: 0 30px 30px 30px;
+}
+
+@media (max-width: 767px) {
+  .counterContainer {
+    display: none;
+  }
+  .mobileBtn {
+    visibility: visible;
+    opacity: 1;
+    margin: 0;
+    padding: 0;
+    height: 56px;
+    display: flex;
+    justify-content: space-between;
+    position: fixed;
+    left: 0;
+    bottom: 0;
+    flex-direction: row;
+    z-index: 1000;
+  }
+
+  .flexContainer {
+    margin-top: 30px;
+    display: flex;
+  }
+}
+
+@media (min-width: 1280px) {
+  .flexContainer {
+    margin-top: 0px;
+    display: flex;
+  }
+}
+
+@media (max-width: 767px) {
+  .counterWrapper {
+    width: 100%;
+  }
+}

@@ -1,69 +1,102 @@
 import s from './Balance.module.css';
 import { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { Link } from 'react-router-dom';
+import useMediaQuery from '@mui/material/useMediaQuery';
 import EditOutlinedIcon from '@mui/icons-material/EditOutlined';
-import sprite from '../../sprite.svg';
-import { addBalanceThunk } from '../../redux/balance/thunk';
+import { toast } from 'react-toastify';
+import { addBalanceThunk, getBalanceThunk } from '../../redux/balance/thunk';
 import { getBalance } from '../../redux/balance/selectors';
+import { Notification } from '../Notification/Notification';
+import Modal from '../Modal/Modal';
+import Button from '../Button/Button';
 
-export default function Balance({ showReport, showBtn }) {
+export default function Balance({
+  showBtn = true,
+  inputMobile = null,
+  spanMobile = null,
+  containerMobile = null,
+}) {
   const [value, setValue] = useState('00.00');
   const [readonly, setReadonly] = useState(null);
-  const dispatch = useDispatch();
 
-  const balance = useSelector(getBalance);
+  const [showModal, setShowModal] = useState(false);
+
+  const balanceString = useSelector(getBalance);
+  const balance = Number(balanceString);
+  const mobile = useMediaQuery('(max-width: 767px)');
+  const dispatch = useDispatch();
+  useEffect(() => {
+    dispatch(getBalanceThunk());
+  }, []);
 
   useEffect(() => {
     if (!showBtn) {
       setReadonly(true);
     }
-    setValue(balance);
-  }, [balance, showBtn]);
+    if (balance > 0) {
+      setReadonly('readonly');
+    }
+  }, [showBtn, balance]);
+
+  useEffect(() => {
+    const balanceFix = `${parseFloat(balance).toFixed(2)}`;
+    if (balanceFix) setValue(balanceFix);
+  }, [balance]);
 
   const сhangeBalance = e => {
     const { value } = e.target;
-
     setValue(value);
   };
 
   const handleBalance = () => {
     dispatch(addBalanceThunk(value));
+
     setReadonly('readonly');
+    toggleModal();
   };
 
-  return (
-    <div className={s.container}>
-      {showReport && (
-        <div className={s.reports}>
-          <Link to="/reports" className={s.link}>
-            Перейти до звітів
-          </Link>
-          <svg width="24" height="24" className={s.icon}>
-            <use href={`${sprite}#icon-barchart`} />
-          </svg>
-        </div>
-      )}
+  const toggleModal = () => {
+    if (isNaN(value)) {
+      setValue(balance);
+      return toast.error('Помилка! Вводити можна тільки числа!');
+    }
+    if (value === '') {
+      return toast.error('Помилка! Поле не може бути порожнім!');
+    }
+    setShowModal(!showModal);
+  };
 
+  const onClickBtnConfim = () => {
+    setReadonly(null);
+    setValue('');
+  };
+
+  const classNameInputMob = mobile && !showBtn ? inputMobile : null;
+  const classNameSpanMob = mobile && !showBtn ? spanMobile : null;
+
+  const classNameContainerMob = mobile && !showBtn ? containerMobile : null;
+  return (
+    <>
       <div className={s.containerBalance}>
         <span className={s.text}>Баланс:</span>
         <div className={s.containerInput}>
-          <div className={s.containerRelative}>
+          <div className={`${s.containerRelative} ${classNameContainerMob}`}>
             <input
-              className={s.balanceInput}
-              type="text"
+              required
+              className={`${s.balanceInput} ${classNameInputMob}`}
               value={value}
               onChange={сhangeBalance}
               readOnly={readonly}
+              type="text"
             />
-            <span className={s.span}>UAN</span>
+            <span className={`${s.span} ${classNameSpanMob}`}>UAH</span>
+            {!balance && <Notification />}
           </div>
-
           {readonly && showBtn && (
             <button
               className={s.editBtn}
               type="button"
-              onClick={() => setReadonly(null)}
+              onClick={onClickBtnConfim}
             >
               <EditOutlinedIcon className={s.iconEdit} />
             </button>
@@ -73,13 +106,19 @@ export default function Balance({ showReport, showBtn }) {
               <button
                 className={s.confirmBtn}
                 type="button"
-                onClick={handleBalance}
+                onClick={toggleModal}
               >
                 Підтвердити
               </button>
             ))}
         </div>
       </div>
-    </div>
+
+      {showModal && (
+        <Modal text={'Ви впевнені?'} toggleModal={toggleModal}>
+          <Button type="button" text="так" onClick={handleBalance} />
+        </Modal>
+      )}
+    </>
   );
 }

@@ -1,0 +1,190 @@
+@media screen and (max-width: 766px) {
+  .tableDesk {
+    display: none;
+  }
+}
+@media screen and (min-width: 768px) {
+  .tableDesk {
+    margin: 0;
+    margin-top: 25px;
+  }
+
+  .table {
+    width: 100%;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    font-weight: 400;
+    font-size: 12px;
+    line-height: 14px;
+    letter-spacing: 0.04em;
+  }
+
+  .tableHead {
+    width: 100%;
+  }
+
+  .tableHead {
+    width: 100%;
+  }
+
+  .tableTr {
+    width: 100%;
+    height: 43px;
+    border-bottom: 2px solid #f5f6fb;
+    display: inline-table;
+    color: #52555f;
+    font-weight: 400;
+    font-size: 12px;
+    line-height: 14px;
+    letter-spacing: 0.04em;
+  }
+
+  .tableBody {
+    height: 346px;
+    border-collapse: collapse;
+    width: 100%;
+    border: 2px solid var(--backgroundColor);
+    overflow-y: scroll;
+  }
+
+  .tableBody::-webkit-scrollbar {
+    width: 6px;
+    border-radius: 2px;
+    background: transparent;
+  }
+
+  .tableBody::-webkit-scrollbar-thumb {
+    background-color: #fc842d;
+    border-radius: 2px;
+  }
+
+  .transactionDate {
+    padding-left: 12px;
+    text-align: left;
+    width: 20%;
+  }
+
+  .transactionDescription {
+    text-align: left;
+    width: 23%;
+  }
+  .transactionCategory {
+    width: 25%;
+    text-align: center;
+  }
+
+  .tableHeadTr {
+    background: #f5f6fb;
+    border-radius: 20px 20px 0 0;
+    height: 40px;
+    font-weight: 700;
+    letter-spacing: 0.02em;
+    display: flex;
+    align-items: center;
+    text-transform: uppercase;
+    color: #000;
+  }
+  .tableTransDate {
+    padding-left: 21px;
+    width: 124px;
+    display: flex;
+  }
+
+  .tableTransDescr {
+    width: 189px;
+    display: flex;
+  }
+  .tableTransCategory {
+    width: 105px;
+    display: flex;
+  }
+  .tableTransAmount {
+    width: 125px;
+    display: flex;
+    justify-content: flex-end;
+  }
+
+  .item_svg {
+    margin-left: 35px;
+  }
+  .transactionDate {
+    padding-left: 20px;
+    text-align: left;
+    width: 20%;
+  }
+}
+
+.tableDelete {
+  width: 10%;
+  text-align: center;
+}
+
+.deleteBtn {
+  width: 35px;
+  height: 35px;
+  border-color: transparent;
+  border-radius: 50%;
+  background-color: transparent;
+  cursor: pointer;
+}
+
+@media screen and (min-width: 1280px) {
+  .tableDesk {
+    margin-right: 30px;
+    margin-top: 60px;
+  }
+  .table {
+    width: 760px;
+  }
+
+  .tableTransDate {
+    padding-left: 21px;
+    width: 150px;
+    display: flex;
+  }
+
+  .tableTransDescr {
+    width: 234px;
+    display: flex;
+  }
+  .tableTransCategory {
+    width: 152px;
+    display: flex;
+  }
+  .tableTransAmount {
+    width: 125px;
+    display: flex;
+    justify-content: flex-end;
+  }
+}
+
+.tableExpense {
+  width: 20%;
+  text-align: right;
+  color: var(--expenseText);
+  font-weight: 700;
+  font-family: Roboto;
+  font-weight: bold;
+}
+
+.tableIncome {
+  color: #407946;
+  width: 20%;
+  text-align: right;
+  font-family: Roboto;
+  font-weight: bold;
+}
+
+.noTransactions {
+  margin-top: 30px;
+  font-weight: 700;
+  font-size: 14px;
+  line-height: 14px;
+  letter-spacing: 0.02em;
+}
+
+.noTrans {
+  display: flex;
+  justify-content: space-around;
+}

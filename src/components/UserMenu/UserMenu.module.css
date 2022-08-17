@@ -10,12 +10,18 @@
   width: 32px;
   height: 32px;
   margin-right: 15px;
-  background-color: #f5f6fa;
+  background-color: var(--backgroundColor);
   border-radius: 50%;
   text-transform: uppercase;
-  color: #52555f;
+  color: var(--mainTextColor);
   font-size: 1rem;
   font-weight: 700;
+  overflow: hidden;
+}
+.header__avatarImg {
+  width: 100%;
+  display: block;
+  height: auto;
 }
 
 @media (min-width: 768px) {
@@ -39,15 +45,31 @@
   padding: 0;
   background: none;
   border: none;
-  text-decoration: underline;
-  color: #52555f;
+  color: var(--mainTextColor);
 }
 
-.header__logout:hover {
+.logout__name::after {
+  content: '';
+  display: block;
+  width: 100%;
+  height: 1px;
+  background-color: var(--mainTextColor);
+}
+
+.header__logout:hover,
+.header__logout:focus,
+.logout__name:hover::after,
+.logout__name:focus::after {
   cursor: pointer;
+  color: var(--accentColor);
 }
 
-.header__logout .logout__icon {
+.logout__name:hover::after,
+.logout__name:focus::after {
+  background-color: currentColor;
+}
+
+.header__logout .logout_icon {
   width: 16px;
   height: 16px;
   color: #cbccd0;

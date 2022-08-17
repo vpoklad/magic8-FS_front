@@ -1,0 +1,53 @@
+p {
+  margin: 0;
+}
+
+.listExpense {
+  position: relative;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  padding: 0;
+  margin: 0;
+  margin-top: -20px;
+  margin-bottom: 20px;
+  width: 100%;
+}
+
+@media (max-width: 767px) {
+  .listExpense::after {
+    display: block;
+    content: '';
+    border-bottom: 1px solid #e0e5eb;
+    position: absolute;
+    width: 100%;
+    bottom: 0;
+  }
+}
+
+@media (min-width: 768px) {
+  .listExpense {
+    margin-bottom: 30px;
+    margin-left: -20px;
+  }
+}
+
+@media (min-width: 1280px) {
+  .listExpense {
+    max-width: 650px;
+  }
+}
+
+.info {
+  margin-bottom: 20px;
+  text-align: center;
+}
+
+@media (min-width: 768px) {
+  .dataExpenseIncome {
+    background-color: var(--basicColor);
+    box-shadow: 0px 10px 60px rgba(170, 178, 197, 0.2);
+    border-radius: 30px;
+    margin-top: 30px;
+  }
+}

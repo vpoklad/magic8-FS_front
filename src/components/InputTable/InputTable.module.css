@@ -1,0 +1,253 @@
+@media (max-width: 767px) {
+  .inputContainer {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  .inputShell {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    margin-bottom: 30px;
+  }
+  .inputForm {
+    display: flex;
+    flex-direction: column;
+    width: 100vw;
+    padding-left: 20px;
+    padding-right: 20px;
+    font-weight: 400;
+    font-size: 12px;
+    line-height: 14px;
+
+    justify-content: space-between;
+    align-items: center;
+    letter-spacing: 0.02em;
+  }
+  .productName {
+    width: 282px;
+    padding: 13px 13px 13px 27px;
+    border-radius: 16px 16px 0 0;
+    border: 2px solid #ffffff;
+    background-color: #f5f6fb;
+  }
+
+  .categoryName {
+    width: 282px;
+    margin-bottom: 30px;
+    border-radius: 0 0 16px 16px;
+    border: 2px solid #ffffff;
+    background-color: #f5f6fb;
+    text-align: center;
+  }
+
+  .productAmount {
+    width: 125px;
+    padding: 13px 50px 13px 13px;
+    text-align: right;
+
+    border-radius: 16px 0 0 16px;
+    border: 2px solid #ffffff;
+    background-color: #f5f6fb;
+
+    font-family: Roboto;
+    font-style: normal;
+    font-weight: 700;
+    font-size: 12px;
+    line-height: 1.2;
+    display: flex;
+    /* align-items: center; */
+    letter-spacing: 0.02em;
+    text-transform: uppercase;
+  }
+
+  .productAmountLabel {
+    display: flex;
+
+    width: 183px;
+    margin-bottom: 40px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  .productAmountLabel svg {
+    /* position: absolute;
+  top: 10px;
+  right: 15px; */
+
+    width: 60px;
+    height: 44px;
+    padding: 13px 50px 13px 13px;
+    text-align: right;
+    background-image: url(./calc.svg);
+    background-size: 20px 20px;
+    background-position: center;
+    background-repeat: no-repeat;
+
+    border-radius: 0 16px 16px 0;
+    border: 2px solid #ffffff;
+    border-left: none;
+    /* background-colo
+  r: #F5F6FB; */
+  }
+
+  .mainBtnTable {
+  }
+}
+
+@media (min-width: 768px) {
+  .inputContainer {
+    display: flex;
+    flex-direction: column;
+  }
+  .inputShell {
+    display: flex;
+    align-items: center;
+    margin-bottom: 30px;
+  }
+  .mainBtnTable {
+    text-align: center;
+  }
+  .productName {
+    width: 190px;
+  }
+
+  /* .categoryName {
+    width: 282px;
+  } */
+
+  .mainBtnTable {
+    text-align: center;
+  }
+  .mainBtn {
+    margin-bottom: 25px;
+  }
+
+  .inputForm {
+    display: flex;
+    font-weight: 400;
+    font-size: 12px;
+    line-height: 14px;
+
+    justify-content: space-between;
+    align-items: center;
+    letter-spacing: 0.02em;
+  }
+  .productName {
+    padding: 13px;
+    border-radius: 16px 0 0 0;
+    border: 2px solid var(--backgroundColor);
+    border-right: none;
+    outline: none;
+  }
+
+  .productAmount {
+    padding: 13px 50px 13px 13px;
+
+    border: 2px solid var(--backgroundColor);
+    border-radius: 0px 16px 16px 0px;
+    border-left: none;
+    outline: none;
+    text-align: right;
+    width: 125px;
+  }
+
+  .productAmountLabel {
+    position: relative;
+  }
+
+  .productAmountLabel svg {
+    position: absolute;
+    top: 10px;
+    right: 15px;
+  }
+}
+
+@media (min-width: 1280px) {
+  .inputContainer {
+    align-items: center;
+    justify-content: space-between;
+    flex-direction: row;
+  }
+  .inputShell {
+    margin-bottom: 0px;
+  }
+
+  .productName {
+    width: 270px;
+  }
+  .mainBtn {
+    margin-bottom: 0px;
+  }
+}
+
+.react-datepicker {
+  font-family: inherit;
+  font-size: inherit;
+}
+
+.dateBtn {
+  margin-right: 25px;
+  font-weight: 900;
+  font-size: 12px;
+  color: var(--mainTextColor);
+  border: none;
+  background-color: transparent;
+  cursor: pointer;
+}
+
+.icon {
+  width: 15px;
+  height: 15px;
+}
+
+.changeBtn {
+  width: 125px;
+  height: 44px;
+
+  font-weight: 700;
+  font-size: 12px;
+  font-style: normal;
+  line-height: 14.06px;
+  text-align: center;
+  letter-spacing: 0.02em;
+  text-transform: uppercase;
+
+  background: var(--basicColor);
+  border: 1px solid var(--backgroundColor);
+  border-radius: 16px;
+  cursor: pointer;
+}
+
+.changeBtn:hover {
+  background: var(--backgroundColor);
+}
+
+.mainBtn {
+  width: 125px;
+  height: 44px;
+
+  font-weight: 700;
+  font-size: 12px;
+  font-style: normal;
+  line-height: 14.06px;
+  text-align: center;
+  letter-spacing: 0.02em;
+  text-transform: uppercase;
+  background-color: var(--accentColor);
+  color: var(--basicColor);
+  border-color: var(--accentColor);
+  border: 1px solid var(--backgroundColor);
+  border-radius: 16px;
+  margin-right: 30px;
+}
+
+.date {
+  display: flex;
+  align-items: flex-end;
+}
+
+.date svg {
+  margin-right: 10px;
+}
